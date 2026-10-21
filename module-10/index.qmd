@@ -1,0 +1,17 @@
+---
+title: "Module 10: Tidy Data and Project Setup"
+subtitle: "Oct 18–24, 2026"
+toc: false
+---
+
+## Project setup
+
+| Material | What it is |
+|---|---|
+| [Setup, Part 1: slides](files/Module10_Setup_Part1_Slides.pdf) (PDF) | The live demonstration from Thursday, Oct 22 |
+| [Setup, Part 1: handout](files/Module10_Setup_Part1_Handout.pdf) (PDF) | Copy the template, turn on your website, open it in Posit Cloud |
+| [Setup, Part 2: Connect Posit Cloud to GitHub](setup-part2.qmd) | Self-paced tutorial, about 45 minutes. Finish before the Fairness Data project starts. |
+
+## Challenge Project: Tidy Data
+
+Instructions are in your `challenge-tidy-data` project in Posit Cloud (`START_HERE`) and in Blackboard.

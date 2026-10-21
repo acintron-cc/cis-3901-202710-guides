@@ -1,0 +1,31 @@
+---
+title: "Title that states the question"
+subtitle: "Module NN · CIS-3901 · Fall 2026"
+format:
+  html:
+    code-fold: true
+---
+
+<!--
+Copy this file into module-NN/ and link it from module-NN/index.qmd.
+Course conventions: %>% only (never |>), US spelling, fig-alt on every figure,
+colorblind-safe palettes. Never publish answer keys before their release date:
+this repository is public, and everything pushed is visible at once.
+-->
+
+## Question
+
+## Data
+
+## Figure
+
+```{r}
+#| fig-alt: "Describe what the figure shows, in one or two sentences."
+#| fig-cap: "Caption that states the finding."
+library(tidyverse)
+penguins <- read_csv("../data/penguins.csv")
+```
+
+## What it shows
+
+## Limitations

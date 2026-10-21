@@ -1,0 +1,20 @@
+---
+title: "CIS-3901 Data Visualization and Presentation"
+subtitle: "Fall 2026 · Catawba College · Course materials"
+toc: false
+---
+
+Slides, reports and step-by-step guides for Modules 10–15. Each module has its own page.
+
+| Module | Dates | Materials |
+|---|---|---|
+| [Module 10: Tidy Data and Project Setup](module-10/index.qmd) | Oct 18–24 | Setup slides and handout (Part 1), Setup tutorial (Part 2) |
+| Module 11: Grammar of Graphics I | Oct 25–31 | Coming soon |
+| Module 12: Grammar of Graphics II | Nov 1–7 | Coming soon |
+| Module 13: Grammar of Graphics III | Nov 8–14 | Coming soon |
+| Module 14: Graphical Excellence Principles | Nov 15–21 | Coming soon |
+| Module 15: Introduction to Tableau and Project Progress | Nov 22–28 | Coming soon |
+
+Your project template: <https://github.com/acintron-cc/cis-3901-202710> · The finished example: <https://acintron-cc.github.io/cis-3901-202710/>
+
+Assignments, due dates and grades are in Blackboard.

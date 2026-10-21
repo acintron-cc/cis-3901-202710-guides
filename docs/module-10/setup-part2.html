@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.27">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="description" content="Finish before the Fairness Data project starts (date in Blackboard).">
+
+<title>Setup, Part 2: Connect Posit Cloud to GitHub – CIS-3901 · Fall 2026</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-6ec4d56ceab3e414357765a6fcb81d40.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">CIS-3901 · Fall 2026</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-modules" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Modules</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-modules">    
+        <li>
+    <a class="dropdown-item" href="../module-10/index.html">
+ <span class="dropdown-text">Module 10: Tidy Data and Project Setup</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#purpose" id="toc-purpose" class="nav-link active" data-scroll-target="#purpose">Purpose</a></li>
+  <li><a href="#task" id="toc-task" class="nav-link" data-scroll-target="#task">Task</a></li>
+  <li><a href="#criteria-youre-done-when" id="toc-criteria-youre-done-when" class="nav-link" data-scroll-target="#criteria-youre-done-when">Criteria: you’re done when</a></li>
+  <li><a href="#using-github-copilot-as-a-helper-optional" id="toc-using-github-copilot-as-a-helper-optional" class="nav-link" data-scroll-target="#using-github-copilot-as-a-helper-optional">Using GitHub Copilot as a helper (optional)</a></li>
+  <li><a href="#if-something-goes-wrong" id="toc-if-something-goes-wrong" class="nav-link" data-scroll-target="#if-something-goes-wrong">If something goes wrong</a></li>
+  <li><a href="#check-yourself-not-graded" id="toc-check-yourself-not-graded" class="nav-link" data-scroll-target="#check-yourself-not-graded">Check yourself (not graded)</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Setup, Part 2: Connect Posit Cloud to GitHub</h1>
+<p class="subtitle lead">Self-paced tutorial · about 45 minutes · not graded</p>
+</div>
+
+<div>
+  <div class="description">
+    Finish before the Fairness Data project starts (date in Blackboard).
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="purpose" class="level2">
+<h2 class="anchored" data-anchor-id="purpose">Purpose</h2>
+<p>In Part 1 you made your own repository on GitHub, turned on its website, and opened a working copy in Posit Cloud. Right now the copy only goes one way: from GitHub into Posit Cloud. In this tutorial you make it go both ways, so that the reports and slides you write in Posit Cloud reach GitHub and appear on <strong>your</strong> website. At the end, your home page shows your name at your own address.</p>
+<p>You don’t need any experience with Git. Every step says what to click and what you should see. If something looks different, <a href="#if-something-goes-wrong">If something goes wrong</a> lists the usual causes.</p>
+<section id="the-picture-to-keep-in-mind" class="level3">
+<h3 class="anchored" data-anchor-id="the-picture-to-keep-in-mind">The picture to keep in mind</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th>GitHub repository</th>
+<th>Posit Cloud project</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>What it is</td>
+<td>The shared copy. Public. Keeps the full history.</td>
+<td>Your working copy. Where you write R and Quarto.</td>
+</tr>
+<tr class="even">
+<td>Your website</td>
+<td>Shows what is in its <code>docs/</code> folder</td>
+<td>Changes here are invisible until you push</td>
+</tr>
+<tr class="odd">
+<td>Direction</td>
+<td><strong>pull</strong> brings GitHub’s changes down to Posit Cloud</td>
+<td><strong>push</strong> sends your commits up to GitHub</td>
+</tr>
+</tbody>
+</table>
+<p>The routine is always the same: <strong>edit → render → commit → push → check your site.</strong></p>
+</section>
+<section id="words-for-this-tutorial" class="level3">
+<h3 class="anchored" data-anchor-id="words-for-this-tutorial">Words for this tutorial</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Word</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Git</td>
+<td>The program that records versions of your files. It runs inside Posit Cloud; you click its buttons in the <strong>Git</strong> tab.</td>
+</tr>
+<tr class="even">
+<td>Commit</td>
+<td>A saved snapshot of the files you chose, with a short message saying what changed. It stays in Posit Cloud until you push.</td>
+</tr>
+<tr class="odd">
+<td>Stage</td>
+<td>Tick a file’s box to include it in the next commit.</td>
+</tr>
+<tr class="even">
+<td>Push</td>
+<td>Send your commits from Posit Cloud up to GitHub.</td>
+</tr>
+<tr class="odd">
+<td>Pull</td>
+<td>Bring commits from GitHub down into Posit Cloud (for example, a change you made on github.com).</td>
+</tr>
+<tr class="even">
+<td>Personal access token</td>
+<td>A long secret code GitHub gives you to use instead of your password when you push. Treat it exactly like a password.</td>
+</tr>
+<tr class="odd">
+<td>Render</td>
+<td>Run Quarto to turn your <code>.qmd</code> files into the web pages in <code>docs/</code>.</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="task" class="level2">
+<h2 class="anchored" data-anchor-id="task">Task</h2>
+<p>Open your <code>cis-3901-projects</code> project in Posit Cloud (space <strong>CIS-3901-Fall2026</strong>) and keep this page open in another browser tab, next to a tab on GitHub. Do the steps in order; each takes 5 to 10 minutes.</p>
+<section id="step-0.-check-the-packages-2-to-5-minutes" class="level3">
+<h3 class="anchored" data-anchor-id="step-0.-check-the-packages-2-to-5-minutes">Step 0. Check the packages (2 to 5 minutes)</h3>
+<p>Rendering the site needs the tidyverse and rmarkdown. In the <strong>Console</strong>, run:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>needed <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"tidyverse"</span>, <span class="st">"rmarkdown"</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>needed[<span class="sc">!</span>needed <span class="sc">%in%</span> <span class="fu">rownames</span>(<span class="fu">installed.packages</span>())]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ol type="1">
+<li>If it prints <code>character(0)</code>, everything is installed: go to Step A.</li>
+<li>If it prints a package name, install what’s missing. This takes a few minutes; wait for the <code>&gt;</code> prompt to come back.</li>
+</ol>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"tidyverse"</span>, <span class="st">"rmarkdown"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="step-a.-tell-git-who-you-are-5-minutes" class="level3">
+<h3 class="anchored" data-anchor-id="step-a.-tell-git-who-you-are-5-minutes">Step A. Tell Git who you are (5 minutes)</h3>
+<p>Every commit is signed with a name and an email. Your repository is public, so use GitHub’s private <strong>noreply</strong> email instead of your real one.</p>
+<ol type="1">
+<li>On GitHub: click your profile picture (top right) › <strong>Settings</strong> › <strong>Emails</strong>.</li>
+<li>Tick <strong>Keep my email addresses private</strong>. GitHub then shows your noreply address, which looks like <code>12345678+your-username@users.noreply.github.com</code>. Copy it.</li>
+<li>In Posit Cloud, click the <strong>Terminal</strong> tab (next to Console). Type these two lines, one at a time, pressing Enter after each. Use your own name (a first name and last initial is fine) and the address you copied, both inside the quotes:</li>
+</ol>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> user.name <span class="st">"Your Name"</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> user.email <span class="st">"12345678+your-username@users.noreply.github.com"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ol start="4" type="1">
+<li>Check: type <code>git config --global --list</code> and press Enter. You should see your <code>user.name</code> and <code>user.email</code>.</li>
+</ol>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Good to know
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>You do this once per Posit Cloud project. If you make another project from a Git repository later, repeat this step there.</p>
+</div>
+</div>
+</section>
+<section id="step-b.-create-your-token-10-minutes" class="level3">
+<h3 class="anchored" data-anchor-id="step-b.-create-your-token-10-minutes">Step B. Create your token (10 minutes)</h3>
+<p>GitHub doesn’t accept your password from Posit Cloud. It accepts a <strong>personal access token</strong> limited to one repository.</p>
+<ol type="1">
+<li>Open the token form: <strong><a href="https://github.com/settings/personal-access-tokens/new?name=CIS-3901+Posit+Cloud&amp;description=Push+from+Posit+Cloud+to+my+cis-3901-projects+repository&amp;expires_in=60&amp;contents=write">Create my CIS-3901 token</a></strong>. It opens GitHub’s form with the name, description, a 60-day expiration and the right permission already filled in. (Without the link: profile picture › <strong>Settings</strong> › <strong>Developer settings</strong> › <strong>Personal access tokens</strong> › <strong>Fine-grained tokens</strong> › <strong>Generate new token</strong>.)</li>
+<li>Check or set these fields:
+<ol type="a">
+<li><strong>Token name:</strong> <code>CIS-3901 Posit Cloud</code></li>
+<li><strong>Expiration:</strong> 60 days (past the Dec 4 presentations).</li>
+<li><strong>Repository access:</strong> choose <strong>Only select repositories</strong>, then pick <code>cis-3901-projects</code>. The link can’t fill this one in for you.</li>
+<li><strong>Permissions › Repository permissions › Contents:</strong> <strong>Read and write</strong>. (Metadata: Read-only is added automatically.) Leave everything else as it is.</li>
+</ol></li>
+<li>Click <strong>Generate token</strong>. GitHub shows the token, starting with <code>github_pat_</code>, <strong>only once</strong>. Click the copy icon.</li>
+<li>Keep it somewhere safe for the next 10 minutes: a password manager is best. If you lose it, you can always make a new one (see <a href="#if-something-goes-wrong">If something goes wrong</a>).</li>
+</ol>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>A token is a password
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Never</strong> paste it into a file in your project, a commit message, a chat, an email, Blackboard or an AI tool.</p>
+<p>Anyone with it can change your repository. If you think it leaked: GitHub › Settings › Developer settings › Fine-grained tokens › <strong>Delete</strong>, then create a new one.</p>
+</div>
+</div>
+</section>
+<section id="step-c.-your-first-commit-and-push-10-minutes" class="level3">
+<h3 class="anchored" data-anchor-id="step-c.-your-first-commit-and-push-10-minutes">Step C. Your first commit and push (10 minutes)</h3>
+<ol type="1">
+<li>In the <strong>Files</strong> pane, open <code>index.qmd</code>. Near the top, replace <code>Your Name</code> with your name (again, first name and last initial is fine). Save the file (Ctrl+S, or Cmd+S on a Mac).</li>
+<li>Click the <strong>Git</strong> tab (top-right pane). <code>index.qmd</code> appears with a blue <strong>M</strong> (modified).</li>
+<li>Tick the <strong>Staged</strong> box next to <code>index.qmd</code>. If you also see a file ending in <code>.Rproj</code> with a yellow <strong>?</strong>, tick it too: it’s your project’s settings file.</li>
+<li>Click <strong>Commit</strong>. A <strong>Review Changes</strong> window opens. In <strong>Commit message</strong>, type <code>Add my name to the home page</code>, then click <strong>Commit</strong>. Read the small report, then click <strong>Close</strong>.</li>
+<li>Click the green <strong>Push</strong> arrow (↑). Posit Cloud asks two questions:
+<ol type="a">
+<li><strong>Username:</strong> your GitHub username.</li>
+<li><strong>Password:</strong> paste your <strong>token</strong> (not your GitHub password). Nothing appears while you paste; that’s normal. Press Enter.</li>
+</ol></li>
+<li>When the report ends with a line like <code>main -&gt; main</code>, click <strong>Close</strong>.</li>
+<li>On GitHub, reload your repository. Near the top you see your commit message and “now” or “1 minute ago”. Click <code>index.qmd</code>: your name is there.</li>
+</ol>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Why your website hasn’t changed yet
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Your site shows the <code>docs/</code> folder, and <code>docs/</code> still holds the old rendered page. Step D renders the site so <code>docs/</code> has your name too.</p>
+</div>
+</div>
+<p>Posit Cloud remembers your token for up to 12 hours, in memory only (never in a file). After that, or after the project restarts, it asks again: paste the token again.</p>
+</section>
+<section id="step-d.-render-and-publish-10-minutes" class="level3">
+<h3 class="anchored" data-anchor-id="step-d.-render-and-publish-10-minutes">Step D. Render and publish (10 minutes)</h3>
+<ol type="1">
+<li>In the <strong>Terminal</strong> tab, type <code>quarto render</code> and press Enter. Quarto renders each page and reports <code>Output created: docs/index.html</code> at the end (about 1 minute). Or use the <strong>Build</strong> tab › <strong>Render Website</strong>.</li>
+<li>In the <strong>Git</strong> tab you now see many changed files in <code>docs/</code>. Click <strong>Commit</strong>.</li>
+<li>In the Review Changes window, click once in the file list, press Ctrl+A (Cmd+A on a Mac), then click <strong>Stage</strong>. Every box is ticked.</li>
+<li>Message: <code>Render site with my name</code>. Click <strong>Commit</strong>, then <strong>Close</strong>, then <strong>Push</strong> (↑), then <strong>Close</strong>.</li>
+<li>Wait 1 to 2 minutes, then open your site: <code>https://YOUR-USERNAME.github.io/cis-3901-projects/</code>. Reload (Ctrl+Shift+R, or Cmd+Shift+R). Your name is on the home page.</li>
+</ol>
+</section>
+<section id="step-e.-one-habit-pull-first-2-minutes" class="level3">
+<h3 class="anchored" data-anchor-id="step-e.-one-habit-pull-first-2-minutes">Step E. One habit: pull first (2 minutes)</h3>
+<p>If you ever change a file on github.com (for example, you fix a typo in <code>README.md</code> there), GitHub has a commit that Posit Cloud doesn’t. Bring it down <strong>before</strong> you start working: in the <strong>Git</strong> tab, click the blue <strong>Pull</strong> arrow (↓).</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Your routine for every work session
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li><strong>Pull</strong> (↓).</li>
+<li>Edit and save.</li>
+<li><strong>Render</strong> (<code>quarto render</code>).</li>
+<li><strong>Stage</strong> and <strong>Commit</strong> with a clear message.</li>
+<li><strong>Push</strong> (↑).</li>
+<li>Check your site.</li>
+</ol>
+<p>Commit small and often. Every commit is a point you can go back to.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="criteria-youre-done-when" class="level2">
+<h2 class="anchored" data-anchor-id="criteria-youre-done-when">Criteria: you’re done when</h2>
+<ul class="task-list">
+<li><label><input type="checkbox"><code>git config --global --list</code> shows your name and your <strong>noreply</strong> email.</label></li>
+<li><label><input type="checkbox">Your token is limited to <code>cis-3901-projects</code>, has <strong>Contents: Read and write</strong>, and expires in about 60 days.</label></li>
+<li><label><input type="checkbox">GitHub shows your two commits: <em>Add my name to the home page</em> and <em>Render site with my name</em>.</label></li>
+<li><label><input type="checkbox">Your site at <code>https://YOUR-USERNAME.github.io/cis-3901-projects/</code> shows your name.</label></li>
+<li><label><input type="checkbox">Your token is not in any file, commit, chat or message.</label></li>
+</ul>
+</section>
+<section id="using-github-copilot-as-a-helper-optional" class="level2">
+<h2 class="anchored" data-anchor-id="using-github-copilot-as-a-helper-optional">Using GitHub Copilot as a helper (optional)</h2>
+<p>GitHub Copilot is GitHub’s AI assistant. Used well, it explains instead of doing: what an error message means, what a Git word means, what a line in a file does. You still click the buttons and make the decisions.</p>
+<p><strong>How to get it</strong></p>
+<ul>
+<li><strong>Copilot Free</strong> comes with every GitHub account, with a monthly limit. Open <a href="https://github.com/copilot" class="uri">https://github.com/copilot</a> and start a chat.</li>
+<li><strong>Copilot Student</strong> (more use, free) requires GitHub Education verification: <a href="https://github.com/settings/education/benefits" class="uri">https://github.com/settings/education/benefits</a>. Approval can take several days, and GitHub has paused new student sign-ups at times in 2026; Copilot Free is enough for this tutorial.</li>
+<li><strong>In Posit Cloud</strong> (code suggestions as you type): <strong>Tools › Global Options › Copilot</strong>, tick <strong>Enable GitHub Copilot</strong>, then sign in with the code it shows. You do this once per project.</li>
+</ul>
+<p><strong>Prompts that help</strong></p>
+<ul>
+<li>“I’m new to Git. Explain the difference between commit and push in two sentences.”</li>
+<li>“I pushed from RStudio and got this message: [paste the message]. What does it mean, and what should I check?”</li>
+<li>Open a file on GitHub and ask Copilot: “Explain what <code>_quarto.yml</code> controls in this repository.”</li>
+</ul>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>Rules
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><strong>Never share your token</strong> with Copilot or any AI tool. Before you paste an error message, check it doesn’t contain a token or your email.</li>
+<li>Check what Copilot says against this tutorial. If they disagree, follow the tutorial and ask in office hours.</li>
+<li>In graded work, AI use follows that assignment’s AI level (see the AI Use Levels document) and must be logged as it says.</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="if-something-goes-wrong" class="level2">
+<h2 class="anchored" data-anchor-id="if-something-goes-wrong">If something goes wrong</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>What you see</th>
+<th>Why</th>
+<th>What to do</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>Authentication failed</code> or <code>Invalid username or token</code></td>
+<td>You typed your GitHub password, or the token was cut off when you copied it.</td>
+<td>Push again and paste the whole token (it starts with <code>github_pat_</code>). Still failing: make a new token (Regenerate).</td>
+</tr>
+<tr class="even">
+<td><code>403</code>, <code>Permission denied</code>, or <code>Write access to repository not granted</code></td>
+<td>The token can’t write to this repository.</td>
+<td>GitHub › Settings › Developer settings › Fine-grained tokens › your token › <strong>Edit</strong>: Repository access must include <code>cis-3901-projects</code>; Contents: <strong>Read and write</strong>. Save, then push again.</td>
+</tr>
+<tr class="odd">
+<td><code>Please tell me who you are</code> when you commit</td>
+<td>Step A not done in this project.</td>
+<td>Do Step A, then commit again.</td>
+</tr>
+<tr class="even">
+<td><code>GH007: Your push would publish a private email address</code></td>
+<td>The commit used your real email while GitHub keeps it private.</td>
+<td>Do Step A with the noreply address, then in the Terminal run <code>git commit --amend --reset-author --no-edit</code> and push again.</td>
+</tr>
+<tr class="odd">
+<td>Push rejected: <code>fetch first</code> or <code>Updates were rejected</code></td>
+<td>GitHub has a commit you don’t have (you edited on github.com).</td>
+<td>Click <strong>Pull</strong> (↓), then <strong>Push</strong> (↑).</td>
+</tr>
+<tr class="even">
+<td>The token stopped working after weeks</td>
+<td>It expired.</td>
+<td>Fine-grained tokens › your token › <strong>Regenerate token</strong>, or create a new one as in Step B.</td>
+</tr>
+<tr class="odd">
+<td>You lost the token</td>
+<td>GitHub shows it only once.</td>
+<td>Regenerate it, or delete it and create a new one.</td>
+</tr>
+<tr class="even">
+<td>Asked for username and token again</td>
+<td>Normal: Posit Cloud forgets it after 12 hours or a restart.</td>
+<td>Paste the token again.</td>
+</tr>
+<tr class="odd">
+<td>Commit button does nothing, or <code>nothing to commit</code></td>
+<td>The file isn’t saved, or no box is ticked.</td>
+<td>Save (the file name turns black), tick <strong>Staged</strong>, then Commit.</td>
+</tr>
+<tr class="even">
+<td><code>quarto render</code> says <code>there is no package called ...</code></td>
+<td>A package is missing.</td>
+<td>Do Step 0, then render again.</td>
+</tr>
+<tr class="odd">
+<td>Site still shows <code>Your Name</code></td>
+<td><code>docs/</code> wasn’t rendered, staged or pushed; or the browser shows an old copy.</td>
+<td>Repeat Step D; reload with Ctrl+Shift+R. On GitHub, the <strong>Actions</strong> tab shows <em>pages build and deployment</em> finishing.</td>
+</tr>
+<tr class="even">
+<td>Site shows <code>404</code></td>
+<td>Pages is off or set to the wrong folder.</td>
+<td>Settings › Pages: Deploy from a branch, <code>main</code>, <code>/docs</code>, Save. Check the address: your username and <code>cis-3901-projects</code>.</td>
+</tr>
+</tbody>
+</table>
+<p>Still stuck? Copy the exact message (without any token), take a screenshot, and bring it to office hours or send it through Blackboard. Nothing you do here can break the course template, and GitHub keeps every commit, so mistakes can be undone.</p>
+</section>
+<section id="check-yourself-not-graded" class="level2">
+<h2 class="anchored" data-anchor-id="check-yourself-not-graded">Check yourself (not graded)</h2>
+<ol type="1">
+<li>You edited <code>index.qmd</code> and pushed, but your site didn’t change. What step was missing?</li>
+<li>Why do you use a token instead of your GitHub password when you push from Posit Cloud?</li>
+<li>You fixed a typo in <code>README.md</code> on github.com. What do you click in Posit Cloud before you start working?</li>
+<li>Does a commit change anything on GitHub by itself?</li>
+<li>Where is it safe to keep your token: a text file in your project, a password manager, or a Blackboard post?</li>
+<li>Why use your noreply email for commits?</li>
+</ol>
+<details>
+<summary>
+Show the answers
+</summary>
+<ol type="1">
+<li>Render (<code>quarto render</code>), then commit and push the changed <code>docs/</code> files.</li>
+<li>GitHub doesn’t accept passwords from Git. A token can be limited to one repository and one permission, and it expires.</li>
+<li><strong>Pull</strong> (↓).</li>
+<li>No: a commit stays in Posit Cloud until you <strong>push</strong>.</li>
+<li>A password manager only.</li>
+<li>Your repository is public, and every commit shows its email; noreply keeps your real address private.</li>
+</ol>
+</details>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/acintron-cc\.github\.io\/cis-3901-202710-guides\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>CIS-3901 Data Visualization and Presentation · Catawba College · Fall 2026</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

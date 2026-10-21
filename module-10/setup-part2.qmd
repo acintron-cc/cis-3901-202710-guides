@@ -1,0 +1,207 @@
+---
+title: "Setup, Part 2: Connect Posit Cloud to GitHub"
+subtitle: "Self-paced tutorial · about 45 minutes · not graded"
+description: "Finish before the Fairness Data project starts (date in Blackboard)."
+---
+
+## Purpose
+
+In Part 1 you made your own repository on GitHub, turned on its website, and opened a working copy in Posit Cloud. Right now the copy only goes one way: from GitHub into Posit Cloud. In this tutorial you make it go both ways, so that the reports and slides you write in Posit Cloud reach GitHub and appear on **your** website. At the end, your home page shows your name at your own address.
+
+You don't need any experience with Git. Every step says what to click and what you should see. If something looks different, [If something goes wrong](#if-something-goes-wrong) lists the usual causes.
+
+### The picture to keep in mind
+
+|  | GitHub repository | Posit Cloud project |
+|---|---|---|
+| What it is | The shared copy. Public. Keeps the full history. | Your working copy. Where you write R and Quarto. |
+| Your website | Shows what is in its `docs/` folder | Changes here are invisible until you push |
+| Direction | **pull** brings GitHub's changes down to Posit Cloud | **push** sends your commits up to GitHub |
+
+The routine is always the same: **edit → render → commit → push → check your site.**
+
+### Words for this tutorial
+
+| Word | Meaning |
+|---|---|
+| Git | The program that records versions of your files. It runs inside Posit Cloud; you click its buttons in the **Git** tab. |
+| Commit | A saved snapshot of the files you chose, with a short message saying what changed. It stays in Posit Cloud until you push. |
+| Stage | Tick a file's box to include it in the next commit. |
+| Push | Send your commits from Posit Cloud up to GitHub. |
+| Pull | Bring commits from GitHub down into Posit Cloud (for example, a change you made on github.com). |
+| Personal access token | A long secret code GitHub gives you to use instead of your password when you push. Treat it exactly like a password. |
+| Render | Run Quarto to turn your `.qmd` files into the web pages in `docs/`. |
+
+## Task
+
+Open your `cis-3901-projects` project in Posit Cloud (space **CIS-3901-Fall2026**) and keep this page open in another browser tab, next to a tab on GitHub. Do the steps in order; each takes 5 to 10 minutes.
+
+### Step 0. Check the packages (2 to 5 minutes)
+
+Rendering the site needs the tidyverse and rmarkdown. In the **Console**, run:
+
+```r
+needed <- c("tidyverse", "rmarkdown")
+needed[!needed %in% rownames(installed.packages())]
+```
+
+1. If it prints `character(0)`, everything is installed: go to Step A.
+2. If it prints a package name, install what's missing. This takes a few minutes; wait for the `>` prompt to come back.
+
+```r
+install.packages(c("tidyverse", "rmarkdown"))
+```
+
+### Step A. Tell Git who you are (5 minutes)
+
+Every commit is signed with a name and an email. Your repository is public, so use GitHub's private **noreply** email instead of your real one.
+
+1. On GitHub: click your profile picture (top right) › **Settings** › **Emails**.
+2. Tick **Keep my email addresses private**. GitHub then shows your noreply address, which looks like `12345678+your-username@users.noreply.github.com`. Copy it.
+3. In Posit Cloud, click the **Terminal** tab (next to Console). Type these two lines, one at a time, pressing Enter after each. Use your own name (a first name and last initial is fine) and the address you copied, both inside the quotes:
+
+```bash
+git config --global user.name "Your Name"
+git config --global user.email "12345678+your-username@users.noreply.github.com"
+```
+
+4. Check: type `git config --global --list` and press Enter. You should see your `user.name` and `user.email`.
+
+::: {.callout-tip}
+## Good to know
+You do this once per Posit Cloud project. If you make another project from a Git repository later, repeat this step there.
+:::
+
+### Step B. Create your token (10 minutes)
+
+GitHub doesn't accept your password from Posit Cloud. It accepts a **personal access token** limited to one repository.
+
+1. Open the token form: **[Create my CIS-3901 token](https://github.com/settings/personal-access-tokens/new?name=CIS-3901+Posit+Cloud&description=Push+from+Posit+Cloud+to+my+cis-3901-projects+repository&expires_in=60&contents=write)**. It opens GitHub's form with the name, description, a 60-day expiration and the right permission already filled in. (Without the link: profile picture › **Settings** › **Developer settings** › **Personal access tokens** › **Fine-grained tokens** › **Generate new token**.)
+2. Check or set these fields:
+    a. **Token name:** `CIS-3901 Posit Cloud`
+    b. **Expiration:** 60 days (past the Dec 4 presentations).
+    c. **Repository access:** choose **Only select repositories**, then pick `cis-3901-projects`. The link can't fill this one in for you.
+    d. **Permissions › Repository permissions › Contents:** **Read and write**. (Metadata: Read-only is added automatically.) Leave everything else as it is.
+3. Click **Generate token**. GitHub shows the token, starting with `github_pat_`, **only once**. Click the copy icon.
+4. Keep it somewhere safe for the next 10 minutes: a password manager is best. If you lose it, you can always make a new one (see [If something goes wrong](#if-something-goes-wrong)).
+
+::: {.callout-warning}
+## A token is a password
+**Never** paste it into a file in your project, a commit message, a chat, an email, Blackboard or an AI tool.
+
+Anyone with it can change your repository. If you think it leaked: GitHub › Settings › Developer settings › Fine-grained tokens › **Delete**, then create a new one.
+:::
+
+### Step C. Your first commit and push (10 minutes)
+
+1. In the **Files** pane, open `index.qmd`. Near the top, replace `Your Name` with your name (again, first name and last initial is fine). Save the file (Ctrl+S, or Cmd+S on a Mac).
+2. Click the **Git** tab (top-right pane). `index.qmd` appears with a blue **M** (modified).
+3. Tick the **Staged** box next to `index.qmd`. If you also see a file ending in `.Rproj` with a yellow **?**, tick it too: it's your project's settings file.
+4. Click **Commit**. A **Review Changes** window opens. In **Commit message**, type `Add my name to the home page`, then click **Commit**. Read the small report, then click **Close**.
+5. Click the green **Push** arrow (↑). Posit Cloud asks two questions:
+    a. **Username:** your GitHub username.
+    b. **Password:** paste your **token** (not your GitHub password). Nothing appears while you paste; that's normal. Press Enter.
+6. When the report ends with a line like `main -> main`, click **Close**.
+7. On GitHub, reload your repository. Near the top you see your commit message and "now" or "1 minute ago". Click `index.qmd`: your name is there.
+
+::: {.callout-note}
+## Why your website hasn't changed yet
+Your site shows the `docs/` folder, and `docs/` still holds the old rendered page. Step D renders the site so `docs/` has your name too.
+:::
+
+Posit Cloud remembers your token for up to 12 hours, in memory only (never in a file). After that, or after the project restarts, it asks again: paste the token again.
+
+### Step D. Render and publish (10 minutes)
+
+1. In the **Terminal** tab, type `quarto render` and press Enter. Quarto renders each page and reports `Output created: docs/index.html` at the end (about 1 minute). Or use the **Build** tab › **Render Website**.
+2. In the **Git** tab you now see many changed files in `docs/`. Click **Commit**.
+3. In the Review Changes window, click once in the file list, press Ctrl+A (Cmd+A on a Mac), then click **Stage**. Every box is ticked.
+4. Message: `Render site with my name`. Click **Commit**, then **Close**, then **Push** (↑), then **Close**.
+5. Wait 1 to 2 minutes, then open your site: `https://YOUR-USERNAME.github.io/cis-3901-projects/`. Reload (Ctrl+Shift+R, or Cmd+Shift+R). Your name is on the home page.
+
+### Step E. One habit: pull first (2 minutes)
+
+If you ever change a file on github.com (for example, you fix a typo in `README.md` there), GitHub has a commit that Posit Cloud doesn't. Bring it down **before** you start working: in the **Git** tab, click the blue **Pull** arrow (↓).
+
+::: {.callout-important}
+## Your routine for every work session
+1. **Pull** (↓).
+2. Edit and save.
+3. **Render** (`quarto render`).
+4. **Stage** and **Commit** with a clear message.
+5. **Push** (↑).
+6. Check your site.
+
+Commit small and often. Every commit is a point you can go back to.
+:::
+
+## Criteria: you're done when
+
+- [ ] `git config --global --list` shows your name and your **noreply** email.
+- [ ] Your token is limited to `cis-3901-projects`, has **Contents: Read and write**, and expires in about 60 days.
+- [ ] GitHub shows your two commits: *Add my name to the home page* and *Render site with my name*.
+- [ ] Your site at `https://YOUR-USERNAME.github.io/cis-3901-projects/` shows your name.
+- [ ] Your token is not in any file, commit, chat or message.
+
+## Using GitHub Copilot as a helper (optional)
+
+GitHub Copilot is GitHub's AI assistant. Used well, it explains instead of doing: what an error message means, what a Git word means, what a line in a file does. You still click the buttons and make the decisions.
+
+**How to get it**
+
+- **Copilot Free** comes with every GitHub account, with a monthly limit. Open <https://github.com/copilot> and start a chat.
+- **Copilot Student** (more use, free) requires GitHub Education verification: <https://github.com/settings/education/benefits>. Approval can take several days, and GitHub has paused new student sign-ups at times in 2026; Copilot Free is enough for this tutorial.
+- **In Posit Cloud** (code suggestions as you type): **Tools › Global Options › Copilot**, tick **Enable GitHub Copilot**, then sign in with the code it shows. You do this once per project.
+
+**Prompts that help**
+
+- "I'm new to Git. Explain the difference between commit and push in two sentences."
+- "I pushed from RStudio and got this message: [paste the message]. What does it mean, and what should I check?"
+- Open a file on GitHub and ask Copilot: "Explain what `_quarto.yml` controls in this repository."
+
+::: {.callout-warning}
+## Rules
+- **Never share your token** with Copilot or any AI tool. Before you paste an error message, check it doesn't contain a token or your email.
+- Check what Copilot says against this tutorial. If they disagree, follow the tutorial and ask in office hours.
+- In graded work, AI use follows that assignment's AI level (see the AI Use Levels document) and must be logged as it says.
+:::
+
+## If something goes wrong
+
+| What you see | Why | What to do |
+|---|---|---|
+| `Authentication failed` or `Invalid username or token` | You typed your GitHub password, or the token was cut off when you copied it. | Push again and paste the whole token (it starts with `github_pat_`). Still failing: make a new token (Regenerate). |
+| `403`, `Permission denied`, or `Write access to repository not granted` | The token can't write to this repository. | GitHub › Settings › Developer settings › Fine-grained tokens › your token › **Edit**: Repository access must include `cis-3901-projects`; Contents: **Read and write**. Save, then push again. |
+| `Please tell me who you are` when you commit | Step A not done in this project. | Do Step A, then commit again. |
+| `GH007: Your push would publish a private email address` | The commit used your real email while GitHub keeps it private. | Do Step A with the noreply address, then in the Terminal run `git commit --amend --reset-author --no-edit` and push again. |
+| Push rejected: `fetch first` or `Updates were rejected` | GitHub has a commit you don't have (you edited on github.com). | Click **Pull** (↓), then **Push** (↑). |
+| The token stopped working after weeks | It expired. | Fine-grained tokens › your token › **Regenerate token**, or create a new one as in Step B. |
+| You lost the token | GitHub shows it only once. | Regenerate it, or delete it and create a new one. |
+| Asked for username and token again | Normal: Posit Cloud forgets it after 12 hours or a restart. | Paste the token again. |
+| Commit button does nothing, or `nothing to commit` | The file isn't saved, or no box is ticked. | Save (the file name turns black), tick **Staged**, then Commit. |
+| `quarto render` says `there is no package called ...` | A package is missing. | Do Step 0, then render again. |
+| Site still shows `Your Name` | `docs/` wasn't rendered, staged or pushed; or the browser shows an old copy. | Repeat Step D; reload with Ctrl+Shift+R. On GitHub, the **Actions** tab shows *pages build and deployment* finishing. |
+| Site shows `404` | Pages is off or set to the wrong folder. | Settings › Pages: Deploy from a branch, `main`, `/docs`, Save. Check the address: your username and `cis-3901-projects`. |
+
+Still stuck? Copy the exact message (without any token), take a screenshot, and bring it to office hours or send it through Blackboard. Nothing you do here can break the course template, and GitHub keeps every commit, so mistakes can be undone.
+
+## Check yourself (not graded)
+
+1. You edited `index.qmd` and pushed, but your site didn't change. What step was missing?
+2. Why do you use a token instead of your GitHub password when you push from Posit Cloud?
+3. You fixed a typo in `README.md` on github.com. What do you click in Posit Cloud before you start working?
+4. Does a commit change anything on GitHub by itself?
+5. Where is it safe to keep your token: a text file in your project, a password manager, or a Blackboard post?
+6. Why use your noreply email for commits?
+
+<details>
+<summary>Show the answers</summary>
+
+1. Render (`quarto render`), then commit and push the changed `docs/` files.
+2. GitHub doesn't accept passwords from Git. A token can be limited to one repository and one permission, and it expires.
+3. **Pull** (↓).
+4. No: a commit stays in Posit Cloud until you **push**.
+5. A password manager only.
+6. Your repository is public, and every commit shows its email; noreply keeps your real address private.
+
+</details>

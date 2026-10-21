@@ -1,0 +1,36 @@
+---
+title: "Module NN: Topic"
+subtitle: "CIS-3901 Data Visualization and Presentation · Fall 2026"
+format:
+  revealjs:
+    slide-number: true
+    code-copy: true
+---
+
+<!--
+Copy this file into module-NN/ (e.g. module-11/slides.qmd), then add a link
+to it in module-NN/index.qmd. Files in _templates/ are never rendered.
+Course conventions: %>% only (never |>), US spelling, fig-alt on every figure,
+colorblind-safe palettes. Data shared by several modules goes in data/ at the
+top of this repository; read it with "../data/<file>.csv".
+-->
+
+## Plan
+
+- First idea
+- Second idea
+
+## A figure
+
+```{r}
+#| fig-alt: "Describe what the figure shows, in one or two sentences."
+#| fig-cap: "Caption that states the finding."
+library(tidyverse)
+penguins <- read_csv("../data/penguins.csv")
+
+penguins %>%
+  ggplot(aes(x = species, y = flipper_length_mm, color = species)) +
+  geom_boxplot() +
+  scale_color_viridis_d(end = 0.7) +
+  labs(x = "Species", y = "Flipper length (mm)")
+```

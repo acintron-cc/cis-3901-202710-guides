@@ -1,0 +1,43 @@
+project:
+  type: website
+  output-dir: docs
+  render:
+    - index.qmd
+    - "module-*/*.qmd"
+  # Files Quarto doesn't render but should publish as they are:
+  # PDFs, images and self-contained HTML kept in any module's files/ folder.
+  resources:
+    - "module-*/files/**"
+
+website:
+  title: "CIS-3901 · Fall 2026"
+  site-url: "https://acintron-cc.github.io/cis-3901-202710-guides/"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - text: Modules
+        menu:
+          - href: module-10/index.qmd
+            text: "Module 10: Tidy Data and Project Setup"
+          # Add one line per module as its folder is created, e.g.
+          # - href: module-11/index.qmd
+          #   text: "Module 11: Grammar of Graphics I"
+  page-footer:
+    left: "CIS-3901 Data Visualization and Presentation · Catawba College · Fall 2026"
+
+format:
+  html:
+    theme: cosmo
+    toc: true
+    toc-depth: 2
+    code-copy: true
+    lang: en-US
+
+execute:
+  # Pages with R code are re-run only when their source changes; results are
+  # saved in _freeze/ (commit it), so older modules never need re-running.
+  freeze: auto
+  echo: true
+  warning: false
+  message: false
