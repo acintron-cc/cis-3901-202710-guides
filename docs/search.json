@@ -1,5 +1,152 @@
 [
   {
+    "objectID": "module-11/practice.html",
+    "href": "module-11/practice.html",
+    "title": "Module 11 · Deeper practice D1–D4",
+    "section": "",
+    "text": "NoteHow to use this page\n\n\n\n\nPurpose: practice the three ideas from class in more depth. Each exercise is a pattern for one task in Guided Project 11: solve it here on penguins, then repeat the same moves on your own data.\nTask: run the code in Posit Cloud: open practice/practice_d1-d4.R in the module-11-aes project (or download practice_d1-d4.R) and work section by section. About 15 minutes per exercise.\nSuccess: you can answer each question before you open its answer, and your Modify and Make code draws the plot described.\nPredictions are not graded anywhere. Answers are here so you can check yourself: try first, then open them.\nWhat the measurement columns mean:\nEvery exercise starts the same way:\nlibrary(tidyverse)\npenguins &lt;- read_csv(\"data/penguins.csv\")"
+  },
+  {
+    "objectID": "module-11/practice.html#predict",
+    "href": "module-11/practice.html#predict",
+    "title": "Module 11 · Deeper practice D1–D4",
+    "section": "Predict",
+    "text": "Predict\nBill length and bill depth: when one goes up, does the other go up or down? Will the answer change once each species gets its own color? Write your prediction before running anything.\n\n\n\n\n\n\nTipShow answer\n\n\n\n\n\nLook at the two plots below. Without color, the whole cloud tends to go down: longer bills look shallower. With color, within each species the points go up. The overall trend mixes three groups that sit in different places. Mapping the group to color reveals it."
+  },
+  {
+    "objectID": "module-11/practice.html#run",
+    "href": "module-11/practice.html#run",
+    "title": "Module 11 · Deeper practice D1–D4",
+    "section": "Run",
+    "text": "Run\n\nggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm)) +\n  geom_point()\n\nWarning: Removed 2 rows containing missing values or values outside the scale range\n(`geom_point()`).\n\n\n\n\n\n\n\n\nggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm,\n                     color = species, shape = species)) +\n  geom_point()\n\nWarning: Removed 2 rows containing missing values or values outside the scale range\n(`geom_point()`)."
+  },
+  {
+    "objectID": "module-11/practice.html#investigate",
+    "href": "module-11/practice.html#investigate",
+    "title": "Module 11 · Deeper practice D1–D4",
+    "section": "Investigate",
+    "text": "Investigate\n\nWhat does one point stand for? What does the warning in the console say, and why?\nWhy map species to both color and shape?\nYou will set alpha = 0.4 below. Why is alpha set (outside aes()) and not mapped?\n\n\n\n\n\n\n\nTipShow answers\n\n\n\n\n\n\nOne penguin. Rows with a missing bill length or depth have no position, so geom_point() removes them and says so in the warning.\nTwo cues for the same column: the plot still reads in grayscale and for readers who do not see color differences (color is never the only cue).\nTransparency here is not information about each penguin; it is one design choice for all points so overlaps show. One value for every mark is a setting."
+  },
+  {
+    "objectID": "module-11/practice.html#modify",
+    "href": "module-11/practice.html#modify",
+    "title": "Module 11 · Deeper practice D1–D4",
+    "section": "Modify",
+    "text": "Modify\nMap shape to island and set the transparency of every point to 0.4. Predict first: how many legends will there be?\n\nggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm,\n                     color = species, shape = ___)) +\n  geom_point(alpha = ___)\n\n\n\n\n\n\n\nTipShow solution\n\n\n\n\n\n\nggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm,\n                     color = species, shape = island)) +\n  geom_point(alpha = 0.4)\n\nWarning: Removed 2 rows containing missing values or values outside the scale range\n(`geom_point()`).\n\n\n\n\n\n\n\n\n\nTwo legends: one for color (species) and one for shape (island). Alpha has no legend because it is set, not mapped."
+  },
+  {
+    "objectID": "module-11/practice.html#make-choose-one",
+    "href": "module-11/practice.html#make-choose-one",
+    "title": "Module 11 · Deeper practice D1–D4",
+    "section": "Make (choose one)",
+    "text": "Make (choose one)\n\nOption A (Body size): flipper_length_mm on x, body_mass_g on y, color mapped to sex.\nOption B (Islands): body_mass_g on x, bill_depth_mm on y, color mapped to island, alpha set to 0.5.\n\n\n\n\n\n\n\nTipShow solutions\n\n\n\n\n\n\nggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g,\n                     color = sex)) +\n  geom_point()\n\nWarning: Removed 2 rows containing missing values or values outside the scale range\n(`geom_point()`).\n\n\n\n\n\n\n\n\nggplot(penguins, aes(x = body_mass_g, y = bill_depth_mm,\n                     color = island)) +\n  geom_point(alpha = 0.5)\n\nWarning: Removed 2 rows containing missing values or values outside the scale range\n(`geom_point()`).\n\n\n\n\n\n\n\n\n\nOption A shows a third color for NA: penguins whose sex was not recorded. That is real missing data; D4 Option B shows one way to drop those rows.\n\n\n\n\n\n\n\n\n\nImportantPattern for Guided Project tasks A1 and B1\n\n\n\nChoose two numeric columns of your dataset for x and y. Map one categorical column (in Fairness Data: the outcome or a sensitive attribute) to color. Your datasets have thousands of rows, so set alpha. Write first: *each row of my data is one ___*."
+  },
+  {
+    "objectID": "module-11/practice.html#predict-1",
+    "href": "module-11/practice.html#predict-1",
+    "title": "Module 11 · Deeper practice D1–D4",
+    "section": "Predict",
+    "text": "Predict\npenguins %&gt;% count(island) makes a table. How many rows will it have, and how many columns will the plot below have?\n\n\n\n\n\n\nTipShow answer\n\n\n\n\n\nThree rows (Biscoe, Dream, Torgersen), so three columns: one mark per row."
+  },
+  {
+    "objectID": "module-11/practice.html#run-1",
+    "href": "module-11/practice.html#run-1",
+    "title": "Module 11 · Deeper practice D1–D4",
+    "section": "Run",
+    "text": "Run\n\nisland_counts &lt;- penguins %&gt;% count(island)\nisland_counts\n\n# A tibble: 3 × 2\n  island        n\n  &lt;chr&gt;     &lt;int&gt;\n1 Biscoe      168\n2 Dream       124\n3 Torgersen    52\n\nggplot(island_counts, aes(x = island, y = n)) +\n  geom_col()"
+  },
+  {
+    "objectID": "module-11/practice.html#investigate-1",
+    "href": "module-11/practice.html#investigate-1",
+    "title": "Module 11 · Deeper practice D1–D4",
+    "section": "Investigate",
+    "text": "Investigate\n\nTrue or false: geom_col() counts the rows for you.\nRun penguins %&gt;% count(sex). Why are there three rows? What will the plot show for the third one?\ngeom_col() draws any number you computed, not only counts. Which function from Module 5 makes a table of means per group?\n\n\n\n\n\n\n\nTipShow answers\n\n\n\n\n\n\nFalse. count() did the counting; geom_col() draws the heights you give it. (geom_bar() counts for you because it computes a statistic: Module 12.)\nThe third row is NA: penguins whose sex was not recorded. The plot shows a column labeled NA. Missing values are data too.\ngroup_by() + summarise()."
+  },
+  {
+    "objectID": "module-11/practice.html#modify-1",
+    "href": "module-11/practice.html#modify-1",
+    "title": "Module 11 · Deeper practice D1–D4",
+    "section": "Modify",
+    "text": "Modify\nDraw the number of penguins measured in each year.\n\nyear_counts &lt;- penguins %&gt;% count(___)\nggplot(year_counts, aes(x = year, y = ___)) +\n  geom_col()\n\n\n\n\n\n\n\nTipShow solution\n\n\n\n\n\n\nyear_counts &lt;- penguins %&gt;% count(year)\nggplot(year_counts, aes(x = year, y = n)) +\n  geom_col()"
+  },
+  {
+    "objectID": "module-11/practice.html#make-choose-one-1",
+    "href": "module-11/practice.html#make-choose-one-1",
+    "title": "Module 11 · Deeper practice D1–D4",
+    "section": "Make (choose one)",
+    "text": "Make (choose one)\n\nOption A (Sexes): count penguins by sex and draw the counts.\nOption B (Means, not counts): mean body_mass_g per species with group_by() + summarise(), drawn with geom_col().\n\n\n\n\n\n\n\nTipShow solutions\n\n\n\n\n\n\nsex_counts &lt;- penguins %&gt;% count(sex)\nggplot(sex_counts, aes(x = sex, y = n)) +\n  geom_col()\n\n\n\n\n\n\n\nspecies_mass &lt;- penguins %&gt;%\n  group_by(species) %&gt;%\n  summarise(mean_mass = mean(body_mass_g, na.rm = TRUE))\nggplot(species_mass, aes(x = species, y = mean_mass)) +\n  geom_col()\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nImportantPattern for Guided Project tasks A2 and B2\n\n\n\nPick one categorical column (an outcome, a sensitive attribute, a team, a position…). count() it, then draw the counts with geom_col(). Before plotting, print the small table: how many rows, so how many columns?"
+  },
+  {
+    "objectID": "module-11/practice.html#predict-2",
+    "href": "module-11/practice.html#predict-2",
+    "title": "Module 11 · Deeper practice D1–D4",
+    "section": "Predict",
+    "text": "Predict\npenguin_means below has one row per species and year. Will the first plot show one line or three?\n\n\n\n\n\n\nTipShow answer\n\n\n\n\n\nOne line that zigzags: nothing tells ggplot2 the rows belong to three species, so it joins all points in order of x and jumps up and down at each year."
+  },
+  {
+    "objectID": "module-11/practice.html#run-2",
+    "href": "module-11/practice.html#run-2",
+    "title": "Module 11 · Deeper practice D1–D4",
+    "section": "Run",
+    "text": "Run\n\npenguin_means &lt;- penguins %&gt;%\n  group_by(species, year) %&gt;%\n  summarise(mean_mass = mean(body_mass_g, na.rm = TRUE),\n            .groups = \"drop\")\npenguin_means\n\n# A tibble: 9 × 3\n  species    year mean_mass\n  &lt;chr&gt;     &lt;dbl&gt;     &lt;dbl&gt;\n1 Adelie     2007     3696.\n2 Adelie     2008     3742 \n3 Adelie     2009     3665.\n4 Chinstrap  2007     3694.\n5 Chinstrap  2008     3800 \n6 Chinstrap  2009     3725 \n7 Gentoo     2007     5071.\n8 Gentoo     2008     5020.\n9 Gentoo     2009     5141.\n\nggplot(penguin_means, aes(x = year, y = mean_mass)) +\n  geom_line()"
+  },
+  {
+    "objectID": "module-11/practice.html#investigate-2",
+    "href": "module-11/practice.html#investigate-2",
+    "title": "Module 11 · Deeper practice D1–D4",
+    "section": "Investigate",
+    "text": "Investigate\n\nHow many rows does penguin_means have? Why that number?\nRun both plots below. Which geom follows the order of the rows, and which sorts by x first?\n\n\nwalk &lt;- tibble(step = c(1, 3, 2), place = c(10, 30, 15))\nggplot(walk, aes(x = step, y = place)) + geom_line()\n\n\n\n\n\n\n\nggplot(walk, aes(x = step, y = place)) + geom_path()\n\n\n\n\n\n\n\n\n\nThe x axis shows values like 2007.5. Is that a problem with the data or with the axis?\n\n\n\n\n\n\n\nTipShow answers\n\n\n\n\n\n\nNine: 3 species × 3 years, one row per combination.\ngeom_path() follows the row order (1, 3, 2); geom_line() sorts by x (1, 2, 3). Minard’s map is a path: the army’s route, in order.\nThe axis: ggplot2 chose breaks for a continuous number. Changing breaks is part of scales (Module 13)."
+  },
+  {
+    "objectID": "module-11/practice.html#modify-2",
+    "href": "module-11/practice.html#modify-2",
+    "title": "Module 11 · Deeper practice D1–D4",
+    "section": "Modify",
+    "text": "Modify\nGive each species its own line.\n\nggplot(penguin_means, aes(x = year, y = mean_mass, color = ___)) +\n  geom_line()\n\n\n\n\n\n\n\nTipShow solution\n\n\n\n\n\n\nggplot(penguin_means, aes(x = year, y = mean_mass, color = species)) +\n  geom_line()\n\n\n\n\n\n\n\n\nA discrete mapping (color) also makes groups, so there is one line per species. group = species would do the grouping without color."
+  },
+  {
+    "objectID": "module-11/practice.html#make-choose-one-2",
+    "href": "module-11/practice.html#make-choose-one-2",
+    "title": "Module 11 · Deeper practice D1–D4",
+    "section": "Make (choose one)",
+    "text": "Make (choose one)\n\nOption A (Flippers): mean flipper_length_mm per island and year, one line per island.\nOption B (Counts over time): count(species, year), then one line per species showing how many penguins were measured each year.\n\n\n\n\n\n\n\nTipShow solutions\n\n\n\n\n\n\nflipper_means &lt;- penguins %&gt;%\n  group_by(island, year) %&gt;%\n  summarise(mean_flipper = mean(flipper_length_mm, na.rm = TRUE),\n            .groups = \"drop\")\nggplot(flipper_means, aes(x = year, y = mean_flipper, color = island)) +\n  geom_line()\n\n\n\n\n\n\n\nspecies_year &lt;- penguins %&gt;% count(species, year)\nggplot(species_year, aes(x = year, y = n, color = species)) +\n  geom_line()\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nImportantPattern for Guided Project task B3 (and A3 for Credit Card)\n\n\n\nIf your data has a time or order column (season, year, game number, round; Credit Card: month), summarise() one number per group and time point, then geom_line() with the group mapped to color. Check the number of rows first: groups × time points."
+  },
+  {
+    "objectID": "module-11/practice.html#predict-3",
+    "href": "module-11/practice.html#predict-3",
+    "title": "Module 11 · Deeper practice D1–D4",
+    "section": "Predict",
+    "text": "Predict\nspecies_centers has columns species, mean_flipper and mean_mass. The second layer below has no aes() of its own. Will it run?\n\n\n\n\n\n\nTipShow answer\n\n\n\n\n\nNo. x and y are set in ggplot(), so every layer inherits them. The second layer looks for flipper_length_mm in species_centers, which does not have it."
+  },
+  {
+    "objectID": "module-11/practice.html#run-3",
+    "href": "module-11/practice.html#run-3",
+    "title": "Module 11 · Deeper practice D1–D4",
+    "section": "Run",
+    "text": "Run\n\nspecies_centers &lt;- penguins %&gt;%\n  group_by(species) %&gt;%\n  summarise(\n    mean_flipper = mean(flipper_length_mm, na.rm = TRUE),\n    mean_mass = mean(body_mass_g, na.rm = TRUE)\n  )\nspecies_centers\n\n# A tibble: 3 × 3\n  species   mean_flipper mean_mass\n  &lt;chr&gt;            &lt;dbl&gt;     &lt;dbl&gt;\n1 Adelie            190.     3701.\n2 Chinstrap         196.     3733.\n3 Gentoo            217.     5076.\n\nggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g)) +\n  geom_point() +\n  geom_point(data = species_centers, size = 5, shape = 4)\n\nError in `geom_point()`:\n! Problem while computing aesthetics.\nℹ Error occurred in the 2nd layer.\nCaused by error:\n! object 'flipper_length_mm' not found"
+  },
+  {
+    "objectID": "module-11/practice.html#investigate-3",
+    "href": "module-11/practice.html#investigate-3",
+    "title": "Module 11 · Deeper practice D1–D4",
+    "section": "Investigate",
+    "text": "Investigate\n\nRead the error: which column is missing, and in which layer?\nFix it by giving the second layer its own aes(x = …, y = …). Which columns go there?\nIn the plot below, color = species is in ggplot(). Are the X marks colored? Why?\n\n\nggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g,\n                     color = species)) +\n  geom_point() +\n  geom_point(data = species_centers,\n             aes(x = mean_flipper, y = mean_mass),\n             size = 5, shape = 4)\n\nWarning: Removed 2 rows containing missing values or values outside the scale range\n(`geom_point()`).\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTipShow answers\n\n\n\n\n\n\nflipper_length_mm, in the 2nd layer.\naes(x = mean_flipper, y = mean_mass): the columns of species_centers.\nYes. A mapping in ggplot() is global: every layer whose data has a species column uses it. Put color = species inside the first geom_point() to make it local to that layer."
+  },
+  {
+    "objectID": "module-11/practice.html#modify-3",
+    "href": "module-11/practice.html#modify-3",
+    "title": "Module 11 · Deeper practice D1–D4",
+    "section": "Modify",
+    "text": "Modify\nAdd a third layer that writes each species’ name above its center.\n\nggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g)) +\n  geom_point(aes(color = species), alpha = 0.6) +\n  geom_point(data = species_centers,\n             aes(x = mean_flipper, y = mean_mass),\n             size = 5, shape = 4) +\n  geom_text(data = ___,\n            aes(x = mean_flipper, y = mean_mass, label = ___),\n            vjust = -1.2)\n\n\n\n\n\n\n\nTipShow solution\n\n\n\n\n\n\nggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g)) +\n  geom_point(aes(color = species), alpha = 0.6) +\n  geom_point(data = species_centers,\n             aes(x = mean_flipper, y = mean_mass),\n             size = 5, shape = 4) +\n  geom_text(data = species_centers,\n            aes(x = mean_flipper, y = mean_mass, label = species),\n            vjust = -1.2)\n\nWarning: Removed 2 rows containing missing values or values outside the scale range\n(`geom_point()`)."
+  },
+  {
+    "objectID": "module-11/practice.html#make-choose-one-3",
+    "href": "module-11/practice.html#make-choose-one-3",
+    "title": "Module 11 · Deeper practice D1–D4",
+    "section": "Make (choose one)",
+    "text": "Make (choose one)\n\nOption A (Islands): a scatter of bill_length_mm and bill_depth_mm colored by island, with each island’s mean bill length and depth as a large X and its name as a label.\nOption B (Sexes): a scatter of flipper_length_mm and body_mass_g colored by sex, with a large X at the mean of each sex. Hint: drop the penguins with no recorded sex first, with filter(!is.na(sex)).\n\n\n\n\n\n\n\nTipShow solutions\n\n\n\n\n\n\nisland_centers &lt;- penguins %&gt;%\n  group_by(island) %&gt;%\n  summarise(\n    mean_length = mean(bill_length_mm, na.rm = TRUE),\n    mean_depth = mean(bill_depth_mm, na.rm = TRUE)\n  )\nggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm)) +\n  geom_point(aes(color = island), alpha = 0.6) +\n  geom_point(data = island_centers,\n             aes(x = mean_length, y = mean_depth),\n             size = 5, shape = 4) +\n  geom_text(data = island_centers,\n            aes(x = mean_length, y = mean_depth, label = island),\n            vjust = -1.2)\n\nWarning: Removed 2 rows containing missing values or values outside the scale range\n(`geom_point()`).\n\n\n\n\n\n\n\n\npenguins_sexed &lt;- penguins %&gt;% filter(!is.na(sex))\nsex_centers &lt;- penguins_sexed %&gt;%\n  group_by(sex) %&gt;%\n  summarise(\n    mean_flipper = mean(flipper_length_mm, na.rm = TRUE),\n    mean_mass = mean(body_mass_g, na.rm = TRUE)\n  )\nggplot(penguins_sexed, aes(x = flipper_length_mm, y = body_mass_g)) +\n  geom_point(aes(color = sex), alpha = 0.6) +\n  geom_point(data = sex_centers,\n             aes(x = mean_flipper, y = mean_mass),\n             size = 5, shape = 4)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nImportantPattern for Guided Project tasks A4 and B4\n\n\n\nLayer 1: your scatter from A1/B1. Layer 2: a small table of group means (group_by() + summarise()) with its own aes(). Layer 3: geom_text() labels. In Fairness Data, check your dataset card first: a group with fewer than 30 rows gives an unreliable mean. Say so in your notes.\n\n\n\nData: Palmer Penguins (Horst, Hill & Gorman), CC0. Reference: Wickham, Navarro & Pedersen, ggplot2 (3e), chapters 2, 3 and 13."
+  },
+  {
     "objectID": "module-10/setup-part2.html",
     "href": "module-10/setup-part2.html",
     "title": "Setup, Part 2: Connect Posit Cloud to GitHub",
@@ -75,5 +222,33 @@
     "title": "Module 10: Tidy Data and Project Setup",
     "section": "Challenge Project: Tidy Data",
     "text": "Challenge Project: Tidy Data\nInstructions are in your challenge-tidy-data project in Posit Cloud (START_HERE) and in Blackboard."
+  },
+  {
+    "objectID": "module-11/index.html",
+    "href": "module-11/index.html",
+    "title": "Module 11 · Grammar of Graphics I",
+    "section": "",
+    "text": "From a table of numbers to a layered plot: data + aesthetic mappings + geom = a layer, and plots add layers."
+  },
+  {
+    "objectID": "module-11/index.html#in-class",
+    "href": "module-11/index.html#in-class",
+    "title": "Module 11 · Grammar of Graphics I",
+    "section": "In class",
+    "text": "In class\n\n\n\n\n\n\n\n\nSession\nTopic\nIn Posit Cloud (module-11-aes)\n\n\n\n\nSession 1\nMappings and geoms\nlive/module11_session1.R, then concepts/concepts_session1.R\n\n\nSession 2\nLayers, and your own data\nlive/module11_session2.R, concepts/concepts_session2.R, then Guided Project 11\n\n\n\nSlides: see Blackboard (PDF)."
+  },
+  {
+    "objectID": "module-11/index.html#after-class",
+    "href": "module-11/index.html#after-class",
+    "title": "Module 11 · Grammar of Graphics I",
+    "section": "After class",
+    "text": "After class\n\nConcept checks (short, with instant feedback): the concepts/ scripts in the module-11-aes Posit Cloud project.\nDeeper practice D1–D4, with answers: practice page. Run it in Posit Cloud with practice/practice_d1-d4.R in module-11-aes (also downloadable here). Each exercise is the pattern for a Guided Project task.\nGuided Project 11: Posit Cloud assignment; due date in Blackboard."
+  },
+  {
+    "objectID": "module-11/index.html#reading",
+    "href": "module-11/index.html#reading",
+    "title": "Module 11 · Grammar of Graphics I",
+    "section": "Reading",
+    "text": "Reading\nggplot2 (3e): 2 First steps, 3 Individual geoms, 13 Build a plot layer by layer."
   }
 ]

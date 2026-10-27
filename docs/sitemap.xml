@@ -1,15 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://acintron-cc.github.io/cis-3901-202710-guides/module-11/practice.html</loc>
+    <lastmod>2026-10-27T01:36:12.426Z</lastmod>
+  </url>
+  <url>
     <loc>https://acintron-cc.github.io/cis-3901-202710-guides/module-10/setup-part2.html</loc>
-    <lastmod>2026-10-21T19:19:07.489Z</lastmod>
+    <lastmod>2026-10-27T00:43:28.517Z</lastmod>
   </url>
   <url>
     <loc>https://acintron-cc.github.io/cis-3901-202710-guides/index.html</loc>
-    <lastmod>2026-10-21T19:19:07.490Z</lastmod>
+    <lastmod>2026-10-27T00:43:28.515Z</lastmod>
   </url>
   <url>
     <loc>https://acintron-cc.github.io/cis-3901-202710-guides/module-10/index.html</loc>
-    <lastmod>2026-10-21T19:19:07.489Z</lastmod>
+    <lastmod>2026-10-27T00:43:28.516Z</lastmod>
+  </url>
+  <url>
+    <loc>https://acintron-cc.github.io/cis-3901-202710-guides/module-11/index.html</loc>
+    <lastmod>2026-10-27T01:36:12.427Z</lastmod>
   </url>
 </urlset>

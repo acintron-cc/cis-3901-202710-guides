@@ -20,9 +20,9 @@ website:
         menu:
           - href: module-10/index.qmd
             text: "Module 10: Tidy Data and Project Setup"
-          # Add one line per module as its folder is created, e.g.
-          # - href: module-11/index.qmd
-          #   text: "Module 11: Grammar of Graphics I"
+          - href: module-11/index.qmd
+            text: "Module 11: Grammar of Graphics I"
+          # Add one line per module as its folder is created.
   page-footer:
     left: "CIS-3901 Data Visualization and Presentation · Catawba College · Fall 2026"
 

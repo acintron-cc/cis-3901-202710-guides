@@ -1,0 +1,32 @@
+---
+title: "Module 11 · Grammar of Graphics I"
+subtitle: "Aesthetic mappings and geometric objects · Oct 25–31, 2026"
+---
+
+From a table of numbers to a layered plot: **data + aesthetic mappings +
+geom = a layer**, and plots add layers.
+
+## In class
+
+| Session | Topic | In Posit Cloud (`module-11-aes`) |
+|---|---|---|
+| Session 1 | Mappings and geoms | `live/module11_session1.R`, then `concepts/concepts_session1.R` |
+| Session 2 | Layers, and your own data | `live/module11_session2.R`, `concepts/concepts_session2.R`, then Guided Project 11 |
+
+Slides: see Blackboard (PDF).
+
+## After class
+
+- **Concept checks** (short, with instant feedback): the `concepts/` scripts
+  in the `module-11-aes` Posit Cloud project.
+- **Deeper practice D1–D4**, with answers: [practice page](practice.html).
+  Run it in Posit Cloud with `practice/practice_d1-d4.R` in `module-11-aes`
+  (also [downloadable here](files/practice_d1-d4.R)).
+  Each exercise is the pattern for a Guided Project task.
+- **Guided Project 11**: Posit Cloud assignment; due date in Blackboard.
+
+## Reading
+
+ggplot2 (3e): [2 First steps](https://ggplot2-book.org/getting-started.html),
+[3 Individual geoms](https://ggplot2-book.org/individual-geoms.html),
+[13 Build a plot layer by layer](https://ggplot2-book.org/layers.html).
