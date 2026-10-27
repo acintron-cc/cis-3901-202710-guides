@@ -3,6 +3,8 @@
 .Rproj.user/
 .quarto/
 *_files/
+# ...but keep rendered figure folders in the published site
+!docs/**/*_files/
 .DS_Store
 
 /.quarto/
