@@ -14,9 +14,10 @@ can change what a reader sees (coordinates).
   project in Posit Cloud.
 - **Slides:** Slides are on Blackboard and in Posit Cloud (`slides/` in
   your `module-12-stats` project).
-- **Guided Project:** START_HERE and `gp12_starter.zip` in Blackboard. You
-  work in your own `cis-3901-projects` project and publish your report on
-  your own site.
+- **Guided Project:**
+  - [Instructions](guided-project.qmd): start here.
+  - `gp12_starter.zip` is in Blackboard. You work in your own
+    `cis-3901-projects` project and publish your report on your own site.
 
 **Readings (optional):** Wickham, Navarro & Pedersen, *ggplot2: Elegant
 Graphics for Data Analysis* (3rd ed.), §13.6–13.7, §15.1.1, §15.2.2.

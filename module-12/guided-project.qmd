@@ -1,0 +1,250 @@
+---
+title: "Guided Project: Statistical Transformations and Coordinate Systems"
+subtitle: "CIS-3901 · Module 12"
+---
+
+## Purpose
+
+In Module 12 you learned that ggplot2 computes before it draws (stats), and
+that the frame a plot is drawn in can change what a reader sees
+(coordinates). In this Guided Project you use both on **your own** Fairness
+and Sports data, and you publish your findings as a **Quarto report** on your
+own website, the one you set up in Module 10.
+
+You'll practice turning counts into rates (and choosing the total you divide
+by), showing a summary with its n and its spread, deciding between zooming
+and filtering, and choosing the frame (sideways bars). These are the moves your
+Challenge Project reports will need.
+
+## What you'll hand in
+
+1. Your **published report** (a web page on your GitHub Pages site), showing
+   your code and its output.
+2. In Blackboard: the link to your report (step 6).
+3. AI disclosure: AI use line in your report, AI log typed in Blackboard (or the
+   no-AI statement), and copies of all AI conversations uploaded in Blackboard
+   (step 6).
+
+## Words you'll use
+
+- **Share:** a part ÷ a total. It has no unit. Always say *of what*.
+- **Rate:** a share of a group that has an outcome: outcome count ÷ group
+  size (e.g., a school's graduation rate). This is **question A**.
+- **Question B:** of everyone with the outcome, what share is each group?
+  Same counts, a different total.
+- **sd** = spread of the individuals; **se** = spread of the mean (or rate):
+  how much it would move with another sample of the same size.
+- **Lie Factor** (Tufte, 2001, p. 57): how many times a picture exaggerates a
+  difference.
+
+## Steps
+
+All steps happen in your **`cis-3901-projects`** project in Posit Cloud
+(course space CIS-3901-Fall2026), not in a new assignment. Keep this page open
+while you work.
+
+### Step 0 · One-time setting (1 minute)
+
+**Tools → Project Options → General:** set *Restore .RData into workspace at
+startup* to **No** and *Save workspace to .RData on exit* to **Never**. Then
+**Session → Restart R**. (This stops old objects from coming back and hiding
+errors.)
+
+### Step 1 · Bring your two data files (5 minutes)
+
+Your verified Fairness file (`fairness.csv`) and your Sports file
+(`sports.csv`) are in the `data/` folder of your Module 11 Guided Project,
+**`guided_project_aes_geoms`**.
+
+1. Open `guided_project_aes_geoms`. In the Files pane, open `data/`, tick
+   **only** `fairness.csv` → **More → Export → Download**. Do the same for
+   `sports.csv`. (One file at a time: ticking both downloads a zip.)
+2. Open `cis-3901-projects`. In the Files pane:
+   - go to `data/tidy/` → **Upload** → `fairness.csv`;
+   - go to `data/sports/` → **Upload** → `sports.csv`.
+
+Names matter: exactly `data/tidy/fairness.csv` and `data/sports/sports.csv`.
+If your browser renamed a download (for example `fairness (1).csv`), rename
+it in the Files pane (tick it → **Rename**). If you upload a file to the top
+folder or to `data/` by mistake, the script moves it to the right place and
+tells you.
+
+**Your data files are published with your report.** You push them to your
+public repository in step 5, so anyone can see them, as with your report.
+
+**Privacy:** private people's names must not be in your files or in your
+plots (for example, runners' names in the Boston Marathon data). Professional
+athletes, teams and officials are public figures and are fine.
+
+### Step 2 · Add the starter files (2 minutes)
+
+Download **`gp12_starter.zip`** from Blackboard. In
+`cis-3901-projects`, go to the **top folder** (`project`) → **Upload** →
+the zip. Posit Cloud unzips it and adds:
+
+```default
+scripts/gp12_stats_coords.R    the code: run it task by task
+reports/gp12_report.qmd        your report: write your findings here
+```
+
+### Step 3 · Work through the script (most of your time)
+
+Open `scripts/gp12_stats_coords.R`. Run **Section 0** first. Then, task by task:
+
+- **Read** the code and the comments. **Predict** what the plot will show
+  (write your prediction in the report).
+- **Change** the lines marked **YOUR TURN**, run the task, and read the
+  check: `PASS: A1` or `TO DO: A1: …` with what to fix.
+
+| Task | Fairness (Part A) | Sports (Part B) | From class |
+|---|---|---|---|
+| 0 | Your group and outcome | Group, outcome and a numeric value | Session 1, slide 17 |
+| 1 | Rate within each group (question A) | Same, you write the plot | Session 1, slides 10, 17 |
+| 2 | Rates with their se | Mean with sd and se | Session 1, slides 13–16 |
+| 3 | Zoom or filter? Lie Factor | Same, you write the plots | Session 2, slides 4–7 |
+| 4 | Each group's share of everyone with the outcome (question B) | Same | Session 1, slide 17; Session 2, slide 9 |
+
+Part A has more help; Part B asks you to write more of the code yourself,
+using Part A as your model.
+
+### Step 4 · Write your report
+
+Open `reports/gp12_report.qmd`. It already runs your script and shows your
+plots. Replace every **WRITE:** line with your own sentences, replace each
+`fig-alt` with one sentence about **your** plot, and put your name (a first
+name or initials is fine) as the author.
+
+Your rendered report will look like the [practice page](practice.html):
+your code in grey boxes, with its output under it.
+
+### Step 5 · Render, commit, push (5 minutes)
+
+1. Click **Render** on `gp12_report.qmd`. Check the page: your plots, your
+   writing, and the **Checks** table at the end.
+2. **Git** tab → tick every file listed, including `data/tidy/fairness.csv`
+   and `data/sports/sports.csv` → **Commit** (message: "Guided Project 12") → **Push** (your token, as in
+   Module 10).
+3. After a minute or two, open
+   `https://YOUR-USERNAME.github.io/cis-3901-projects/reports/gp12_report.html`.
+
+You can render and push as often as you like; the last push before the due
+date is the one that counts.
+
+### Step 6 · Submit in Blackboard
+
+In the Blackboard assignment for this Guided Project:
+
+1. **Type in the text box** the link to your report, your AI log and the
+   attestation. Copy this template:
+
+   ```default
+   Report: https://YOUR-USERNAME.github.io/cis-3901-projects/reports/gp12_report.html
+
+   AI log
+   Use 1 – Tool: ___ | What I used it for: ___ | What I changed or checked, and why: ___
+   Use 2 – Tool: ___ | What I used it for: ___ | What I changed or checked, and why: ___
+   (add a line per use; upload a copy of every conversation)
+
+   OR: I did not use AI for this project. How I worked through problems: ___
+
+   Attestation: This log lists every use of AI in this project.
+   ```
+
+2. **Upload copies of all your AI conversations** as .txt, PDF or Word, saved
+   on your own computer, with personal information removed. **Never put the log
+   or the conversations in your Posit Cloud project:** everything there is
+   pushed to the public site. Blackboard doesn't accept `.html`.
+3. **If pushing failed** (token, Pages not updating): zip
+   `docs/reports/gp12_report.html` (one file, plots included), attach the zip,
+   and say what went wrong. A technical problem won't cost you the grade.
+
+## Success criteria
+
+- Section 0 runs; your report renders; the Checks table shows **PASS** for the
+  tasks you did. Aim for all ten.
+- Each plot has a one-sentence `fig-alt` that describes **your** plot.
+- Your writing answers each **WRITE:** prompt in your own words, with numbers
+  from your plots (rates, n, Lie Factor).
+- For tasks 1 and 4 you say which question (A or B) your Module 11 question
+  needs, and why.
+- Small groups are shown, with their n, not dropped: under-represented is not
+  unimportant.
+- The page is published, the link works, your two data files are in your
+  repository, and no private person's name appears anywhere.
+
+## Grading (percentage ranges in the rubric)
+
+| Criterion | Weight | Looks at |
+|---|---|---|
+| Code runs, checks pass, report renders and is published | 40% | Your code and output, Checks table, page |
+| Justified choices (question A or B, zoom or filter, frame) | 30% | Your writing, both datasets |
+| Interpretation (rates, se vs sd, Lie Factor, compared to what) | 20% | Your writing, both datasets |
+| AI disclosure | 10% | AI use line in your report, AI log typed in Blackboard (or the no-AI statement), and copies of all AI conversations uploaded in Blackboard |
+
+## AI use: Level 2
+
+You may use AI to explain code or errors. Write your own sentences in the
+report.
+
+- **In your report (public):** one line in the **AI use** section, for example
+  "AI use: I used [tool] to [what for]." or "AI use: none."
+- **In Blackboard (private):** your AI log or the no-AI statement, the
+  attestation, and copies of all your AI conversations (step 6).
+
+## Help, in order
+
+1. The check's **TO DO** message, then the task table in step 3 above.
+2. The [practice page](practice.html) with solutions (same patterns on
+   penguins).
+3. The class scripts: `live/module12_session1.R`, `live/module12_session2.R`
+   in your `module-12-stats` project.
+4. A classmate, then office hours or email.
+
+**Stuck after a restart ("object not found")?** Run the script from the top
+(Ctrl/Cmd + Shift + Enter).
+
+## Ideas for your columns (check them with `glimpse()`)
+
+Use these as starting points; check them with `glimpse()` in your own file.
+Every class dataset gets the same kind of hint. Small groups stay in your
+plots, with their n.
+
+**Fairness**
+
+- **Adult:** group `sex` or `race`; outcome `income == ">50K"`.
+- **ACS Income:** group `sex` or `str_trunc(race, 30)` (the full race labels
+  are too long for a plot, and some groups are very small: one has n = 1, so
+  `a3_start` must be below 1); outcome `income > 50000`.
+- **Diabetes Hospital:** group `race` or `age` (three bands); outcome
+  `readmit_30_days == 1`.
+- **Credit Card** (`fairness.csv` = your clients file): group `sex` or
+  `education` (one group has n = 2); outcome `default_next_month == "yes"`.
+
+**Sports**
+
+- **NFL Draft Combine:** group `position`; outcome `Round %in% 1` (picked in
+  round 1; `Round` is empty for players not drafted, and `%in%` counts them
+  as FALSE); value `forty`.
+- **WNBA game statistics:** group `team_home_away`; outcome `team_winner`.
+  The file has no score column, so use the days since the team's previous
+  game as the value: start with `sports %>% arrange(game_date) %>%
+  group_by(team_id, season) %>% mutate(...)`, with
+  `value = as.numeric(game_date - lag(game_date))` inside `mutate()`, then
+  add `%>% ungroup()`. Home and away have the same count, so B3's Lie Factor
+  is 1.
+- **Setka Cup table tennis:** group sets played,
+  `factor(Sets_P1 + Sets_P2)` (3, 4 or 5; `factor()` makes them groups, not
+  a number line); outcome `HomeWinner == 1`; value points in game 1,
+  `P1_G1 + P2_G1`.
+- **Sumo:** group the rank's first letter, `str_sub(Rank, 1, 1)`; outcome
+  `wins > losses`; value `weight_kg` or `height_cm`.
+- **WTA Grand Slam matches:** group `surface` or `round`; outcome
+  `minutes > 120` (or a threshold you choose); value `minutes`. Some matches
+  have no `minutes`: they show as NA in the legend of A1-style plots.
+- **MMA fight decisions:** group `factor(rounds)` (3, 5 or 12); outcome
+  `agreement == "Agree"` (all three judges agree); value
+  `abs(judge1_margin)`. (Not `result_type`: Unanimous almost always means
+  Agree, so its rates are close to 0% or 100%.)
+- **MLB pitches:** group `player_name` or `pitch_type` (includes NA and
+  types with n = 2 or 5: they stay, with their n); outcome `result == "S"`
+  (a strike); value `release_speed`.
