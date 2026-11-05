@@ -9,8 +9,8 @@ Slides, reports and step-by-step guides for Modules 10–15. Each module has its
 | Module | Dates | Materials |
 |---|---|---|
 | [Module 10: Tidy Data and Project Setup](module-10/index.qmd) | Oct 18–24 | Setup slides and handout (Part 1), Setup tutorial (Part 2) |
-| Module 11: Grammar of Graphics I | Oct 25–31 | Coming soon |
-| Module 12: Grammar of Graphics II | Nov 1–7 | Coming soon |
+| [Module 11: Grammar of Graphics I](module-11/index.qmd) | Oct 25–31 | Practice page with solutions; slides (PDF) in Blackboard and Posit Cloud |
+| [Module 12: Grammar of Graphics II](module-12/index.qmd) | Nov 1–7 | Practice page with solutions; slides (PDF) in Blackboard and Posit Cloud |
 | Module 13: Grammar of Graphics III | Nov 8–14 | Coming soon |
 | Module 14: Graphical Excellence Principles | Nov 15–21 | Coming soon |
 | Module 15: Introduction to Tableau and Project Progress | Nov 22–28 | Coming soon |

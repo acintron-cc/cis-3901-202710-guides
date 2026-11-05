@@ -1,0 +1,24 @@
+---
+title: "Module 12 · Stats and coordinates"
+subtitle: "Grammar of Graphics II"
+---
+
+ggplot2 computes before it draws (stats), and the frame a plot is drawn in
+can change what a reader sees (coordinates).
+
+- **Practice with solutions:** [D1–D4 on penguins](practice.html), the
+  patterns behind every Guided Project task.
+  Download: [exercises](files/practice_d1-d4.R) ·
+  [solutions](files/practice_d1-d4_solutions.R).
+- **Class scripts:** `live/` and `concepts/` in your `module-12-stats`
+  project in Posit Cloud.
+- **Slides:** Slides are on Blackboard and in Posit Cloud (`slides/` in
+  your `module-12-stats` project).
+- **Guided Project:** START_HERE and `gp12_starter.zip` in Blackboard. You
+  work in your own `cis-3901-projects` project and publish your report on
+  your own site.
+
+**Readings (optional):** Wickham, Navarro & Pedersen, *ggplot2: Elegant
+Graphics for Data Analysis* (3rd ed.), §13.6–13.7, §15.1.1, §15.2.2.
+Tufte, *The Visual Display of Quantitative Information* (2nd ed., 2001),
+pp. 53–77.
