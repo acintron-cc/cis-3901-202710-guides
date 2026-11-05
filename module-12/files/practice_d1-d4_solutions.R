@@ -2,8 +2,7 @@
 # Module 12 · Deeper practice D1-D4 · SOLUTIONS
 # Same exercises as the web page module-12/practice.html on the course site
 # (acintron-cc.github.io/cis-3901-202710-guides).
-# Run SECTION BY SECTION (Ctrl/Cmd + Enter). Do not click Source:
-# D2+ redraws at random, so its plot differs a little each run.
+# Run SECTION BY SECTION (Ctrl/Cmd + Enter).
 
 library(tidyverse)
 penguins <- read_csv("data/penguins.csv", show_col_types = FALSE)
@@ -110,6 +109,8 @@ d2b
 # Redraw the penguins with replacement 200 times and compute each species'
 # rate again. The width of each cloud is the uncertainty the se describes.
 # (map() and slice_sample() are new; read and run, no need to write them.)
+# same redraws every time you run it
+set.seed(3901)
 resamples <- map(1:200, \(i) {
   penguins %>%
     drop_na(body_mass_g) %>%

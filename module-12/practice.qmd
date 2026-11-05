@@ -69,6 +69,7 @@ different sizes now be compared?
 ## Solution
 
 ```{r}
+#| fig-alt: "Sideways stacked bar chart of the share of Adelie penguins on each island, with every bar running from 0 to 1, where Torgersen is 100% Adelie, Dream about 45% and Biscoe about 26%."
 d1_data <- penguins %>%
   mutate(
     group = island,
@@ -91,6 +92,9 @@ The same numbers can be counted per county or per person. `midwest` (built
 into ggplot2) has one row per county in five Midwest states.
 
 ```{r}
+#| fig-alt:
+#|   - "Histogram of percent below poverty counted in Midwest counties, peaking at about 80 counties near 10% with a long right tail and one lone county near 48%."
+#|   - "Histogram of the same poverty percentages weighted by population so the y axis counts people, where the peak moves to nearly 11 million people near 14%, a second bump appears near 6%, and the tail above about 22% almost disappears."
 #| layout-ncol: 2
 ggplot(midwest, aes(x = percbelowpoverty)) +
   geom_histogram(binwidth = 2) +
@@ -137,6 +141,7 @@ ggplot(d2_rates, aes(x = rate, y = species,
 ## Solution
 
 ```{r}
+#| fig-alt: "Point-range chart of the share of penguins heavier than 4000 g by species with n labels, where Adelie (about 0.23, n = 151) and Chinstrap (about 0.22, n = 68) have visible ranges, Chinstrap's the widest, while Gentoo (about 0.99, n = 123) has almost no range."
 d2_rates <- penguins %>%
   drop_na(body_mass_g) %>%
   mutate(has_outcome = body_mass_g > 4000) %>%
@@ -195,6 +200,9 @@ rate again. The width of each cloud is the uncertainty the se describes.
 (`map()` and `slice_sample()` are new; read and run, no need to write them.)
 
 ```{r}
+#| fig-alt: "Dot plot of each species' rate of penguins heavier than 4000 g across 200 redraws of the data, where the Chinstrap cloud is widest (about 0.07 to 0.38), the Adelie cloud is narrower (about 0.16 to 0.35), their centers sit near 0.22 and 0.23, and the Gentoo cloud is packed tightly close to 1."
+# same redraws every time you run it
+set.seed(3901)
 resamples <- map(1:200, \(i) {
   penguins %>%
     drop_na(body_mass_g) %>%
@@ -235,6 +243,9 @@ vs Torgersen (52).
 ## Solution
 
 ```{r}
+#| fig-alt:
+#|   - "Bar chart of penguin counts per island zoomed to an x axis from 40 to 175, where all three bars remain but are cut off at 40, so Biscoe (168) looks about 10.7 times as long as Torgersen (52) although the counts differ only 3.2 times."
+#|   - "Empty bar chart of penguin counts per island with x-axis limits of 40 to 175, where no bars appear at all because every bar starts at 0, outside the limits."
 #| layout-ncol: 2
 d3_counts <- ggplot(penguins, aes(y = island)) +
   geom_bar()
@@ -260,6 +271,9 @@ outside the limits. Bars start at 0; to look closer, use points and say so.
 `economics` (built into ggplot2) has monthly US data from 1967 to 2015.
 
 ```{r}
+#| fig-alt:
+#|   - "Line chart of unemployed per person from 2000 to 2007, where a narrow axis makes a steep rise from about 0.02 to a peak near 0.032 in 2003, and a fall to about 0.024 by 2007, look dramatic."
+#|   - "Line chart of unemployed per person from 1967 to 2015, where peaks near 0.052 around 1982 and 0.05 around 2010 make the 2003 bump of about 0.032 look modest."
 #| layout-ncol: 2
 economics %>%
   filter(date >= as.Date("2000-01-01"), date < as.Date("2008-01-01")) %>%
@@ -310,6 +324,7 @@ ggplot(d4_shares, aes(x = share, y = island)) +
 ## Solution
 
 ```{r}
+#| fig-alt: "Sideways bar chart of each island's share of all Adelie penguins, where Dream is largest at about 37%, Torgersen is next at 34% and Biscoe is smallest at 29%."
 d4_shares <- penguins %>%
   filter(species == "Adelie") %>%
   count(island) %>%
@@ -329,6 +344,9 @@ answer different questions; say which one you mean.
 ### D4+ · Bar or pie?
 
 ```{r}
+#| fig-alt:
+#|   - "Single stacked bar of each species' share of all penguins on a scale from 0 to 1, with Adelie about 44%, Gentoo 36% and Chinstrap 20%, so the shares can be compared as lengths."
+#|   - "Pie chart of the same species shares, with Adelie about 44%, Gentoo 36% and Chinstrap 20%, so the shares must be compared as angles and areas."
 #| layout-ncol: 2
 p_share <- ggplot(penguins, aes(x = "all", fill = species)) +
   geom_bar(position = "fill") +

@@ -76,6 +76,9 @@ different places. Mapping the group to color reveals it.
 
 ```{r}
 #| label: d1-run
+#| fig-alt:
+#|   - "Scatter plot of bill depth against bill length with all penguins in one color, where the whole cloud slopes slightly downward, so longer bills look shallower."
+#|   - "Scatter plot of bill depth against bill length with species shown by color and shape, where Adelie, Chinstrap and Gentoo form three separate clusters and the points slope upward within each species."
 ggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm)) +
   geom_point()
 
@@ -117,6 +120,7 @@ ggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm,
 ::: {.callout-tip collapse="true" title="Show solution"}
 ```{r}
 #| label: d1-modify
+#| fig-alt: "Scatter plot of bill depth against bill length with semi-transparent points and two legends, color for species and shape for island, where all Gentoo are on Biscoe, all Chinstrap are on Dream and Adelie appear on all three islands."
 ggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm,
                      color = species, shape = island)) +
   geom_point(alpha = 0.4)
@@ -135,6 +139,9 @@ no legend because it is set, not mapped.
 ::: {.callout-tip collapse="true" title="Show solutions"}
 ```{r}
 #| label: d1-make
+#| fig-alt:
+#|   - "Scatter plot of body mass against flipper length colored by sex, where mass rises with flipper length, males tend to sit above and to the right of females, and a few gray points mark penguins with no recorded sex."
+#|   - "Scatter plot of bill depth against body mass with semi-transparent points colored by island, where a heavy, shallow-billed group of Biscoe penguins sits at lower right, apart from a lighter, deeper-billed mix of all three islands at upper left."
 ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g,
                      color = sex)) +
   geom_point()
@@ -174,6 +181,7 @@ Three rows (Biscoe, Dream, Torgersen), so three columns: one mark per row.
 
 ```{r}
 #| label: d2-run
+#| fig-alt: "Column chart of penguin counts per island, with Biscoe tallest at 168, Dream at 124 and Torgersen shortest at 52."
 island_counts <- penguins %>% count(island)
 island_counts
 ggplot(island_counts, aes(x = island, y = n)) +
@@ -211,6 +219,7 @@ ggplot(year_counts, aes(x = year, y = ___)) +
 ::: {.callout-tip collapse="true" title="Show solution"}
 ```{r}
 #| label: d2-modify
+#| fig-alt: "Column chart of penguins measured per year, rising slightly from 110 in 2007 to 114 in 2008 and 120 in 2009."
 year_counts <- penguins %>% count(year)
 ggplot(year_counts, aes(x = year, y = n)) +
   geom_col()
@@ -226,6 +235,9 @@ ggplot(year_counts, aes(x = year, y = n)) +
 ::: {.callout-tip collapse="true" title="Show solutions"}
 ```{r}
 #| label: d2-make
+#| fig-alt:
+#|   - "Column chart of penguin counts by sex, with nearly equal female (165) and male (168) columns and a short NA column (11) for penguins whose sex was not recorded."
+#|   - "Column chart of mean body mass per species, with Gentoo tallest at about 5,080 g and Adelie and Chinstrap nearly equal at about 3,700 g."
 sex_counts <- penguins %>% count(sex)
 ggplot(sex_counts, aes(x = sex, y = n)) +
   geom_col()
@@ -266,6 +278,7 @@ year.
 
 ```{r}
 #| label: d3-run
+#| fig-alt: "Line chart of mean body mass by year drawn as a single zigzag line, which jumps between about 3,700 g and 5,100 g at each of 2007, 2008 and 2009 because the three species are not separated."
 penguin_means <- penguins %>%
   group_by(species, year) %>%
   summarise(mean_mass = mean(body_mass_g, na.rm = TRUE),
@@ -283,6 +296,9 @@ ggplot(penguin_means, aes(x = year, y = mean_mass)) +
 
 ```{r}
 #| label: d3-investigate
+#| fig-alt:
+#|   - "Line chart of place against step drawn with geom_line, where the line runs left to right through (1, 10), (2, 15) and (3, 30) in order of x."
+#|   - "Line chart of the same points drawn with geom_path, where the line follows the row order from (1, 10) to (3, 30) and then doubles back to (2, 15)."
 walk <- tibble(step = c(1, 3, 2), place = c(10, 30, 15))
 ggplot(walk, aes(x = step, y = place)) + geom_line()
 ggplot(walk, aes(x = step, y = place)) + geom_path()
@@ -312,6 +328,7 @@ ggplot(penguin_means, aes(x = year, y = mean_mass, color = ___)) +
 ::: {.callout-tip collapse="true" title="Show solution"}
 ```{r}
 #| label: d3-modify
+#| fig-alt: "Line chart of mean body mass by year with one colored line per species, where all three stay nearly flat, Gentoo far above at about 5,000 to 5,150 g and Adelie and Chinstrap close together near 3,700 g."
 ggplot(penguin_means, aes(x = year, y = mean_mass, color = species)) +
   geom_line()
 ```
@@ -329,6 +346,9 @@ species. `group = species` would do the grouping without color.
 ::: {.callout-tip collapse="true" title="Show solutions"}
 ```{r}
 #| label: d3-make
+#| fig-alt:
+#|   - "Line chart of mean flipper length by year with one colored line per island, where Biscoe stays highest at about 208 to 211 mm, Dream and Torgersen stay lower at about 189 to 195 mm, and all three end slightly above where they start."
+#|   - "Line chart of penguins measured per year with one colored line per species, where Adelie holds steady at about 50, Gentoo rises from 34 to 46 and then 44, and Chinstrap stays lowest, dipping from 26 to 18 and back to 24."
 flipper_means <- penguins %>%
   group_by(island, year) %>%
   summarise(mean_flipper = mean(flipper_length_mm, na.rm = TRUE),
@@ -394,6 +414,7 @@ ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g)) +
 
 ```{r}
 #| label: d4-investigate
+#| fig-alt: "Scatter plot of body mass against flipper length colored by species with a large X at each species mean, where the X marks take their species colors because color is mapped globally, and the Gentoo X sits far above and to the right of the nearby Adelie and Chinstrap X marks."
 ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g,
                      color = species)) +
   geom_point() +
@@ -430,6 +451,7 @@ ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g)) +
 ::: {.callout-tip collapse="true" title="Show solution"}
 ```{r}
 #| label: d4-modify
+#| fig-alt: "Scatter plot of body mass against flipper length with semi-transparent points colored by species and a black X labeled with the species name at each mean, where the Gentoo center (about 217 mm, 5,080 g) sits far from the neighboring Adelie and Chinstrap centers (about 190 and 196 mm, both near 3,700 g)."
 ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g)) +
   geom_point(aes(color = species), alpha = 0.6) +
   geom_point(data = species_centers,
@@ -453,6 +475,9 @@ ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g)) +
 ::: {.callout-tip collapse="true" title="Show solutions"}
 ```{r}
 #| label: d4-make
+#| fig-alt:
+#|   - "Scatter plot of bill depth against bill length with semi-transparent points colored by island and a black X labeled with the island name at each mean, where the Biscoe center sits lowest at about 15.9 mm of depth while Dream and Torgersen sit near 18.3 mm, with Torgersen at the shorter bill length."
+#|   - "Scatter plot of body mass against flipper length with semi-transparent points colored by sex, penguins with no recorded sex removed, and a large black X at each mean, where the male center (about 205 mm, 4,550 g) sits above and to the right of the female center (about 197 mm, 3,860 g)."
 island_centers <- penguins %>%
   group_by(island) %>%
   summarise(
