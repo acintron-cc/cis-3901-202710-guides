@@ -1,0 +1,29 @@
+---
+title: "Module 13 · Scales and facets"
+subtitle: "Grammar of Graphics III"
+---
+
+Scales decide how data become positions, labels and colors; facets split
+one plot into panels. Both change what a reader can see, and whether every
+reader can see it.
+
+- **Practice with solutions:** [D1–D9 on penguins and gapminder](practice.qmd),
+  the patterns behind every Guided Project task.
+  Download: [exercises](files/practice_d1-d9.R) ·
+  [solutions](files/practice_d1-d9_solutions.R).
+- **Class scripts:** `live/` and `concepts/` in your
+  `module-13-scales-facets` project in Posit Cloud.
+- **Slides:** Slides are on Blackboard and in Posit Cloud (`slides/` in
+  your `module-13-scales-facets` project).
+- **Guided Project:**
+  - [Instructions](guided-project.qmd): start here.
+  - `gp13_starter.zip` is in Blackboard. You work in your own
+    `cis-3901-projects` project and publish a report and slides on your
+    own site.
+
+**Readings (optional):** Wickham, Navarro & Pedersen, *ggplot2: Elegant
+Graphics for Data Analysis* (3rd ed.),
+[ch. 10](https://ggplot2-book.org/scales-position.html) (position scales
+and axes), [ch. 11](https://ggplot2-book.org/scales-colour.html) (color
+scales and legends) and [ch. 16](https://ggplot2-book.org/facet.html)
+(faceting).

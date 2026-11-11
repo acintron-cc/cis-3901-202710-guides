@@ -1,0 +1,491 @@
+---
+title: "Guided Project: Scales and Facets"
+subtitle: "and your first slides"
+format:
+  html:
+    link-external-newwindow: true
+---
+
+In Module 13 you learned to choose scales and facets, to ask "compared to
+what?", and to check that every reader can tell your colors apart. Here you
+make those choices on **your own** Fairness and Sports data and publish them,
+for the first time, as a report **and** slides: the moves your Challenge
+Project reports and presentations need.
+
+## What you'll hand in
+
+1. A **report page** and a **slides page**, both published on your site.
+2. Their **two links**, in Blackboard.
+3. Both are built from **one script**: you edit the code once, and both
+   pages show it.
+
+### Two milestones
+
+| Milestone | When | What | Graded? |
+|---|---|---|---|
+| Draft | See Blackboard | Tasks 0–5 done with checks passing; report published with your WRITE answers; slides as a first draft | No: you get feedback |
+| Final | See Blackboard (end of Module 14) | Report and slides revised with Module 14's ideas, plus a revision log | Yes: the rubric |
+
+Both go to the same Blackboard assignment (see **Finish and submit**). See
+Blackboard for the due date and time.
+
+## Get ready (once, about 15 minutes)
+
+All of this happens in your **`cis-3901-projects`** project in Posit Cloud
+(course space CIS-3901-Fall2026). Keep this page open while you work.
+
+**1. Check your two data files.** GP13 reads them from the `data/` folder:
+**`data/fairness.csv`** and **`data/sports.csv`**. They are the files from
+the Module 12 Guided Project. If they are still where Module 12 kept them
+(`data/tidy/fairness.csv` and `data/sports/sports.csv`), in the top folder,
+or renamed by a download (for example `fairness (1).csv`), Section 0 moves
+them into `data/` and says so. Missing one? Download it as in step 1 of the
+[Module 12 Guided Project](../module-12/guided-project.qmd#step-1-bring-your-two-data-files-5-minutes){target="_blank"},
+then in the Files pane open `data/` → **Upload**.
+
+- **Module 12 still works.** GP12's script reads the old folders: if you
+  render your GP12 report again, it moves the two files back, and GP13's
+  Section 0 moves them into `data/` again. GP12 is finished; if you still
+  need to fix your GP12 report, do it before you start GP13.
+- **Privacy:** your data files can stay as you downloaded them from SCORE,
+  names included. Your report and slides never show a private person's
+  name: never use a name, bib, team or judge column (for example in the
+  Boston Marathon, powerlifting or MMA data) in a plot, a table or a slide.
+  The script prints column summaries, never rows.
+
+**2. Add the starter files.** Download **`gp13_starter.zip`** from
+Blackboard. In `cis-3901-projects`, go to the **top folder** (`project`) →
+**Upload** → the zip. Posit Cloud unzips it and adds:
+
+```default
+scripts/gp13_scales_facets.R    the code: run it task by task
+reports/gp13_report.qmd         your report: your findings
+presentations/gp13_slides.qmd   your slides: your headline and limits
+```
+
+**3. Run Section 0.** Open `scripts/gp13_scales_facets.R` and run
+**Section 0** (setup, helpers, data). It checks your two data files and
+prints a summary of your columns (name, type, how many different values, how
+many missing), never rows.
+
+### Task 0 · See it update {#task-0}
+
+**Goal:** See one change in the script show up on both pages.
+
+**Practice first:** nothing to practice: the Session 2 kickoff does it with
+you.
+
+| Step | What you do | How it's checked |
+|---|---|---|
+| A0 · Fairness | In the script, find **A0**. Change **one word** in `a0`'s title, `"My first plot"`, and run the A0 lines | The script (a reminder, no PASS / TO DO) |
+| Part B · Sports | Nothing for task 0 | |
+| Render | Click **Render** on `reports/gp13_report.qmd`, then on `presentations/gp13_slides.qmd`. Find your word on **both** pages | Your instructor reads your A0 sentence in the report |
+
+Both files render from day one: plots you haven't made yet say "Not done
+yet.", and the Checks table says TO DO.
+
+**4. Commit, push, open both links.** **Git** tab → tick every file listed
+(the moved data files show up too) → **Commit** (message: "Guided Project
+13") → **Push** (your token, as in Module 10). After a minute or two, open
+both links (replace `YOUR-USERNAME`):
+
+- `https://YOUR-USERNAME.github.io/cis-3901-projects/reports/gp13_report.html`
+- `https://YOUR-USERNAME.github.io/cis-3901-projects/presentations/gp13_slides.html`
+
+**Success:** both links open, and your word is on both pages.
+
+## Do each task the same way (the loop)
+
+1. **Script:** go to the task's section in `scripts/gp13_scales_facets.R`,
+   fill in the code (the lines marked **YOUR TURN**), and run it, until the
+   check says **PASS**. A **TO DO** says what to fix.
+2. **Report:** open `reports/gp13_report.qmd`, find the same task, and write
+   under **WRITE**.
+3. **Render** the report and look at the task.
+4. **Commit and push** whenever you stop.
+
+Part A (Fairness) has more help; Part B (Sports) asks you to write more of
+the code yourself, using Part A as your model. The **Reference** section at
+the end of this page has the project map, the words you'll see, and ideas
+for your columns.
+
+**Stuck?** In order: the check's TO DO message; the matching practice
+exercise ([practice page](practice.qmd){target="_blank"}, with solutions);
+the class scripts (`live/module13_session1.R`, `live/module13_session2.R` in
+your `module-13-scales-facets` project); a classmate; office hours or email.
+After a restart ("object not found"), run the script from the top
+(Ctrl/Cmd + Shift + Enter).
+
+### Task 1 · Label it {#task-1}
+
+**Goal:** Make your plot readable without your code.
+
+**Practice first:** [D1 · Label it](practice.qmd#d1-label-it){target="_blank"}
+
+| Step | What you do | How it's checked |
+|---|---|---|
+| A1 · Fairness | Paste your Module 12 A0 lines as `a_data` and your A1 plot as `a1_base`. In `labs()`: a title that states what the plot shows, a subtitle (the data and its n), axis titles with units, a legend title. Percent labels on the rate axis | The script (PASS / TO DO) |
+| B1 · Sports | The same on a Sports plot of your choice: `b_data`, `b1_base`, `b1` | The script (PASS / TO DO) |
+| Write (report) | Which label you changed most, and why. Could a reader understand the plot without you there? | Your instructor reads it (counts under Choices) |
+
+### Task 2 · Choose a scale {#task-2}
+
+**Goal:** Choose the scale that fits your data, and say why.
+
+**Practice first:** [D2 · Choose a scale](practice.qmd#d2-choose-a-scale){target="_blank"}
+and [D3 · The Lie Factor](practice.qmd#d3-the-lie-factor){target="_blank"}
+
+| Step | What you do | How it's checked |
+|---|---|---|
+| A2 · Fairness | `a2`: a log scale for a skewed column, or percent labels for a share. A log scale can't show 0 or negative values: keep only values above 0 and count them. One sentence in `a2_reason` | The script (PASS / TO DO) |
+| B2 · Sports | The same with a Sports column: `b2`, `b2_reason` | The script (PASS / TO DO) |
+| Write (report) | Which scale, and why; what a reader sees with it; how many values were removed, if any | Your instructor reads it (counts under Choices) |
+
+### Task 3 · Facet it: fixed or free {#task-3}
+
+**Goal:** Split one plot into panels, and choose fixed or free axes for the
+reader.
+
+**Practice first:** [D4 · Fixed or free panels](practice.qmd#d4-fixed-or-free-panels){target="_blank"}
+and [D5 · Two facets at once](practice.qmd#d5-two-facets-at-once-sex-and-species){target="_blank"}
+
+| Step | What you do | How it's checked |
+|---|---|---|
+| A3 · Fairness | `a3_fixed` and `a3_free`: your A1 rates in panels by a second column, each panel's n in its label. Then `a3_choice` (`"fixed"` or `"free_y"`) and `a3_reason` | The script (PASS / TO DO) |
+| B3 · Sports | The same, in panels by a group or a year: `b3_fixed`, `b3_free`, `b3_choice`, `b3_reason` | The script (PASS / TO DO) |
+| Write (report) | Fixed or free? What the reader gains and loses; which panels are small, with their n. Differences, not causes | Your instructor reads it (counts under Choices and Interpretation) |
+
+### Task 4 · Compared to what? {#task-4}
+
+**Goal:** Show whether a difference between two groups is large or small,
+compared to the spread of the individuals and to how much a mean can move.
+
+**Practice first:** [D6 · Uncertainty clouds](practice.qmd#d6-uncertainty-clouds){target="_blank"}
+
+| Step | What you do | How it's checked |
+|---|---|---|
+| A4 · Fairness | Choose a numeric column (e.g., hours per week, age, number of medications), not the yes/no outcome, and two groups. `make_clouds()` (prepared in Section 0) adds 200 resampled means to the individual values. Draw `a4` with `facet_wrap(~ kind)` and the same axes in both panels | The script (PASS / TO DO): panels by `kind`, fixed axes, exactly two groups |
+| B4 · Sports | The same with a Sports numeric column: `b4_clouds`, `b4` | The script (PASS / TO DO) |
+| Write (report) | Do the clouds overlap? What does that say about individuals versus the group means? | Your instructor reads it (counts under Choices and Interpretation) |
+
+### Task 5 · Color for every reader {#task-5}
+
+**Goal:** Use colors every reader can tell apart, and never color alone.
+
+**Practice first:** [D7 · Color for every reader](practice.qmd#d7-color-for-every-reader){target="_blank"}
+(and the redundant cue in [D9](practice.qmd#d9-more-scale-choices-size-gray-fills-redundant-cues){target="_blank"})
+
+| Step | What you do | How it's checked |
+|---|---|---|
+| A5 · Fairness | Map a column with few categories (2 to 4) to `color` or `fill`, with `scale_fill_viridis_d(end = 0.8)` (or `scale_color_viridis_d()`). Run `color_check(a5)`. Add a second cue: direct labels (`geom_text()` or `geom_label()`), panels, or the same column on x or y | The script (PASS / TO DO): each category its own color, at least 20 in all three rows, a second cue |
+| B5 · Sports | The same with a Sports column (or one you make): `b5` | The script (PASS / TO DO) |
+| Explain your colors (in the report) | Say which column you colored by and why. If your first choice failed the color check, say what you changed: fewer categories, grouping rare ones, or panels. Then look at your simulated plot: can you still tell the categories apart? | Your instructor reads it (counts under Choices) |
+
+**What the numbers mean.** `color_check()` simulates how your colors look to
+readers with three types of color blindness, then measures how far apart the
+two closest colors are (a standard color difference, delta E). Bigger is
+easier to tell apart; 20 is our course's line for clearly different. The
+three rows are red-green (deuteranopia), red-green (protanopia) and
+**blue-yellow (approximate)**. Below 20? Choose a column with fewer
+categories, group rare ones with care (keep small groups visible and say
+so), or use panels.
+
+**See it, not only the numbers.** `simulate_plot()` redraws your plot in the
+same simulated colors. Your report shows your plot and the red-green
+(deuteranopia) version side by side, and the other two views below them.
+
+The red-green simulations come from a validated model; the blue-yellow one
+is an approximation. Machado, G. M., Oliveira, M. M., & Fernandes, L. A. F.
+(2009). A physiologically-based model for simulation of color vision
+deficiency. *IEEE Transactions on Visualization and Computer Graphics,
+15*(6), 1291–1298. <https://doi.org/10.1109/TVCG.2009.113>
+
+## Build your slides (task 6) {#task-6}
+
+**Goal:** Tell one finding to an audience, in at least 4–5 slides.
+
+**Practice first:** [D8 · Check a deck](practice.qmd#d8-check-a-deck){target="_blank"}
+
+| Step | What you do | How it's checked |
+|---|---|---|
+| Slides | Open `presentations/gp13_slides.qmd`. Replace each prompt with your own words (the checklist below). Choose plots from Part A, Part B or both by chunk name: copy a figure chunk and change `ref.label` (`a1` … `a5`, `a3-chosen`, `b1` … `b5`). Render | Your instructor reads it (counts under Interpretation and Innovation and creativity) |
+| Write (report) | "One thing I tried in my slides, and why": one idea of your own (an angle, a comparison, an order, an annotation) and how it helps a reader | Your instructor reads it (counts under Innovation and creativity) |
+
+No code goes in the slides: a plot appears by naming its chunk from the
+script. The headline slide shows your A3 plot, the version you chose.
+
+- [ ] **Title** (in the YAML at the top): what is this about, and who made
+  it?
+- [ ] **Question:** one sentence, naming the groups you compare.
+- [ ] **Data:** where it's from, what one row is, how many rows.
+- [ ] **Your headline:** the finding in one sentence, then the figure.
+- [ ] **What it shows, and its limits:** differences, not causes;
+  provenance, small groups, what the data can't tell us.
+- [ ] **Sources and AI use:** the data citation; one line on AI use (or
+  "AI use: none.").
+
+Elements can share a slide. **At least 4–5 slides; more are welcome.** For a
+model, open the **Example** menu on your site: the penguins report and the
+penguins slides. **Speaker notes are public** on the web: leave them out.
+
+## Finish and submit
+
+**Final checklist** (draft and final):
+
+- [ ] Every check says **PASS** in the Checks table at the end of your
+  report (ten checks; A0 is a reminder).
+- [ ] Both pages render, and both links open in a private (incognito)
+  window.
+- [ ] Each plot has a one-sentence `fig-alt` that describes **your** plot.
+- [ ] Small groups are shown, with their n, not dropped: under-represented is
+  not unimportant.
+- [ ] No private person's name in your report or slides (no name, bib, team
+  or judge column in a plot, table or slide).
+- [ ] One line on AI use in your report (AI use section) and on your last
+  slide, for example "AI use: I used [tool] to [what for]." or "AI use:
+  none."
+- [ ] **Final only:** the **Revision log** in your report: three to five
+  changes, each with what changed, why, and which idea from Module 14 it
+  uses.
+
+**Submitting.** Submit in the designated Blackboard assignment **"Guided
+Project: Scales and Facets"**, the same assignment both times (up to 5
+attempts). Your links stay the same; pushing updates the pages. Your last
+attempt before the final deadline is the one graded.
+
+1. **Type in the text box** your two links, your AI log and the attestation
+   (copy the template in **Reference**, AI log template). For the final,
+   update the log.
+2. **Upload copies of all your AI conversations** as .txt, PDF or Word, saved
+   on your own computer, with personal information removed. **Never put the
+   log or the conversations in your Posit Cloud project:** everything there
+   is pushed to the public site. Blackboard doesn't accept `.html`.
+3. **If pushing failed** (token, Pages not updating): zip
+   `docs/reports/gp13_report.html` and `docs/presentations/gp13_slides.html`
+   (each is one file, plots included), attach the zip, and say what went
+   wrong. A technical problem won't cost you the grade.
+
+## Reference
+
+### Project map
+
+Your `cis-3901-projects` project, with the files GP13 uses. Your project may
+have a few more.
+
+```default
+cis-3901-projects/
+├── data/
+│   ├── fairness.csv           GP13 reads this (Section 0 moves it here)
+│   ├── sports.csv             GP13 reads this
+│   ├── example/penguins.csv   the penguins example's data
+│   ├── fairness/              the messy Tidy Data package: not used here
+│   ├── tidy/                  your tidy files from Modules 10–11 (GP12 read fairness.csv here)
+│   └── sports/                your SCORE downloads (GP12 read sports.csv here)
+├── scripts/
+│   ├── gp13_scales_facets.R   you edit the code here
+│   ├── gp12_stats_coords.R    Module 12 (finished)
+│   └── 01_tidy_fairness.R, 02_tidy_sports.R   Modules 10–11
+├── reports/
+│   ├── gp13_report.qmd        reads the GP13 script's chunks
+│   └── gp12_report.qmd, fairness_report.qmd, sports_report.qmd
+├── presentations/
+│   ├── gp13_slides.qmd        reads the GP13 script's chunks
+│   └── fairness_slides.qmd, sports_slides.qmd
+├── example/                   penguins_report.qmd, penguins_slides.qmd: the model
+├── index.qmd                  your site's home page
+├── _quarto.yml                your site's settings
+└── docs/                      the published site, written by Render: don't edit
+```
+
+What reads what: the script reads `data/fairness.csv` and `data/sports.csv`.
+The report and the slides read the script's chunks. **Render** writes
+`docs/reports/gp13_report.html` and `docs/presentations/gp13_slides.html`.
+After a push, GitHub Pages publishes `docs/`.
+
+### One script, two outputs
+
+```default
+scripts/gp13_scales_facets.R   ← you edit the code here
+        │ chunks read by name
+        ├──► reports/gp13_report.qmd        → your report page
+        └──► presentations/gp13_slides.qmd  → your slides page
+```
+
+::: {.callout-important}
+## Edit the code in the script. The report and the slides only read it.
+
+Your words (findings, headlines, limits) live in the report and the slides.
+:::
+
+Each chunk in the script starts with a label line such as `## ---- a1 ----`.
+The report and the slides call the same chunks by name (with
+`knitr::read_chunk()`), so when you change a plot in the script and render,
+both pages show the new plot. Rendering the report doesn't render the
+slides: render both before you push.
+
+::: {.callout-warning}
+## Common mistake
+
+If you type code into a chunk in the report or the slides, it is ignored:
+on render, that chunk runs the script's code instead. Your change doesn't
+show on the page, and the checks don't see it. A new code chunk you add does
+run, but only on that page, so your report, slides and script no longer
+match. Keep those chunks empty and fix the code in the script.
+:::
+
+### Words you'll see
+
+- **Script:** a file of R code you run a few lines at a time
+  (Ctrl/Cmd + Enter). Here, `scripts/gp13_scales_facets.R` holds all the
+  code.
+- **Chunk:** a block of code. In the script, the lines from one label line
+  to the next; in a `.qmd` file, a block that starts with ```` ```{r} ````.
+- **Chunk label:** a chunk's name. In the script it's a line such as
+  `## ---- a1 ----`; the report and the slides find the code by that name.
+- **Quarto:** the program that turns a `.qmd` file into a web page or slides.
+- **`.qmd` file:** a Quarto document: your words plus code chunks. Here,
+  `reports/gp13_report.qmd` and `presentations/gp13_slides.qmd`.
+- **knitr:** the R package that runs a `.qmd` file's code chunks and puts
+  their output into the document.
+- **Render:** the Render button. knitr runs the code chunks, then Quarto
+  builds the page or the slides. (R Markdown called this Knit.) It renders
+  only the file that is open.
+- **Report:** the web page built from `gp13_report.qmd`: code, output and
+  your findings.
+- **Slides:** the deck built from `gp13_slides.qmd` (revealjs: slides that
+  open in a web browser; the arrow keys move between them).
+- **`knitr::read_chunk()`:** the line near the top of the report and the
+  slides that reads the script's chunks, so a chunk named `a1` there runs
+  the script's `a1` code.
+- **Output:** what code produces: a plot, a table, a PASS or TO DO line.
+  Render's output is an HTML file in `docs/`.
+- **Commit:** saves a snapshot of the files you ticked, with a message, in
+  your project's history (Git tab).
+- **Push:** sends your commits to your repository on GitHub (with your
+  token).
+- **GitHub Pages:** the GitHub service that publishes your repository's
+  `docs/` folder as your website, a minute or two after a push.
+- **URL:** a web address. Your two pages' URLs are the links you submit.
+
+### Ideas for your columns
+
+Starting points; check them in the column list Section 0 prints for your own
+file (name, type, how many different values). Each dataset gets the same kind
+of hint: task 2 (a skewed column, or a share for percent labels), task 3
+(panels: a group or a year), task 4 (two groups and a numeric column) and
+task 5 (a column with 2 to 4 categories, or how to make one). Small groups
+stay in your plots, with their n.
+
+**Fairness**
+
+- **Adult:** task 2 `capital_gain` (most are 0: keep values above 0 with
+  `filter()` and say how many); task 3 `race`; task 4 `hours_per_week` (or
+  `age`) by `sex`; task 5 `sex` or `income`.
+- **ACS Income NC:** task 2 `income`; task 3 `sex` or `marital_status`;
+  task 4 `hours_per_week` by `sex`; task 5 `sex`.
+- **Diabetes Hospital:** task 2 a share with percent labels (readmission);
+  task 3 `gender` (one panel has n = 2: keep it) or `race`; task 4
+  `num_medications` by `gender`, Female and Male (Unknown/Invalid, n = 2, is
+  too small for a cloud: say so); task 5 `age`.
+- **Credit Card:** task 2 `limit_bal`; task 3 `sex` or `marriage`; task 4
+  `age` (or `limit_bal`) by `sex`; task 5 `sex`, or `marriage` (two small
+  groups).
+
+**Sports**
+
+- **WNBA:** task 2 a share of wins with percent labels; task 3
+  `season_type` (2 regular season, 3 playoffs: name them with `if_else()`);
+  task 4 make a number first: each team's share of wins in a season, at
+  home and away (`group_by()` team, `season` and `team_home_away`, then
+  `summarize()`), then the clouds by `team_home_away`; task 5
+  `team_home_away`.
+- **NFL Draft Combine:** task 2 a share picked in round 1; task 3 make a
+  group from `Round` (empty = not drafted) with `if_else()`; task 4 `forty`
+  for drafted and not drafted; task 5 that group.
+- **Boston Marathon:** task 2 a share finishing under a time you choose,
+  from `finish_net_minutes`; task 3 `gender` or `age_group` (80+ has n = 5:
+  keep it); task 4 `finish_net_minutes` by `gender`; task 5 `gender`. Never
+  use `name`, `bib_number` or `team`.
+- **Setka Cup:** task 2 a share of home wins; task 3 make a group from
+  `HomeWinner` with `if_else()`; task 4 the points in game 1
+  (`P1_G1 + P2_G1`) by who won the match (`HomeWinner`); task 5 sets played,
+  `Sets_P1` plus `Sets_P2`, with `factor()`.
+- **Sumo:** task 2 a share of winning records; task 3 make a weight band
+  from `weight_kg` with `if_else()`; task 4 `weight_kg` for two rank letters
+  from `Rank` with `str_sub()` (M and J: J has only 28 records, so its cloud
+  of means is wide); task 5 the weight band, or `Rank`'s first letter with
+  `fct_lump_n()` (say what you combined).
+- **MLB pitches:** task 2 a share of strikes; task 3 `player_name`; task 4
+  `release_speed` for balls and strikes (`result` B and S); task 5 `result`
+  (B, S, X).
+- **Powerlifting:** task 2 a share of first places, from `Place`; task 3 two
+  periods from `Date` with `year()` and `if_else()` (early years are small);
+  task 4 `TotalKg` for those two periods; task 5 a bodyweight band from
+  `BodyweightKg` with `cut()` (a few missing: `drop_na()`). Never use
+  `Name`.
+- **WTA Grand Slam:** task 2 `winner_rank` (a few missing: `drop_na()`);
+  task 3 a year from `tourney_date` with `str_sub()`; task 4 `minutes` on
+  Hard and Clay courts (`surface`; matches without minutes are left out);
+  task 5 `surface`.
+- **MMA fight decisions:** task 2 a share where all judges agree; task 3 a
+  year from `date` with `year()` (21 years: two periods read better); task 4
+  a judge's margin, `abs(judge1_margin)`, for 3- and 5-round fights
+  (`rounds`; the 24 twelve-round fights left out); task 5 `result_type`.
+  Never use the `judge1`–`judge3` columns.
+
+### Grading (percentage ranges in the rubric)
+
+The rubric grades the final. The draft gets feedback only.
+
+**Levels (all criteria):** Exemplary 90–100% · Proficient 80–89% · Developing
+65–79% · Beginning 1–64% · No Response 0%.
+
+| Criterion | Weight | Looks at |
+|---|---|---|
+| Code and checks: script runs; checks pass; report and slides render and are published | 35% | Your code and output, Checks table, both pages |
+| Choices: labels, scale, fixed or free, the clouds' groups and column, colors and categories, each with a reason; the revision log | 25% | Your writing, both datasets |
+| Interpretation: findings, limits, small groups, no causal claims | 20% | Your writing and slides |
+| Innovation and creativity (slides) | 10% | Your slides, and "One thing I tried in my slides, and why" |
+| AI disclosure | 10% | AI use line in your report and slides, AI log typed in Blackboard (or the no-AI statement), and copies of all AI conversations uploaded in Blackboard |
+
+**Innovation and creativity (slides):**
+
+- **Exemplary (90–100%):** every minimum element, plus an idea of your own
+  (an angle, a comparison, an order, an annotation) that helps the reader
+  see the finding.
+- **Proficient (80–89%):** every minimum element, close to the penguins
+  example.
+- **Developing (65–79%):** the example's structure with new plots dropped
+  in; default or topic-only titles.
+- **Beginning (1–64%):** the slides don't convey a finding.
+
+Decoration doesn't count. An idea that distorts the data or breaks the color
+rules earns no credit. More slides aren't more credit. Artistic skill isn't
+graded.
+
+### AI use (Level 2) and the AI log template
+
+You may use AI to explain code or errors. Write your own sentences in the
+report and the slides.
+
+- **Public:** one line in your report's **AI use** section and on your last
+  slide, for example "AI use: I used [tool] to [what for]." or "AI use:
+  none."
+- **In Blackboard (private):** your AI log or the no-AI statement, the
+  attestation, and copies of all your AI conversations.
+
+Copy this into the Blackboard text box:
+
+```default
+Report: https://YOUR-USERNAME.github.io/cis-3901-projects/reports/gp13_report.html
+Slides: https://YOUR-USERNAME.github.io/cis-3901-projects/presentations/gp13_slides.html
+
+AI log
+Use 1 – Tool: ___ | What I used it for: ___ | What I changed or checked, and why: ___
+Use 2 – Tool: ___ | What I used it for: ___ | What I changed or checked, and why: ___
+(add a line per use; upload a copy of every conversation)
+
+OR: I did not use AI for this project. How I worked through problems: ___
+
+Attestation: This log lists every use of AI in this project.
+```

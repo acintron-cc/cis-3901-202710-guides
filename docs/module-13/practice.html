@@ -1,0 +1,1307 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Module 13 · Practice: scales and facets – CIS-3901 · Fall 2026</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-6388ad00bb6ecaefa25b9a98db1edf18.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">CIS-3901 · Fall 2026</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-modules" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Modules</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-modules">    
+        <li>
+    <a class="dropdown-item" href="../module-10/index.html">
+ <span class="dropdown-text">Module 10: Tidy Data and Project Setup</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../module-11/index.html">
+ <span class="dropdown-text">Module 11: Grammar of Graphics I</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../module-12/index.html">
+ <span class="dropdown-text">Module 12: Grammar of Graphics II</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../module-13/index.html">
+ <span class="dropdown-text">Module 13: Grammar of Graphics III</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#before-you-start" id="toc-before-you-start" class="nav-link active" data-scroll-target="#before-you-start">Before you start</a></li>
+  <li><a href="#d1-label-it" id="toc-d1-label-it" class="nav-link" data-scroll-target="#d1-label-it">D1 · Label it</a></li>
+  <li><a href="#d2-choose-a-scale" id="toc-d2-choose-a-scale" class="nav-link" data-scroll-target="#d2-choose-a-scale">D2 · Choose a scale</a></li>
+  <li><a href="#d3-the-lie-factor" id="toc-d3-the-lie-factor" class="nav-link" data-scroll-target="#d3-the-lie-factor">D3 · The Lie Factor</a></li>
+  <li><a href="#d4-fixed-or-free-panels" id="toc-d4-fixed-or-free-panels" class="nav-link" data-scroll-target="#d4-fixed-or-free-panels">D4 · Fixed or free panels</a></li>
+  <li><a href="#d5-two-facets-at-once-sex-and-species" id="toc-d5-two-facets-at-once-sex-and-species" class="nav-link" data-scroll-target="#d5-two-facets-at-once-sex-and-species">D5 · Two facets at once: sex and species</a></li>
+  <li><a href="#d6-uncertainty-clouds" id="toc-d6-uncertainty-clouds" class="nav-link" data-scroll-target="#d6-uncertainty-clouds">D6 · Uncertainty clouds</a></li>
+  <li><a href="#d7-color-for-every-reader" id="toc-d7-color-for-every-reader" class="nav-link" data-scroll-target="#d7-color-for-every-reader">D7 · Color for every reader</a></li>
+  <li><a href="#d8-check-a-deck" id="toc-d8-check-a-deck" class="nav-link" data-scroll-target="#d8-check-a-deck">D8 · Check a deck</a></li>
+  <li><a href="#d9-more-scale-choices-size-gray-fills-redundant-cues" id="toc-d9-more-scale-choices-size-gray-fills-redundant-cues" class="nav-link" data-scroll-target="#d9-more-scale-choices-size-gray-fills-redundant-cues">D9 · More scale choices: size, gray fills, redundant cues</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Module 13 · Practice: scales and facets</h1>
+<p class="subtitle lead">Deeper practice with solutions · each exercise is the pattern for a Guided Project task</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Work these in your <code>module-13-scales-facets</code> project in Posit Cloud, or just read them. Every exercise uses <strong>penguins</strong> or <strong>gapminder</strong>, so the patterns are the same for everyone. The solutions are visible: try first, then open them. Download them as R scripts: <a href="files/practice_d1-d9.R" target="_blank">exercises</a> · <a href="files/practice_d1-d9_solutions.R" target="_blank">solutions</a>.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Exercise</th>
+<th>Pattern</th>
+<th>Guided Project task</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>D1 · Label it</td>
+<td><code>labs()</code> with units, a subtitle, percent labels</td>
+<td>1 (A1, B1)</td>
+</tr>
+<tr class="even">
+<td>D2 · Choose a scale</td>
+<td>linear or log</td>
+<td>2 (A2, B2)</td>
+</tr>
+<tr class="odd">
+<td>D3 · The Lie Factor</td>
+<td>is the size honest?</td>
+<td>2 (A2, B2)</td>
+</tr>
+<tr class="even">
+<td>D4 · Fixed or free panels</td>
+<td><code>facet_wrap()</code>, <code>scales = "free_y"</code></td>
+<td>3 (A3, B3)</td>
+</tr>
+<tr class="odd">
+<td>D5 · Two facets at once: sex and species</td>
+<td><code>facet_grid()</code></td>
+<td>3 (A3, B3)</td>
+</tr>
+<tr class="even">
+<td>D6 · Uncertainty clouds</td>
+<td>individual values next to resampled means</td>
+<td>4 (A4, B4)</td>
+</tr>
+<tr class="odd">
+<td>D7 · Color for every reader</td>
+<td>viridis, the color check, a second cue</td>
+<td>5 (A5, B5)</td>
+</tr>
+<tr class="even">
+<td>D8 · Check a deck</td>
+<td>the minimum elements of a deck</td>
+<td>6 (slides)</td>
+</tr>
+<tr class="odd">
+<td>D9 · More scale choices</td>
+<td>size, gray fills, redundant cues</td>
+<td>5 and 2</td>
+</tr>
+</tbody>
+</table>
+<section id="before-you-start" class="level2">
+<h2 class="anchored" data-anchor-id="before-you-start">Before you start</h2>
+<p>Five short steps, in your <code>module-13-scales-facets</code> project. Every output below comes from R 4.6.1.</p>
+<p><strong>1. Which R?</strong> Posit Cloud uses R 4.6.1. R 4.5 and later have their own <code>penguins</code>, with shorter column names (step 5).</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>R.version.string</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "R version 4.6.1 (2026-06-24)"</code></pre>
+</div>
+</div>
+<p><strong>2. Are the packages installed?</strong> <code>TRUE</code> means installed.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="st">"palmerpenguins"</span> <span class="sc">%in%</span> <span class="fu">rownames</span>(<span class="fu">installed.packages</span>())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] TRUE</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="st">"gapminder"</span> <span class="sc">%in%</span> <span class="fu">rownames</span>(<span class="fu">installed.packages</span>())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] TRUE</code></pre>
+</div>
+</div>
+<p><strong>3. Install only if step 2 said <code>FALSE</code></strong>, once per project. (The same for <code>palmerpenguins</code>.)</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"gapminder"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p><strong>4. Load the packages</strong> every new session. You install a package once per project; you load it with <code>library()</code> each time R starts.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(palmerpenguins)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gapminder)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p><strong>5. Use the palmerpenguins version of <code>penguins</code>.</strong></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="ot">&lt;-</span> palmerpenguins<span class="sc">::</span>penguins</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(palmerpenguins<span class="sc">::</span>penguins)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "species"           "island"            "bill_length_mm"   
+[4] "bill_depth_mm"     "flipper_length_mm" "body_mass_g"      
+[7] "sex"               "year"             </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(datasets<span class="sc">::</span>penguins)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "species"     "island"      "bill_len"    "bill_dep"    "flipper_len"
+[6] "body_mass"   "sex"         "year"       </code></pre>
+</div>
+</div>
+<p><code>::</code> means “from this package”, as in <code>scales::percent</code> in Session 1. Here it makes sure we get the palmerpenguins version of <code>penguins</code>, not the one built into R.</p>
+<p>Last, the course’s colors, once per session:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Colors that color-blind viewers can tell apart</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">ggplot2.discrete.fill =</span> <span class="cf">function</span>() <span class="fu">scale_fill_viridis_d</span>(<span class="at">end =</span> <span class="fl">0.8</span>),</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">ggplot2.discrete.colour =</span> <span class="cf">function</span>() <span class="fu">scale_color_viridis_d</span>(<span class="at">end =</span> <span class="fl">0.8</span>)</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="d1-label-it" class="level2">
+<h2 class="anchored" data-anchor-id="d1-label-it">D1 · Label it</h2>
+<p>Prepares Guided Project <a href="../module-13/guided-project.html#task-1" target="_blank">task 1</a> (A1, B1).</p>
+<p><strong>Goal.</strong> A reader should understand the plot without you there: a title that says what it shows, a subtitle with the data and its n (sample size: the number of penguins in each group), axis titles with units, a legend title, and percent labels for a share. (Session 1.)</p>
+<p><strong>Your turn.</strong> Label the share of Adelie penguins on each island.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">y =</span> island, <span class="at">fill =</span> species <span class="sc">==</span> <span class="st">"Adelie"</span>)) <span class="sc">+</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">"fill"</span>) <span class="sc">+</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"___"</span>,</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"___"</span>,</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"___"</span>,</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"___"</span>,</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">"___"</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels =</span> ___)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p><strong>Investigate.</strong> Which label would a reader miss most if you left it out?</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">y =</span> island, <span class="at">fill =</span> species <span class="sc">==</span> <span class="st">"Adelie"</span>)) <span class="sc">+</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">"fill"</span>) <span class="sc">+</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Torgersen's penguins are all Adelie"</span>,</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Palmer penguins, 344 penguins on three islands"</span>,</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Share of the island's penguins (%)"</span>,</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Island"</span>,</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">"Adelie"</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span>percent)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="practice_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" alt="Sideways stacked bar chart of the share of Adelie penguins on each island, labeled in percent, where Torgersen is 100% Adelie, Dream about 45% and Biscoe about 26%." width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The title states the finding; the subtitle says which data and how many; the x-axis says “share of what” and its unit. Torgersen is 100% Adelie (52 of 52), Dream about 45% (56 of 124), Biscoe about 26% (44 of 168).</p>
+</div>
+</div>
+</div>
+</section>
+<section id="d2-choose-a-scale" class="level2">
+<h2 class="anchored" data-anchor-id="d2-choose-a-scale">D2 · Choose a scale</h2>
+<p>Prepares Guided Project <a href="../module-13/guided-project.html#task-2" target="_blank">task 2</a> (A2, B2).</p>
+<p><strong>Goal.</strong> Which scale fits the data? (Session 1.)</p>
+<p><strong>Your turn.</strong> Plot life expectancy against GDP per person in 2007, first on a linear x-axis, then on a log x-axis.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>gap_2007 <span class="ot">&lt;-</span> gapminder <span class="sc">%&gt;%</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2007</span>)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>p_wealth <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(gap_2007, <span class="fu">aes</span>(<span class="at">x =</span> gdpPercap, <span class="at">y =</span> lifeExp)) <span class="sc">+</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"GDP per person (US$)"</span>, <span class="at">y =</span> <span class="st">"Life expectancy (years)"</span>)</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>p_wealth</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>p_wealth <span class="sc">+</span> <span class="fu">___</span>(<span class="at">labels =</span> scales<span class="sc">::</span>comma)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p><strong>Investigate.</strong> Where are most countries on the linear axis? What does the log axis show that the linear one hides?</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>gap_2007 <span class="ot">&lt;-</span> gapminder <span class="sc">%&gt;%</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2007</span>)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>p_wealth <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(gap_2007, <span class="fu">aes</span>(<span class="at">x =</span> gdpPercap, <span class="at">y =</span> lifeExp)) <span class="sc">+</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"GDP per person (US$)"</span>, <span class="at">y =</span> <span class="st">"Life expectancy (years)"</span>)</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>p_wealth</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>p_wealth <span class="sc">+</span></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>(<span class="at">labels =</span> scales<span class="sc">::</span>comma) <span class="sc">+</span></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"GDP per person (US$, log scale)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="practice_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" alt="Scatter plot of life expectancy against GDP per person in 2007 on a linear x-axis, where most countries are crowded at the left below 10,000 dollars and a few rich countries spread to the right." width="672"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="practice_files/figure-html/unnamed-chunk-4-2.png" class="img-fluid" alt="The same scatter plot with a log x-axis, where the countries spread evenly and life expectancy rises steadily with each tenfold step in GDP per person." width="672"></p>
+</div>
+</div>
+</div>
+<p>GDP per person runs from about $278 to $49,357 across 142 countries, and 66 of them are below $5,000: on a linear axis they crowd into the left edge. On a log axis each step is ten times the one before, so the poorer countries spread out and the pattern (life expectancy rises with each tenfold step) shows. Say “log scale” in the axis title: a reader who misses it reads the gaps wrong.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="d3-the-lie-factor" class="level2">
+<h2 class="anchored" data-anchor-id="d3-the-lie-factor">D3 · The Lie Factor</h2>
+<p>Prepares Guided Project <a href="../module-13/guided-project.html#task-2" target="_blank">task 2</a>: a scale is honest only if sizes in the picture match the data.</p>
+<p>The <strong>Lie Factor</strong> (Tufte, 2001, p.&nbsp;57) compares the size of an effect in the picture with its size in the data: drawn ratio ÷ data ratio. 1 is honest; above 1 exaggerates; below 1 understates.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>lie_factors <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">case =</span> <span class="fu">c</span>(<span class="st">"Module 12: penguin bars zoomed to start at 40"</span>,</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>           <span class="st">"Minard's march, default line widths (1 to 6)"</span>,</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>           <span class="st">"Minard's march, range = c(0.1, 8.5)"</span>),</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">drawn_ratio =</span> <span class="fu">c</span>((<span class="dv">168</span> <span class="sc">-</span> <span class="dv">40</span>) <span class="sc">/</span> (<span class="dv">52</span> <span class="sc">-</span> <span class="dv">40</span>), <span class="dv">6</span> <span class="sc">/</span> <span class="dv">1</span>, <span class="fl">8.5</span> <span class="sc">/</span> <span class="fl">0.1</span>),</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">data_ratio =</span> <span class="fu">c</span>(<span class="dv">168</span> <span class="sc">/</span> <span class="dv">52</span>, <span class="dv">340000</span> <span class="sc">/</span> <span class="dv">4000</span>, <span class="dv">340000</span> <span class="sc">/</span> <span class="dv">4000</span>)</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>) <span class="sc">%&gt;%</span></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">lie_factor =</span> drawn_ratio <span class="sc">/</span> data_ratio)</span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>lie_factors</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 4
+  case                                         drawn_ratio data_ratio lie_factor
+  &lt;chr&gt;                                              &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;
+1 Module 12: penguin bars zoomed to start at …        10.7       3.23     3.30  
+2 Minard's march, default line widths (1 to 6)         6        85        0.0706
+3 Minard's march, range = c(0.1, 8.5)                 85        85        1     </code></pre>
+</div>
+</div>
+<p><strong>Talk.</strong> Which case exaggerates, which understates, and which is honest? Why does the default width scale understate Minard’s losses so much?</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ul>
+<li><strong>Bars cut at 40, about 3.3: exaggerates.</strong> Biscoe (168) looks about 10.7 times as long as Torgersen (52), but the counts differ only 3.2 times.</li>
+<li><strong>Minard, default widths, about 0.07: understates.</strong> The army shrinks from 340,000 to 4,000 (85 times), but <code>scale_linewidth()</code> draws widths from 1 to 6 by default: only 6 times. (In class you measured them with <code>layer_data()</code>.)</li>
+<li><strong>Minard, <code>range = c(0.1, 8.5)</code>, 1: honest.</strong> 8.5 ÷ 0.1 = 85, the same ratio as the data.</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section id="d4-fixed-or-free-panels" class="level2">
+<h2 class="anchored" data-anchor-id="d4-fixed-or-free-panels">D4 · Fixed or free panels</h2>
+<p>Prepares Guided Project <a href="../module-13/guided-project.html#task-3" target="_blank">task 3</a> (A3, B3).</p>
+<p><strong>Goal.</strong> One plot or many? And when the panels differ in size, fixed or free axes? (Session 2.)</p>
+<p><strong>Your turn.</strong> Plot each continent’s total population over time, one panel per continent. Then free the y-axis.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>pop_by_continent <span class="ot">&lt;-</span> gapminder <span class="sc">%&gt;%</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(continent, year) <span class="sc">%&gt;%</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">pop_millions =</span> <span class="fu">sum</span>(pop) <span class="sc">/</span> <span class="fl">1e6</span>, <span class="at">.groups =</span> <span class="st">"drop"</span>)</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>p_pop <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(pop_by_continent, <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> pop_millions)) <span class="sc">+</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Year"</span>, <span class="at">y =</span> <span class="st">"Population (millions)"</span>)</span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>p_pop <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(___))</span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>p_pop <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(___), <span class="at">scales =</span> <span class="st">"___"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p><strong>Investigate.</strong> On the fixed panels, what happened to Oceania between 1952 and 2007? On the free panels? Which version would mislead a reader, and how?</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>pop_by_continent <span class="ot">&lt;-</span> gapminder <span class="sc">%&gt;%</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(continent, year) <span class="sc">%&gt;%</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">pop_millions =</span> <span class="fu">sum</span>(pop) <span class="sc">/</span> <span class="fl">1e6</span>, <span class="at">.groups =</span> <span class="st">"drop"</span>)</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>p_pop <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(pop_by_continent, <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> pop_millions)) <span class="sc">+</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Year"</span>, <span class="at">y =</span> <span class="st">"Population (millions)"</span>)</span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>p_pop <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(continent))</span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>p_pop <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(continent), <span class="at">scales =</span> <span class="st">"free_y"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="practice_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" alt="Five panels of total population over time by continent on one shared y-axis, where Asia rises steeply to about 3,800 million and Oceania looks like a flat line near zero." width="672"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="practice_files/figure-html/unnamed-chunk-7-2.png" class="img-fluid" alt="The same five panels with free y-axes, where every continent shows a rising line, including Oceania, whose axis only reaches about 25 million." width="672"></p>
+</div>
+</div>
+</div>
+<p>Fixed axes compare sizes: Asia grows from about 1,395 to 3,812 million, and Oceania (2 countries, 10.7 to 24.5 million) looks flat. Free axes compare shapes: Oceania more than doubles, like the others. Each is honest only if the reader notices the axes: with free y, say so in the caption, because panels of equal height no longer mean equal numbers.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="d5-two-facets-at-once-sex-and-species" class="level2">
+<h2 class="anchored" data-anchor-id="d5-two-facets-at-once-sex-and-species">D5 · Two facets at once: sex and species</h2>
+<p>Prepares Guided Project <a href="../module-13/guided-project.html#task-3" target="_blank">task 3</a>: panels by two columns, and the n of what is left out.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">%&gt;%</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>(sex, body_mass_g) <span class="sc">%&gt;%</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> body_mass_g)) <span class="sc">+</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">200</span>) <span class="sc">+</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(<span class="at">rows =</span> <span class="fu">vars</span>(sex), <span class="at">cols =</span> <span class="fu">vars</span>(species)) <span class="sc">+</span></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Body mass (g)"</span>, <span class="at">y =</span> <span class="st">"Penguins"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="practice_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" alt="Grid of histograms of penguin body mass, rows for female and male, columns for Adelie, Chinstrap and Gentoo, where males are heavier than females within every species and Gentoo are the heaviest." width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Talk.</strong> What can you compare across a row? Down a column? 11 penguins have no recorded sex (6 Adelie, 5 Gentoo) and are not in this plot: where would you tell the reader?</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Across a row: the three species, for one sex (Gentoo are the heaviest). Down a column: females and males of one species (males are heavier in each). The shared axes make both comparisons fair. Say the 11 missing penguins in the caption or the text, with their n.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="d6-uncertainty-clouds" class="level2">
+<h2 class="anchored" data-anchor-id="d6-uncertainty-clouds">D6 · Uncertainty clouds</h2>
+<p>Prepares Guided Project <a href="../module-13/guided-project.html#task-4" target="_blank">task 4</a> (A4, B4).</p>
+<p><strong>Goal.</strong> Is a difference between two groups large or small? Compared to what? Put each penguin next to the means of 200 resampled samples, on the same axis. (Session 2.)</p>
+<p><strong>Your turn.</strong> Compare Adelie and Chinstrap flipper lengths. The prepared code draws each species’ penguins again (with replacement, the same number), 200 times, and keeps each sample’s mean. Then make one panel per <code>kind</code>.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">3901</span>)</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>flippers <span class="ot">&lt;-</span> penguins <span class="sc">%&gt;%</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(species <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Adelie"</span>, <span class="st">"Chinstrap"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>(flipper_length_mm) <span class="sc">%&gt;%</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(species, flipper_length_mm)</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>means <span class="ot">&lt;-</span> <span class="fu">map</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">200</span>, <span class="cf">function</span>(i) {</span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>  flippers <span class="sc">%&gt;%</span></span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(species) <span class="sc">%&gt;%</span></span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">slice_sample</span>(<span class="at">prop =</span> <span class="dv">1</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarize</span>(<span class="at">flipper_length_mm =</span> <span class="fu">mean</span>(flipper_length_mm))</span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>}) <span class="sc">%&gt;%</span></span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bind_rows</span>()</span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a>clouds <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(</span>
+<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a>  flippers <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">kind =</span> <span class="st">"Individual penguins"</span>),</span>
+<span id="cb23-17"><a href="#cb23-17" aria-hidden="true" tabindex="-1"></a>  means <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">kind =</span> <span class="st">"Resampled means"</span>)</span>
+<span id="cb23-18"><a href="#cb23-18" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(clouds, <span class="fu">aes</span>(<span class="at">x =</span> species, <span class="at">y =</span> flipper_length_mm)) <span class="sc">+</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">width =</span> <span class="fl">0.15</span>, <span class="at">height =</span> <span class="dv">0</span>, <span class="at">alpha =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> ___) <span class="sc">+</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Species"</span>, <span class="at">y =</span> <span class="st">"Flipper length (mm)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p><strong>Investigate.</strong> In which panel do the two clouds overlap? What does that say about two penguins, and about the two means?</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(clouds, <span class="fu">aes</span>(<span class="at">x =</span> species, <span class="at">y =</span> flipper_length_mm)) <span class="sc">+</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">width =</span> <span class="fl">0.15</span>, <span class="at">height =</span> <span class="dv">0</span>, <span class="at">alpha =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> kind) <span class="sc">+</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Species"</span>, <span class="at">y =</span> <span class="st">"Flipper length (mm)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="practice_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" alt="Two panels on one shared y-axis: on the left, every Adelie and Chinstrap penguin's flipper length, two tall clouds that overlap almost completely; on the right, 200 resampled means per species, two short clouds about 6 mm apart that don't overlap." width="672"></p>
+</figure>
+</div>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>clouds <span class="sc">%&gt;%</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(kind, species) <span class="sc">%&gt;%</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">n =</span> <span class="fu">n</span>(), <span class="at">mean =</span> <span class="fu">mean</span>(flipper_length_mm),</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">lowest =</span> <span class="fu">min</span>(flipper_length_mm),</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">highest =</span> <span class="fu">max</span>(flipper_length_mm), <span class="at">.groups =</span> <span class="st">"drop"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 6
+  kind                species       n  mean lowest highest
+  &lt;chr&gt;               &lt;fct&gt;     &lt;int&gt; &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;
+1 Individual penguins Adelie      151  190.   172     210 
+2 Individual penguins Chinstrap    68  196.   178     212 
+3 Resampled means     Adelie      200  190.   189.    191.
+4 Resampled means     Chinstrap   200  196.   194.    198.</code></pre>
+</div>
+</div>
+<p>In the left panel the clouds overlap almost completely: Adelie flippers run from 172 to 210 mm, Chinstrap from 178 to 212 mm, so many Adelie penguins have longer flippers than many Chinstrap ones. In the right panel the 200 resampled means don’t overlap: Adelie’s from 188.7 to 191.3 mm, Chinstrap’s from 193.6 to 197.8 mm. The gap between the means, 5.9 mm (189.95 and 195.82), is small next to the spread of the penguins (sd 6.5 and 7.1 mm) but large next to how far each mean moves from sample to sample. Say which you compare: individuals or means. Chinstrap’s cloud of means is wider: 68 penguins, against Adelie’s 151.</p>
+<p>In the Guided Project, <code>make_clouds()</code> does the resampling for you.</p>
+</div>
+</div>
+</div>
+<section id="watch-the-means-settle" class="level3">
+<h3 class="anchored" data-anchor-id="watch-the-means-settle">Watch the means settle</h3>
+<p>Draw 200 samples of 10, of 50, and of each species’ full size (with replacement), and plot each sample’s mean flipper length.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">3901</span>)</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>flippers <span class="ot">&lt;-</span> <span class="fu">drop_na</span>(penguins, flipper_length_mm)</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>cloud <span class="ot">&lt;-</span> <span class="fu">map_dfr</span>(<span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">50</span>, <span class="cn">NA</span>), <span class="cf">function</span>(size) {</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">map_dfr</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">200</span>, <span class="cf">function</span>(i) {</span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>    grouped <span class="ot">&lt;-</span> <span class="fu">group_by</span>(flippers, species)</span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>    drawn <span class="ot">&lt;-</span> <span class="cf">if</span> (<span class="fu">is.na</span>(size)) {</span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>      <span class="fu">slice_sample</span>(grouped, <span class="at">prop =</span> <span class="dv">1</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)   <span class="co"># each species' n</span></span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> {</span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a>      <span class="fu">slice_sample</span>(grouped, <span class="at">n =</span> size, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a>    drawn <span class="sc">%&gt;%</span></span>
+<span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a>      <span class="fu">summarize</span>(<span class="at">mean_mm =</span> <span class="fu">mean</span>(flipper_length_mm), <span class="at">.groups =</span> <span class="st">"drop"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb28-14"><a href="#cb28-14" aria-hidden="true" tabindex="-1"></a>      <span class="fu">mutate</span>(<span class="at">sample =</span> <span class="cf">if</span> (<span class="fu">is.na</span>(size)) <span class="st">"All penguins"</span> <span class="cf">else</span></span>
+<span id="cb28-15"><a href="#cb28-15" aria-hidden="true" tabindex="-1"></a>               <span class="fu">paste</span>(size, <span class="st">"penguins"</span>))</span>
+<span id="cb28-16"><a href="#cb28-16" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb28-17"><a href="#cb28-17" aria-hidden="true" tabindex="-1"></a>}) <span class="sc">%&gt;%</span></span>
+<span id="cb28-18"><a href="#cb28-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">sample =</span> <span class="fu">fct_inorder</span>(sample))</span>
+<span id="cb28-19"><a href="#cb28-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-20"><a href="#cb28-20" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(cloud, <span class="fu">aes</span>(<span class="at">x =</span> mean_mm, <span class="at">y =</span> species)) <span class="sc">+</span></span>
+<span id="cb28-21"><a href="#cb28-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">height =</span> <span class="fl">0.2</span>, <span class="at">alpha =</span> <span class="fl">0.3</span>) <span class="sc">+</span></span>
+<span id="cb28-22"><a href="#cb28-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(sample), <span class="at">ncol =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb28-23"><a href="#cb28-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Mean flipper length of one sample (mm)"</span>, <span class="at">y =</span> <span class="cn">NULL</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="practice_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" alt="Three panels of dots, one per resampled mean flipper length for each species, for samples of 10, 50 and all penguins; the clouds of means are wide for 10 and narrow steadily as the sample grows, and the three species separate more clearly." width="672"></p>
+</figure>
+</div>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>cloud <span class="sc">%&gt;%</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(sample, species) <span class="sc">%&gt;%</span></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">spread_sd =</span> <span class="fu">sd</span>(mean_mm), <span class="at">.groups =</span> <span class="st">"drop"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 9 × 3
+  sample       species   spread_sd
+  &lt;fct&gt;        &lt;fct&gt;         &lt;dbl&gt;
+1 10 penguins  Adelie        2.10 
+2 10 penguins  Chinstrap     2.14 
+3 10 penguins  Gentoo        2.09 
+4 50 penguins  Adelie        0.932
+5 50 penguins  Chinstrap     0.932
+6 50 penguins  Gentoo        0.908
+7 All penguins Adelie        0.520
+8 All penguins Chinstrap     0.824
+9 All penguins Gentoo        0.612</code></pre>
+</div>
+</div>
+<p>The bigger the sample, the less its mean moves from one sample to the next. For Adelie, the spread (sd) of the 200 means is about 2.1 mm with 10 penguins, 0.93 mm with 50, and 0.52 mm with all 151. In one sentence, the central limit theorem: means of larger samples pile up in a narrower, bell-shaped cloud around the true mean, and the cloud’s width shrinks with the square root of the sample size. So “compared to what?” matters: a difference between two means is big or small compared to that width (the se), not to the spread of the penguins themselves (the sd).</p>
+</section>
+</section>
+<section id="d7-color-for-every-reader" class="level2">
+<h2 class="anchored" data-anchor-id="d7-color-for-every-reader">D7 · Color for every reader</h2>
+<p>Prepares Guided Project <a href="../module-13/guided-project.html#task-5" target="_blank">task 5</a> (A5, B5).</p>
+<p><strong>Goal.</strong> Colors every reader can tell apart, and never color alone. (Session 1.)</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>species_labels <span class="ot">&lt;-</span> penguins <span class="sc">%&gt;%</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>(flipper_length_mm, bill_length_mm) <span class="sc">%&gt;%</span></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(species) <span class="sc">%&gt;%</span></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">flipper_length_mm =</span> <span class="fu">mean</span>(flipper_length_mm),</span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">bill_length_mm =</span> <span class="fu">max</span>(bill_length_mm))</span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">y =</span> bill_length_mm,</span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>                     <span class="at">color =</span> species)) <span class="sc">+</span></span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.6</span>) <span class="sc">+</span></span>
+<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_label</span>(<span class="at">data =</span> species_labels, <span class="fu">aes</span>(<span class="at">label =</span> species)) <span class="sc">+</span></span>
+<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_viridis_d</span>(<span class="at">end =</span> <span class="fl">0.8</span>) <span class="sc">+</span></span>
+<span id="cb31-12"><a href="#cb31-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>) <span class="sc">+</span></span>
+<span id="cb31-13"><a href="#cb31-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Flipper length (mm)"</span>, <span class="at">y =</span> <span class="st">"Bill length (mm)"</span>)</span>
+<span id="cb31-14"><a href="#cb31-14" aria-hidden="true" tabindex="-1"></a>gapminder <span class="sc">%&gt;%</span></span>
+<span id="cb31-15"><a href="#cb31-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2007</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb31-16"><a href="#cb31-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> gdpPercap, <span class="at">y =</span> lifeExp, <span class="at">color =</span> continent)) <span class="sc">+</span></span>
+<span id="cb31-17"><a href="#cb31-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb31-18"><a href="#cb31-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>(<span class="at">labels =</span> scales<span class="sc">::</span>comma) <span class="sc">+</span></span>
+<span id="cb31-19"><a href="#cb31-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_viridis_d</span>(<span class="at">end =</span> <span class="fl">0.8</span>) <span class="sc">+</span></span>
+<span id="cb31-20"><a href="#cb31-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"GDP per person (US$, log scale)"</span>,</span>
+<span id="cb31-21"><a href="#cb31-21" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Life expectancy (years)"</span>, <span class="at">color =</span> <span class="st">"Continent"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="practice_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" alt="Scatter plot of bill length against flipper length for the three penguin species in three viridis colors, each species labeled directly next to its cloud of points." width="672"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="practice_files/figure-html/unnamed-chunk-12-2.png" class="img-fluid" alt="Scatter plot of life expectancy against GDP per person in 2007 on a log axis, with the five continents in five viridis colors that are hard to tell apart." width="672"></p>
+</div>
+</div>
+</div>
+<p><strong>What the numbers mean.</strong> We simulate how the colors look to readers with three types of color blindness, then measure how far apart the two closest colors are (a standard color difference, delta E). Bigger is easier to tell apart; 20 is our course’s line for clearly different. The red-green simulations come from a validated model; the blue-yellow one is an approximation. (In the Guided Project, <code>color_check()</code> makes this table for your plot, and <code>simulate_plot()</code> redraws your plot in the simulated colors.)</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<caption>Smallest difference between any two colors.</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">view</th>
+<th style="text-align: right;">3 species</th>
+<th style="text-align: right;">5 continents</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Red-green (deuteranopia)</td>
+<td style="text-align: right;">30.5</td>
+<td style="text-align: right;">17.5</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Red-green (protanopia)</td>
+<td style="text-align: right;">41.1</td>
+<td style="text-align: right;">19.7</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Blue-yellow (approximate)</td>
+<td style="text-align: right;">29.7</td>
+<td style="text-align: right;">17.2</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><strong>Talk.</strong> Which plot passes the course rule (at least 20 in all three rows)? What could carry the continents instead of color alone?</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Three species pass (30.5, 41.1 and 29.7); five continents fail (17.5, 19.7 and 17.2): with more groups the colors have less room. The penguin plot also names each species on the plot, so color is never the only cue. For the continents: panels (<code>facet_wrap(vars(continent))</code>, D4), direct labels, or fewer groups, combined with care and said in the caption.</p>
+</div>
+</div>
+</div>
+<p><strong>Where the numbers come from.</strong> The simulations use the model of Machado, Oliveira and Fernandes (2009), at full severity. The red-green simulations come from a validated model; the blue-yellow one is an approximation.</p>
+<p>Machado, G. M., Oliveira, M. M., &amp; Fernandes, L. A. F. (2009). A physiologically-based model for simulation of color vision deficiency. <em>IEEE Transactions on Visualization and Computer Graphics, 15</em>(6), 1291–1298. <a href="https://doi.org/10.1109/TVCG.2009.113" class="uri">https://doi.org/10.1109/TVCG.2009.113</a></p>
+</section>
+<section id="d8-check-a-deck" class="level2">
+<h2 class="anchored" data-anchor-id="d8-check-a-deck">D8 · Check a deck</h2>
+<p>Prepares Guided Project <a href="../module-13/guided-project.html#task-6" target="_blank">task 6</a> (your slides).</p>
+<p><strong>Goal.</strong> Check a finished deck against the minimum elements. (Session 2.)</p>
+<p><strong>Your turn.</strong> Open the penguins slides in the <strong>Example</strong> menu of your own site (or the <a href="https://acintron-cc.github.io/cis-3901-202710/example/penguins_slides.html">course example</a>). Find each element: title; question (naming the groups compared); data (source, what one row is, how many rows); figure; what it shows (a headline that states the finding); limitations; sources and AI use.</p>
+<p><strong>Investigate.</strong> Which elements share a slide? Which one is missing, and does your deck need it?</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>The question is the title (“Do penguin species differ in flipper length?”). The headline slide states the finding in its heading, with the figure under it. The last slide holds what it shows, the limitations (344 penguins, three islands, 2 without a flipper measurement) and the data source: elements can share a slide. There is no AI use line, because the example wasn’t made with AI; your deck needs one (“AI use: none.” counts).</p>
+</div>
+</div>
+</div>
+</section>
+<section id="d9-more-scale-choices-size-gray-fills-redundant-cues" class="level2">
+<h2 class="anchored" data-anchor-id="d9-more-scale-choices-size-gray-fills-redundant-cues">D9 · More scale choices: size, gray fills, redundant cues</h2>
+<p>Prepares Guided Project <a href="../module-13/guided-project.html#task-5" target="_blank">task 5</a> (a second cue besides color) and <a href="../module-13/guided-project.html#task-2" target="_blank">task 2</a> (honest sizes).</p>
+<section id="size-area-or-radius" class="level3">
+<h3 class="anchored" data-anchor-id="size-area-or-radius">Size: area or radius?</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>p_size <span class="ot">&lt;-</span> gapminder <span class="sc">%&gt;%</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2007</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> gdpPercap, <span class="at">y =</span> lifeExp, <span class="at">size =</span> pop)) <span class="sc">+</span></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>(<span class="at">labels =</span> scales<span class="sc">::</span>comma) <span class="sc">+</span></span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"GDP per person (US$, log scale)"</span>,</span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Life expectancy (years)"</span>, <span class="at">size =</span> <span class="st">"Population"</span>)</span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a>p_size <span class="sc">+</span> <span class="fu">scale_size_area</span>(<span class="at">max_size =</span> <span class="dv">12</span>, <span class="at">labels =</span> scales<span class="sc">::</span>comma)</span>
+<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a>p_size <span class="sc">+</span> <span class="fu">scale_radius</span>(<span class="at">range =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">12</span>), <span class="at">labels =</span> scales<span class="sc">::</span>comma)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="practice_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid" alt="Scatter plot of 2007 life expectancy against GDP per person with points sized by population using scale_size_area, so a country's circle area is proportional to its population and China and India dominate." width="672"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="practice_files/figure-html/unnamed-chunk-14-2.png" class="img-fluid" alt="The same plot with scale_radius, where the circle radius is proportional to population, so the largest countries look far bigger and small countries nearly vanish." width="672"></p>
+</div>
+</div>
+</div>
+<p>Readers judge circles by their area. With <code>scale_size_area()</code> area is proportional to population, so a country twice as large has twice the ink. With <code>scale_radius()</code> the radius is proportional, so the area grows with the square: big countries are exaggerated (a Lie Factor above 1).</p>
+</section>
+<section id="gray-fills-no-optical-art" class="level3">
+<h3 class="anchored" data-anchor-id="gray-fills-no-optical-art">Gray fills, no optical art</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">y =</span> island, <span class="at">fill =</span> species)) <span class="sc">+</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>() <span class="sc">+</span></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_grey</span>(<span class="at">start =</span> <span class="fl">0.25</span>, <span class="at">end =</span> <span class="fl">0.75</span>) <span class="sc">+</span></span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Penguins"</span>, <span class="at">y =</span> <span class="st">"Island"</span>, <span class="at">fill =</span> <span class="st">"Species"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="practice_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" alt="Stacked bar chart of penguin counts per island split by species in three shades of gray from dark to light, with no hatching or patterns." width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Hatching and stripes can shimmer on screen (Tufte’s “optical art”). Plain gray shades print well and never vibrate; keep them few, and far enough apart.</p>
+</section>
+<section id="one-redundant-cue" class="level3">
+<h3 class="anchored" data-anchor-id="one-redundant-cue">One redundant cue</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">y =</span> bill_length_mm,</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>                     <span class="at">color =</span> species, <span class="at">shape =</span> species)) <span class="sc">+</span></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_viridis_d</span>(<span class="at">end =</span> <span class="fl">0.8</span>) <span class="sc">+</span></span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Flipper length (mm)"</span>, <span class="at">y =</span> <span class="st">"Bill length (mm)"</span>,</span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">color =</span> <span class="st">"Species"</span>, <span class="at">shape =</span> <span class="st">"Species"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="practice_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" alt="Scatter plot of bill length against flipper length where each species has both its own viridis color and its own point shape: circles, triangles and squares." width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Mapping species to both color and shape is redundant on purpose: it helps a reader who can’t tell the colors apart, or who prints the page in gray. It helps most with few groups and few overlapping points; with many groups, shapes get hard to tell apart too, and panels work better.</p>
+<hr>
+<p><em>Data:</em> Horst, A. M., Hill, A. P., &amp; Gorman, K. B. (2020). <em>palmerpenguins: Palmer Archipelago (Antarctica) penguin data</em> (R package). Bryan, J. (2025). <em>gapminder: Data from Gapminder</em> (R package version 1.0.1), from Gapminder (<a href="https://www.gapminder.org" class="uri">https://www.gapminder.org</a>). Minard’s numbers: <code>HistData::Minard.troops</code> (Friendly, Dray, Li &amp; Bellhouse, 2026, <em>HistData</em>, R package version 1.1.1), used in class. Color simulation: Machado, Oliveira &amp; Fernandes (2009), in D7.</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/acintron-cc\.github\.io\/cis-3901-202710-guides\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>CIS-3901 Data Visualization and Presentation · Catawba College · Fall 2026</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

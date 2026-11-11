@@ -1,0 +1,1166 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Guided Project: Scales and Facets – CIS-3901 · Fall 2026</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-6388ad00bb6ecaefa25b9a98db1edf18.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">CIS-3901 · Fall 2026</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-modules" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Modules</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-modules">    
+        <li>
+    <a class="dropdown-item" href="../module-10/index.html">
+ <span class="dropdown-text">Module 10: Tidy Data and Project Setup</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../module-11/index.html">
+ <span class="dropdown-text">Module 11: Grammar of Graphics I</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../module-12/index.html">
+ <span class="dropdown-text">Module 12: Grammar of Graphics II</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../module-13/index.html">
+ <span class="dropdown-text">Module 13: Grammar of Graphics III</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#what-youll-hand-in" id="toc-what-youll-hand-in" class="nav-link active" data-scroll-target="#what-youll-hand-in">What you’ll hand in</a></li>
+  <li><a href="#get-ready-once-about-15-minutes" id="toc-get-ready-once-about-15-minutes" class="nav-link" data-scroll-target="#get-ready-once-about-15-minutes">Get ready (once, about 15 minutes)</a></li>
+  <li><a href="#do-each-task-the-same-way-the-loop" id="toc-do-each-task-the-same-way-the-loop" class="nav-link" data-scroll-target="#do-each-task-the-same-way-the-loop">Do each task the same way (the loop)</a></li>
+  <li><a href="#task-6" id="toc-task-6" class="nav-link" data-scroll-target="#task-6">Build your slides (task 6)</a></li>
+  <li><a href="#finish-and-submit" id="toc-finish-and-submit" class="nav-link" data-scroll-target="#finish-and-submit">Finish and submit</a></li>
+  <li><a href="#reference" id="toc-reference" class="nav-link" data-scroll-target="#reference">Reference</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Guided Project: Scales and Facets</h1>
+<p class="subtitle lead">and your first slides</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>In Module 13 you learned to choose scales and facets, to ask “compared to what?”, and to check that every reader can tell your colors apart. Here you make those choices on <strong>your own</strong> Fairness and Sports data and publish them, for the first time, as a report <strong>and</strong> slides: the moves your Challenge Project reports and presentations need.</p>
+<section id="what-youll-hand-in" class="level2">
+<h2 class="anchored" data-anchor-id="what-youll-hand-in">What you’ll hand in</h2>
+<ol type="1">
+<li>A <strong>report page</strong> and a <strong>slides page</strong>, both published on your site.</li>
+<li>Their <strong>two links</strong>, in Blackboard.</li>
+<li>Both are built from <strong>one script</strong>: you edit the code once, and both pages show it.</li>
+</ol>
+<section id="two-milestones" class="level3">
+<h3 class="anchored" data-anchor-id="two-milestones">Two milestones</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Milestone</th>
+<th>When</th>
+<th>What</th>
+<th>Graded?</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Draft</td>
+<td>See Blackboard</td>
+<td>Tasks 0–5 done with checks passing; report published with your WRITE answers; slides as a first draft</td>
+<td>No: you get feedback</td>
+</tr>
+<tr class="even">
+<td>Final</td>
+<td>See Blackboard (end of Module 14)</td>
+<td>Report and slides revised with Module 14’s ideas, plus a revision log</td>
+<td>Yes: the rubric</td>
+</tr>
+</tbody>
+</table>
+<p>Both go to the same Blackboard assignment (see <strong>Finish and submit</strong>). See Blackboard for the due date and time.</p>
+</section>
+</section>
+<section id="get-ready-once-about-15-minutes" class="level2">
+<h2 class="anchored" data-anchor-id="get-ready-once-about-15-minutes">Get ready (once, about 15 minutes)</h2>
+<p>All of this happens in your <strong><code>cis-3901-projects</code></strong> project in Posit Cloud (course space CIS-3901-Fall2026). Keep this page open while you work.</p>
+<p><strong>1. Check your two data files.</strong> GP13 reads them from the <code>data/</code> folder: <strong><code>data/fairness.csv</code></strong> and <strong><code>data/sports.csv</code></strong>. They are the files from the Module 12 Guided Project. If they are still where Module 12 kept them (<code>data/tidy/fairness.csv</code> and <code>data/sports/sports.csv</code>), in the top folder, or renamed by a download (for example <code>fairness (1).csv</code>), Section 0 moves them into <code>data/</code> and says so. Missing one? Download it as in step 1 of the <a href="../module-12/guided-project.html#step-1-bring-your-two-data-files-5-minutes" target="_blank">Module 12 Guided Project</a>, then in the Files pane open <code>data/</code> → <strong>Upload</strong>.</p>
+<ul>
+<li><strong>Module 12 still works.</strong> GP12’s script reads the old folders: if you render your GP12 report again, it moves the two files back, and GP13’s Section 0 moves them into <code>data/</code> again. GP12 is finished; if you still need to fix your GP12 report, do it before you start GP13.</li>
+<li><strong>Privacy:</strong> your data files can stay as you downloaded them from SCORE, names included. Your report and slides never show a private person’s name: never use a name, bib, team or judge column (for example in the Boston Marathon, powerlifting or MMA data) in a plot, a table or a slide. The script prints column summaries, never rows.</li>
+</ul>
+<p><strong>2. Add the starter files.</strong> Download <strong><code>gp13_starter.zip</code></strong> from Blackboard. In <code>cis-3901-projects</code>, go to the <strong>top folder</strong> (<code>project</code>) → <strong>Upload</strong> → the zip. Posit Cloud unzips it and adds:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>scripts/gp13_scales_facets.R    the code: run it task by task</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>reports/gp13_report.qmd         your report: your findings</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>presentations/gp13_slides.qmd   your slides: your headline and limits</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>3. Run Section 0.</strong> Open <code>scripts/gp13_scales_facets.R</code> and run <strong>Section 0</strong> (setup, helpers, data). It checks your two data files and prints a summary of your columns (name, type, how many different values, how many missing), never rows.</p>
+<section id="task-0" class="level3">
+<h3 class="anchored" data-anchor-id="task-0">Task 0 · See it update</h3>
+<p><strong>Goal:</strong> See one change in the script show up on both pages.</p>
+<p><strong>Practice first:</strong> nothing to practice: the Session 2 kickoff does it with you.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Step</th>
+<th>What you do</th>
+<th>How it’s checked</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>A0 · Fairness</td>
+<td>In the script, find <strong>A0</strong>. Change <strong>one word</strong> in <code>a0</code>’s title, <code>"My first plot"</code>, and run the A0 lines</td>
+<td>The script (a reminder, no PASS / TO DO)</td>
+</tr>
+<tr class="even">
+<td>Part B · Sports</td>
+<td>Nothing for task 0</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Render</td>
+<td>Click <strong>Render</strong> on <code>reports/gp13_report.qmd</code>, then on <code>presentations/gp13_slides.qmd</code>. Find your word on <strong>both</strong> pages</td>
+<td>Your instructor reads your A0 sentence in the report</td>
+</tr>
+</tbody>
+</table>
+<p>Both files render from day one: plots you haven’t made yet say “Not done yet.”, and the Checks table says TO DO.</p>
+<p><strong>4. Commit, push, open both links.</strong> <strong>Git</strong> tab → tick every file listed (the moved data files show up too) → <strong>Commit</strong> (message: “Guided Project 13”) → <strong>Push</strong> (your token, as in Module 10). After a minute or two, open both links (replace <code>YOUR-USERNAME</code>):</p>
+<ul>
+<li><code>https://YOUR-USERNAME.github.io/cis-3901-projects/reports/gp13_report.html</code></li>
+<li><code>https://YOUR-USERNAME.github.io/cis-3901-projects/presentations/gp13_slides.html</code></li>
+</ul>
+<p><strong>Success:</strong> both links open, and your word is on both pages.</p>
+</section>
+</section>
+<section id="do-each-task-the-same-way-the-loop" class="level2">
+<h2 class="anchored" data-anchor-id="do-each-task-the-same-way-the-loop">Do each task the same way (the loop)</h2>
+<ol type="1">
+<li><strong>Script:</strong> go to the task’s section in <code>scripts/gp13_scales_facets.R</code>, fill in the code (the lines marked <strong>YOUR TURN</strong>), and run it, until the check says <strong>PASS</strong>. A <strong>TO DO</strong> says what to fix.</li>
+<li><strong>Report:</strong> open <code>reports/gp13_report.qmd</code>, find the same task, and write under <strong>WRITE</strong>.</li>
+<li><strong>Render</strong> the report and look at the task.</li>
+<li><strong>Commit and push</strong> whenever you stop.</li>
+</ol>
+<p>Part A (Fairness) has more help; Part B (Sports) asks you to write more of the code yourself, using Part A as your model. The <strong>Reference</strong> section at the end of this page has the project map, the words you’ll see, and ideas for your columns.</p>
+<p><strong>Stuck?</strong> In order: the check’s TO DO message; the matching practice exercise (<a href="../module-13/practice.html" target="_blank">practice page</a>, with solutions); the class scripts (<code>live/module13_session1.R</code>, <code>live/module13_session2.R</code> in your <code>module-13-scales-facets</code> project); a classmate; office hours or email. After a restart (“object not found”), run the script from the top (Ctrl/Cmd + Shift + Enter).</p>
+<section id="task-1" class="level3">
+<h3 class="anchored" data-anchor-id="task-1">Task 1 · Label it</h3>
+<p><strong>Goal:</strong> Make your plot readable without your code.</p>
+<p><strong>Practice first:</strong> <a href="../module-13/practice.html#d1-label-it" target="_blank">D1 · Label it</a></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Step</th>
+<th>What you do</th>
+<th>How it’s checked</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>A1 · Fairness</td>
+<td>Paste your Module 12 A0 lines as <code>a_data</code> and your A1 plot as <code>a1_base</code>. In <code>labs()</code>: a title that states what the plot shows, a subtitle (the data and its n), axis titles with units, a legend title. Percent labels on the rate axis</td>
+<td>The script (PASS / TO DO)</td>
+</tr>
+<tr class="even">
+<td>B1 · Sports</td>
+<td>The same on a Sports plot of your choice: <code>b_data</code>, <code>b1_base</code>, <code>b1</code></td>
+<td>The script (PASS / TO DO)</td>
+</tr>
+<tr class="odd">
+<td>Write (report)</td>
+<td>Which label you changed most, and why. Could a reader understand the plot without you there?</td>
+<td>Your instructor reads it (counts under Choices)</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="task-2" class="level3">
+<h3 class="anchored" data-anchor-id="task-2">Task 2 · Choose a scale</h3>
+<p><strong>Goal:</strong> Choose the scale that fits your data, and say why.</p>
+<p><strong>Practice first:</strong> <a href="../module-13/practice.html#d2-choose-a-scale" target="_blank">D2 · Choose a scale</a> and <a href="../module-13/practice.html#d3-the-lie-factor" target="_blank">D3 · The Lie Factor</a></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Step</th>
+<th>What you do</th>
+<th>How it’s checked</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>A2 · Fairness</td>
+<td><code>a2</code>: a log scale for a skewed column, or percent labels for a share. A log scale can’t show 0 or negative values: keep only values above 0 and count them. One sentence in <code>a2_reason</code></td>
+<td>The script (PASS / TO DO)</td>
+</tr>
+<tr class="even">
+<td>B2 · Sports</td>
+<td>The same with a Sports column: <code>b2</code>, <code>b2_reason</code></td>
+<td>The script (PASS / TO DO)</td>
+</tr>
+<tr class="odd">
+<td>Write (report)</td>
+<td>Which scale, and why; what a reader sees with it; how many values were removed, if any</td>
+<td>Your instructor reads it (counts under Choices)</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="task-3" class="level3">
+<h3 class="anchored" data-anchor-id="task-3">Task 3 · Facet it: fixed or free</h3>
+<p><strong>Goal:</strong> Split one plot into panels, and choose fixed or free axes for the reader.</p>
+<p><strong>Practice first:</strong> <a href="../module-13/practice.html#d4-fixed-or-free-panels" target="_blank">D4 · Fixed or free panels</a> and <a href="../module-13/practice.html#d5-two-facets-at-once-sex-and-species" target="_blank">D5 · Two facets at once</a></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Step</th>
+<th>What you do</th>
+<th>How it’s checked</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>A3 · Fairness</td>
+<td><code>a3_fixed</code> and <code>a3_free</code>: your A1 rates in panels by a second column, each panel’s n in its label. Then <code>a3_choice</code> (<code>"fixed"</code> or <code>"free_y"</code>) and <code>a3_reason</code></td>
+<td>The script (PASS / TO DO)</td>
+</tr>
+<tr class="even">
+<td>B3 · Sports</td>
+<td>The same, in panels by a group or a year: <code>b3_fixed</code>, <code>b3_free</code>, <code>b3_choice</code>, <code>b3_reason</code></td>
+<td>The script (PASS / TO DO)</td>
+</tr>
+<tr class="odd">
+<td>Write (report)</td>
+<td>Fixed or free? What the reader gains and loses; which panels are small, with their n.&nbsp;Differences, not causes</td>
+<td>Your instructor reads it (counts under Choices and Interpretation)</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="task-4" class="level3">
+<h3 class="anchored" data-anchor-id="task-4">Task 4 · Compared to what?</h3>
+<p><strong>Goal:</strong> Show whether a difference between two groups is large or small, compared to the spread of the individuals and to how much a mean can move.</p>
+<p><strong>Practice first:</strong> <a href="../module-13/practice.html#d6-uncertainty-clouds" target="_blank">D6 · Uncertainty clouds</a></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Step</th>
+<th>What you do</th>
+<th>How it’s checked</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>A4 · Fairness</td>
+<td>Choose a numeric column (e.g., hours per week, age, number of medications), not the yes/no outcome, and two groups. <code>make_clouds()</code> (prepared in Section 0) adds 200 resampled means to the individual values. Draw <code>a4</code> with <code>facet_wrap(~ kind)</code> and the same axes in both panels</td>
+<td>The script (PASS / TO DO): panels by <code>kind</code>, fixed axes, exactly two groups</td>
+</tr>
+<tr class="even">
+<td>B4 · Sports</td>
+<td>The same with a Sports numeric column: <code>b4_clouds</code>, <code>b4</code></td>
+<td>The script (PASS / TO DO)</td>
+</tr>
+<tr class="odd">
+<td>Write (report)</td>
+<td>Do the clouds overlap? What does that say about individuals versus the group means?</td>
+<td>Your instructor reads it (counts under Choices and Interpretation)</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="task-5" class="level3">
+<h3 class="anchored" data-anchor-id="task-5">Task 5 · Color for every reader</h3>
+<p><strong>Goal:</strong> Use colors every reader can tell apart, and never color alone.</p>
+<p><strong>Practice first:</strong> <a href="../module-13/practice.html#d7-color-for-every-reader" target="_blank">D7 · Color for every reader</a> (and the redundant cue in <a href="../module-13/practice.html#d9-more-scale-choices-size-gray-fills-redundant-cues" target="_blank">D9</a>)</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Step</th>
+<th>What you do</th>
+<th>How it’s checked</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>A5 · Fairness</td>
+<td>Map a column with few categories (2 to 4) to <code>color</code> or <code>fill</code>, with <code>scale_fill_viridis_d(end = 0.8)</code> (or <code>scale_color_viridis_d()</code>). Run <code>color_check(a5)</code>. Add a second cue: direct labels (<code>geom_text()</code> or <code>geom_label()</code>), panels, or the same column on x or y</td>
+<td>The script (PASS / TO DO): each category its own color, at least 20 in all three rows, a second cue</td>
+</tr>
+<tr class="even">
+<td>B5 · Sports</td>
+<td>The same with a Sports column (or one you make): <code>b5</code></td>
+<td>The script (PASS / TO DO)</td>
+</tr>
+<tr class="odd">
+<td>Explain your colors (in the report)</td>
+<td>Say which column you colored by and why. If your first choice failed the color check, say what you changed: fewer categories, grouping rare ones, or panels. Then look at your simulated plot: can you still tell the categories apart?</td>
+<td>Your instructor reads it (counts under Choices)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>What the numbers mean.</strong> <code>color_check()</code> simulates how your colors look to readers with three types of color blindness, then measures how far apart the two closest colors are (a standard color difference, delta E). Bigger is easier to tell apart; 20 is our course’s line for clearly different. The three rows are red-green (deuteranopia), red-green (protanopia) and <strong>blue-yellow (approximate)</strong>. Below 20? Choose a column with fewer categories, group rare ones with care (keep small groups visible and say so), or use panels.</p>
+<p><strong>See it, not only the numbers.</strong> <code>simulate_plot()</code> redraws your plot in the same simulated colors. Your report shows your plot and the red-green (deuteranopia) version side by side, and the other two views below them.</p>
+<p>The red-green simulations come from a validated model; the blue-yellow one is an approximation. Machado, G. M., Oliveira, M. M., &amp; Fernandes, L. A. F. (2009). A physiologically-based model for simulation of color vision deficiency. <em>IEEE Transactions on Visualization and Computer Graphics, 15</em>(6), 1291–1298. <a href="https://doi.org/10.1109/TVCG.2009.113" class="uri">https://doi.org/10.1109/TVCG.2009.113</a></p>
+</section>
+</section>
+<section id="task-6" class="level2">
+<h2 class="anchored" data-anchor-id="task-6">Build your slides (task 6)</h2>
+<p><strong>Goal:</strong> Tell one finding to an audience, in at least 4–5 slides.</p>
+<p><strong>Practice first:</strong> <a href="../module-13/practice.html#d8-check-a-deck" target="_blank">D8 · Check a deck</a></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Step</th>
+<th>What you do</th>
+<th>How it’s checked</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Slides</td>
+<td>Open <code>presentations/gp13_slides.qmd</code>. Replace each prompt with your own words (the checklist below). Choose plots from Part A, Part B or both by chunk name: copy a figure chunk and change <code>ref.label</code> (<code>a1</code> … <code>a5</code>, <code>a3-chosen</code>, <code>b1</code> … <code>b5</code>). Render</td>
+<td>Your instructor reads it (counts under Interpretation and Innovation and creativity)</td>
+</tr>
+<tr class="even">
+<td>Write (report)</td>
+<td>“One thing I tried in my slides, and why”: one idea of your own (an angle, a comparison, an order, an annotation) and how it helps a reader</td>
+<td>Your instructor reads it (counts under Innovation and creativity)</td>
+</tr>
+</tbody>
+</table>
+<p>No code goes in the slides: a plot appears by naming its chunk from the script. The headline slide shows your A3 plot, the version you chose.</p>
+<ul class="task-list">
+<li><label><input type="checkbox"><strong>Title</strong> (in the YAML at the top): what is this about, and who made it?</label></li>
+<li><label><input type="checkbox"><strong>Question:</strong> one sentence, naming the groups you compare.</label></li>
+<li><label><input type="checkbox"><strong>Data:</strong> where it’s from, what one row is, how many rows.</label></li>
+<li><label><input type="checkbox"><strong>Your headline:</strong> the finding in one sentence, then the figure.</label></li>
+<li><label><input type="checkbox"><strong>What it shows, and its limits:</strong> differences, not causes; provenance, small groups, what the data can’t tell us.</label></li>
+<li><label><input type="checkbox"><strong>Sources and AI use:</strong> the data citation; one line on AI use (or “AI use: none.”).</label></li>
+</ul>
+<p>Elements can share a slide. <strong>At least 4–5 slides; more are welcome.</strong> For a model, open the <strong>Example</strong> menu on your site: the penguins report and the penguins slides. <strong>Speaker notes are public</strong> on the web: leave them out.</p>
+</section>
+<section id="finish-and-submit" class="level2">
+<h2 class="anchored" data-anchor-id="finish-and-submit">Finish and submit</h2>
+<p><strong>Final checklist</strong> (draft and final):</p>
+<ul class="task-list">
+<li><label><input type="checkbox">Every check says <strong>PASS</strong> in the Checks table at the end of your report (ten checks; A0 is a reminder).</label></li>
+<li><label><input type="checkbox">Both pages render, and both links open in a private (incognito) window.</label></li>
+<li><label><input type="checkbox">Each plot has a one-sentence <code>fig-alt</code> that describes <strong>your</strong> plot.</label></li>
+<li><label><input type="checkbox">Small groups are shown, with their n, not dropped: under-represented is not unimportant.</label></li>
+<li><label><input type="checkbox">No private person’s name in your report or slides (no name, bib, team or judge column in a plot, table or slide).</label></li>
+<li><label><input type="checkbox">One line on AI use in your report (AI use section) and on your last slide, for example “AI use: I used [tool] to [what for].” or “AI use: none.”</label></li>
+<li><label><input type="checkbox"><strong>Final only:</strong> the <strong>Revision log</strong> in your report: three to five changes, each with what changed, why, and which idea from Module 14 it uses.</label></li>
+</ul>
+<p><strong>Submitting.</strong> Submit in the designated Blackboard assignment <strong>“Guided Project: Scales and Facets”</strong>, the same assignment both times (up to 5 attempts). Your links stay the same; pushing updates the pages. Your last attempt before the final deadline is the one graded.</p>
+<ol type="1">
+<li><strong>Type in the text box</strong> your two links, your AI log and the attestation (copy the template in <strong>Reference</strong>, AI log template). For the final, update the log.</li>
+<li><strong>Upload copies of all your AI conversations</strong> as .txt, PDF or Word, saved on your own computer, with personal information removed. <strong>Never put the log or the conversations in your Posit Cloud project:</strong> everything there is pushed to the public site. Blackboard doesn’t accept <code>.html</code>.</li>
+<li><strong>If pushing failed</strong> (token, Pages not updating): zip <code>docs/reports/gp13_report.html</code> and <code>docs/presentations/gp13_slides.html</code> (each is one file, plots included), attach the zip, and say what went wrong. A technical problem won’t cost you the grade.</li>
+</ol>
+</section>
+<section id="reference" class="level2">
+<h2 class="anchored" data-anchor-id="reference">Reference</h2>
+<section id="project-map" class="level3">
+<h3 class="anchored" data-anchor-id="project-map">Project map</h3>
+<p>Your <code>cis-3901-projects</code> project, with the files GP13 uses. Your project may have a few more.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>cis-3901-projects/</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>├── data/</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>│   ├── fairness.csv           GP13 reads this (Section 0 moves it here)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>│   ├── sports.csv             GP13 reads this</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>│   ├── example/penguins.csv   the penguins example's data</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>│   ├── fairness/              the messy Tidy Data package: not used here</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>│   ├── tidy/                  your tidy files from Modules 10–11 (GP12 read fairness.csv here)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>│   └── sports/                your SCORE downloads (GP12 read sports.csv here)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>├── scripts/</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>│   ├── gp13_scales_facets.R   you edit the code here</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>│   ├── gp12_stats_coords.R    Module 12 (finished)</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>│   └── 01_tidy_fairness.R, 02_tidy_sports.R   Modules 10–11</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>├── reports/</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>│   ├── gp13_report.qmd        reads the GP13 script's chunks</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>│   └── gp12_report.qmd, fairness_report.qmd, sports_report.qmd</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>├── presentations/</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>│   ├── gp13_slides.qmd        reads the GP13 script's chunks</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>│   └── fairness_slides.qmd, sports_slides.qmd</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>├── example/                   penguins_report.qmd, penguins_slides.qmd: the model</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>├── index.qmd                  your site's home page</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>├── _quarto.yml                your site's settings</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>└── docs/                      the published site, written by Render: don't edit</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>What reads what: the script reads <code>data/fairness.csv</code> and <code>data/sports.csv</code>. The report and the slides read the script’s chunks. <strong>Render</strong> writes <code>docs/reports/gp13_report.html</code> and <code>docs/presentations/gp13_slides.html</code>. After a push, GitHub Pages publishes <code>docs/</code>.</p>
+</section>
+<section id="one-script-two-outputs" class="level3">
+<h3 class="anchored" data-anchor-id="one-script-two-outputs">One script, two outputs</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>scripts/gp13_scales_facets.R   ← you edit the code here</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>        │ chunks read by name</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>        ├──► reports/gp13_report.qmd        → your report page</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>        └──► presentations/gp13_slides.qmd  → your slides page</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Edit the code in the script. The report and the slides only read it.
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Your words (findings, headlines, limits) live in the report and the slides.</p>
+</div>
+</div>
+<p>Each chunk in the script starts with a label line such as <code>## ---- a1 ----</code>. The report and the slides call the same chunks by name (with <code>knitr::read_chunk()</code>), so when you change a plot in the script and render, both pages show the new plot. Rendering the report doesn’t render the slides: render both before you push.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>Common mistake
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If you type code into a chunk in the report or the slides, it is ignored: on render, that chunk runs the script’s code instead. Your change doesn’t show on the page, and the checks don’t see it. A new code chunk you add does run, but only on that page, so your report, slides and script no longer match. Keep those chunks empty and fix the code in the script.</p>
+</div>
+</div>
+</section>
+<section id="words-youll-see" class="level3">
+<h3 class="anchored" data-anchor-id="words-youll-see">Words you’ll see</h3>
+<ul>
+<li><strong>Script:</strong> a file of R code you run a few lines at a time (Ctrl/Cmd + Enter). Here, <code>scripts/gp13_scales_facets.R</code> holds all the code.</li>
+<li><strong>Chunk:</strong> a block of code. In the script, the lines from one label line to the next; in a <code>.qmd</code> file, a block that starts with <code>```{r}</code>.</li>
+<li><strong>Chunk label:</strong> a chunk’s name. In the script it’s a line such as <code>## ---- a1 ----</code>; the report and the slides find the code by that name.</li>
+<li><strong>Quarto:</strong> the program that turns a <code>.qmd</code> file into a web page or slides.</li>
+<li><strong><code>.qmd</code> file:</strong> a Quarto document: your words plus code chunks. Here, <code>reports/gp13_report.qmd</code> and <code>presentations/gp13_slides.qmd</code>.</li>
+<li><strong>knitr:</strong> the R package that runs a <code>.qmd</code> file’s code chunks and puts their output into the document.</li>
+<li><strong>Render:</strong> the Render button. knitr runs the code chunks, then Quarto builds the page or the slides. (R Markdown called this Knit.) It renders only the file that is open.</li>
+<li><strong>Report:</strong> the web page built from <code>gp13_report.qmd</code>: code, output and your findings.</li>
+<li><strong>Slides:</strong> the deck built from <code>gp13_slides.qmd</code> (revealjs: slides that open in a web browser; the arrow keys move between them).</li>
+<li><strong><code>knitr::read_chunk()</code>:</strong> the line near the top of the report and the slides that reads the script’s chunks, so a chunk named <code>a1</code> there runs the script’s <code>a1</code> code.</li>
+<li><strong>Output:</strong> what code produces: a plot, a table, a PASS or TO DO line. Render’s output is an HTML file in <code>docs/</code>.</li>
+<li><strong>Commit:</strong> saves a snapshot of the files you ticked, with a message, in your project’s history (Git tab).</li>
+<li><strong>Push:</strong> sends your commits to your repository on GitHub (with your token).</li>
+<li><strong>GitHub Pages:</strong> the GitHub service that publishes your repository’s <code>docs/</code> folder as your website, a minute or two after a push.</li>
+<li><strong>URL:</strong> a web address. Your two pages’ URLs are the links you submit.</li>
+</ul>
+</section>
+<section id="ideas-for-your-columns" class="level3">
+<h3 class="anchored" data-anchor-id="ideas-for-your-columns">Ideas for your columns</h3>
+<p>Starting points; check them in the column list Section 0 prints for your own file (name, type, how many different values). Each dataset gets the same kind of hint: task 2 (a skewed column, or a share for percent labels), task 3 (panels: a group or a year), task 4 (two groups and a numeric column) and task 5 (a column with 2 to 4 categories, or how to make one). Small groups stay in your plots, with their n.</p>
+<p><strong>Fairness</strong></p>
+<ul>
+<li><strong>Adult:</strong> task 2 <code>capital_gain</code> (most are 0: keep values above 0 with <code>filter()</code> and say how many); task 3 <code>race</code>; task 4 <code>hours_per_week</code> (or <code>age</code>) by <code>sex</code>; task 5 <code>sex</code> or <code>income</code>.</li>
+<li><strong>ACS Income NC:</strong> task 2 <code>income</code>; task 3 <code>sex</code> or <code>marital_status</code>; task 4 <code>hours_per_week</code> by <code>sex</code>; task 5 <code>sex</code>.</li>
+<li><strong>Diabetes Hospital:</strong> task 2 a share with percent labels (readmission); task 3 <code>gender</code> (one panel has n = 2: keep it) or <code>race</code>; task 4 <code>num_medications</code> by <code>gender</code>, Female and Male (Unknown/Invalid, n = 2, is too small for a cloud: say so); task 5 <code>age</code>.</li>
+<li><strong>Credit Card:</strong> task 2 <code>limit_bal</code>; task 3 <code>sex</code> or <code>marriage</code>; task 4 <code>age</code> (or <code>limit_bal</code>) by <code>sex</code>; task 5 <code>sex</code>, or <code>marriage</code> (two small groups).</li>
+</ul>
+<p><strong>Sports</strong></p>
+<ul>
+<li><strong>WNBA:</strong> task 2 a share of wins with percent labels; task 3 <code>season_type</code> (2 regular season, 3 playoffs: name them with <code>if_else()</code>); task 4 make a number first: each team’s share of wins in a season, at home and away (<code>group_by()</code> team, <code>season</code> and <code>team_home_away</code>, then <code>summarize()</code>), then the clouds by <code>team_home_away</code>; task 5 <code>team_home_away</code>.</li>
+<li><strong>NFL Draft Combine:</strong> task 2 a share picked in round 1; task 3 make a group from <code>Round</code> (empty = not drafted) with <code>if_else()</code>; task 4 <code>forty</code> for drafted and not drafted; task 5 that group.</li>
+<li><strong>Boston Marathon:</strong> task 2 a share finishing under a time you choose, from <code>finish_net_minutes</code>; task 3 <code>gender</code> or <code>age_group</code> (80+ has n = 5: keep it); task 4 <code>finish_net_minutes</code> by <code>gender</code>; task 5 <code>gender</code>. Never use <code>name</code>, <code>bib_number</code> or <code>team</code>.</li>
+<li><strong>Setka Cup:</strong> task 2 a share of home wins; task 3 make a group from <code>HomeWinner</code> with <code>if_else()</code>; task 4 the points in game 1 (<code>P1_G1 + P2_G1</code>) by who won the match (<code>HomeWinner</code>); task 5 sets played, <code>Sets_P1</code> plus <code>Sets_P2</code>, with <code>factor()</code>.</li>
+<li><strong>Sumo:</strong> task 2 a share of winning records; task 3 make a weight band from <code>weight_kg</code> with <code>if_else()</code>; task 4 <code>weight_kg</code> for two rank letters from <code>Rank</code> with <code>str_sub()</code> (M and J: J has only 28 records, so its cloud of means is wide); task 5 the weight band, or <code>Rank</code>’s first letter with <code>fct_lump_n()</code> (say what you combined).</li>
+<li><strong>MLB pitches:</strong> task 2 a share of strikes; task 3 <code>player_name</code>; task 4 <code>release_speed</code> for balls and strikes (<code>result</code> B and S); task 5 <code>result</code> (B, S, X).</li>
+<li><strong>Powerlifting:</strong> task 2 a share of first places, from <code>Place</code>; task 3 two periods from <code>Date</code> with <code>year()</code> and <code>if_else()</code> (early years are small); task 4 <code>TotalKg</code> for those two periods; task 5 a bodyweight band from <code>BodyweightKg</code> with <code>cut()</code> (a few missing: <code>drop_na()</code>). Never use <code>Name</code>.</li>
+<li><strong>WTA Grand Slam:</strong> task 2 <code>winner_rank</code> (a few missing: <code>drop_na()</code>); task 3 a year from <code>tourney_date</code> with <code>str_sub()</code>; task 4 <code>minutes</code> on Hard and Clay courts (<code>surface</code>; matches without minutes are left out); task 5 <code>surface</code>.</li>
+<li><strong>MMA fight decisions:</strong> task 2 a share where all judges agree; task 3 a year from <code>date</code> with <code>year()</code> (21 years: two periods read better); task 4 a judge’s margin, <code>abs(judge1_margin)</code>, for 3- and 5-round fights (<code>rounds</code>; the 24 twelve-round fights left out); task 5 <code>result_type</code>. Never use the <code>judge1</code>–<code>judge3</code> columns.</li>
+</ul>
+</section>
+<section id="grading-percentage-ranges-in-the-rubric" class="level3">
+<h3 class="anchored" data-anchor-id="grading-percentage-ranges-in-the-rubric">Grading (percentage ranges in the rubric)</h3>
+<p>The rubric grades the final. The draft gets feedback only.</p>
+<p><strong>Levels (all criteria):</strong> Exemplary 90–100% · Proficient 80–89% · Developing 65–79% · Beginning 1–64% · No Response 0%.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Criterion</th>
+<th>Weight</th>
+<th>Looks at</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Code and checks: script runs; checks pass; report and slides render and are published</td>
+<td>35%</td>
+<td>Your code and output, Checks table, both pages</td>
+</tr>
+<tr class="even">
+<td>Choices: labels, scale, fixed or free, the clouds’ groups and column, colors and categories, each with a reason; the revision log</td>
+<td>25%</td>
+<td>Your writing, both datasets</td>
+</tr>
+<tr class="odd">
+<td>Interpretation: findings, limits, small groups, no causal claims</td>
+<td>20%</td>
+<td>Your writing and slides</td>
+</tr>
+<tr class="even">
+<td>Innovation and creativity (slides)</td>
+<td>10%</td>
+<td>Your slides, and “One thing I tried in my slides, and why”</td>
+</tr>
+<tr class="odd">
+<td>AI disclosure</td>
+<td>10%</td>
+<td>AI use line in your report and slides, AI log typed in Blackboard (or the no-AI statement), and copies of all AI conversations uploaded in Blackboard</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Innovation and creativity (slides):</strong></p>
+<ul>
+<li><strong>Exemplary (90–100%):</strong> every minimum element, plus an idea of your own (an angle, a comparison, an order, an annotation) that helps the reader see the finding.</li>
+<li><strong>Proficient (80–89%):</strong> every minimum element, close to the penguins example.</li>
+<li><strong>Developing (65–79%):</strong> the example’s structure with new plots dropped in; default or topic-only titles.</li>
+<li><strong>Beginning (1–64%):</strong> the slides don’t convey a finding.</li>
+</ul>
+<p>Decoration doesn’t count. An idea that distorts the data or breaks the color rules earns no credit. More slides aren’t more credit. Artistic skill isn’t graded.</p>
+</section>
+<section id="ai-use-level-2-and-the-ai-log-template" class="level3">
+<h3 class="anchored" data-anchor-id="ai-use-level-2-and-the-ai-log-template">AI use (Level 2) and the AI log template</h3>
+<p>You may use AI to explain code or errors. Write your own sentences in the report and the slides.</p>
+<ul>
+<li><strong>Public:</strong> one line in your report’s <strong>AI use</strong> section and on your last slide, for example “AI use: I used [tool] to [what for].” or “AI use: none.”</li>
+<li><strong>In Blackboard (private):</strong> your AI log or the no-AI statement, the attestation, and copies of all your AI conversations.</li>
+</ul>
+<p>Copy this into the Blackboard text box:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>Report: https://YOUR-USERNAME.github.io/cis-3901-projects/reports/gp13_report.html</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>Slides: https://YOUR-USERNAME.github.io/cis-3901-projects/presentations/gp13_slides.html</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>AI log</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>Use 1 – Tool: ___ | What I used it for: ___ | What I changed or checked, and why: ___</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>Use 2 – Tool: ___ | What I used it for: ___ | What I changed or checked, and why: ___</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>(add a line per use; upload a copy of every conversation)</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>OR: I did not use AI for this project. How I worked through problems: ___</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>Attestation: This log lists every use of AI in this project.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/acintron-cc\.github\.io\/cis-3901-202710-guides\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>CIS-3901 Data Visualization and Presentation · Catawba College · Fall 2026</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>
