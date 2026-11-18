@@ -221,6 +221,8 @@ script. The headline slide shows your A3 plot, the version you chose.
 - [ ] **Your headline:** the finding in one sentence, then the figure.
 - [ ] **What it shows, and its limits:** differences, not causes;
   provenance, small groups, what the data can't tell us.
+- [ ] **Why it matters** (final version only): one or two sentences on
+  what your finding means for the reader.
 - [ ] **Sources and AI use:** the data citation; one line on AI use (or
   "AI use: none.").
 
@@ -244,9 +246,12 @@ penguins slides. **Speaker notes are public** on the web: leave them out.
 - [ ] One line on AI use in your report (AI use section) and on your last
   slide, for example "AI use: I used [tool] to [what for]." or "AI use:
   none."
-- [ ] **Final only:** the **Revision log** in your report: three to five
+- [ ] **Final version only:** the **Revision log** in your report: three to five
   changes, each with what changed, why, and which idea from Module 14 it
   uses.
+- [ ] **Final version only:** your "why it matters" line in your slides (under
+  "What it shows, and its limits") and in your report: one or two
+  sentences on what your finding means for the reader.
 
 **Submitting.** Submit in the designated Blackboard assignment **"Guided
 Project: Scales and Facets"**, the same assignment both times (up to 5
