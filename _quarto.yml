@@ -4,6 +4,9 @@ project:
   render:
     - index.qmd
     - "module-*/*.qmd"
+    - challenge-projects/index.qmd
+    - challenge-projects/fairness-data.qmd
+    - challenge-projects/sports-data.qmd
   # Files Quarto doesn't render but should publish as they are:
   # PDFs, images and self-contained HTML kept in any module's files/ folder.
   resources:
@@ -27,6 +30,14 @@ website:
           - href: module-13/index.qmd
             text: "Module 13: Grammar of Graphics III"
           # Add one line per module as its folder is created.
+      - text: Challenge Projects
+        menu:
+          - href: challenge-projects/index.qmd
+            text: "Overview"
+          - href: challenge-projects/fairness-data.qmd
+            text: "Challenge Project: Fairness Data"
+          - href: challenge-projects/sports-data.qmd
+            text: "Challenge Project: Sports Data"
   page-footer:
     left: "CIS-3901 Data Visualization and Presentation · Catawba College · Fall 2026"
 

@@ -1,0 +1,1275 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Challenge Project: Fairness Data – CIS-3901 · Fall 2026</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-6388ad00bb6ecaefa25b9a98db1edf18.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">CIS-3901 · Fall 2026</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-modules" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Modules</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-modules">    
+        <li>
+    <a class="dropdown-item" href="../module-10/index.html">
+ <span class="dropdown-text">Module 10: Tidy Data and Project Setup</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../module-11/index.html">
+ <span class="dropdown-text">Module 11: Grammar of Graphics I</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../module-12/index.html">
+ <span class="dropdown-text">Module 12: Grammar of Graphics II</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../module-13/index.html">
+ <span class="dropdown-text">Module 13: Grammar of Graphics III</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-challenge-projects" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Challenge Projects</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-challenge-projects">    
+        <li>
+    <a class="dropdown-item" href="../challenge-projects/index.html">
+ <span class="dropdown-text">Overview</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../challenge-projects/fairness-data.html">
+ <span class="dropdown-text">Challenge Project: Fairness Data</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../challenge-projects/sports-data.html">
+ <span class="dropdown-text">Challenge Project: Sports Data</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#learning-outcomes" id="toc-learning-outcomes" class="nav-link active" data-scroll-target="#learning-outcomes">Learning outcomes</a></li>
+  <li><a href="#what-youll-hand-in" id="toc-what-youll-hand-in" class="nav-link" data-scroll-target="#what-youll-hand-in">What you’ll hand in</a></li>
+  <li><a href="#get-ready-once-about-10-minutes" id="toc-get-ready-once-about-10-minutes" class="nav-link" data-scroll-target="#get-ready-once-about-10-minutes">Get ready (once, about 10 minutes)</a></li>
+  <li><a href="#do-the-project-in-six-tasks" id="toc-do-the-project-in-six-tasks" class="nav-link" data-scroll-target="#do-the-project-in-six-tasks">Do the project in six tasks</a></li>
+  <li><a href="#build-your-slides" id="toc-build-your-slides" class="nav-link" data-scroll-target="#build-your-slides">Build your slides</a></li>
+  <li><a href="#finish-and-submit" id="toc-finish-and-submit" class="nav-link" data-scroll-target="#finish-and-submit">Finish and submit</a></li>
+  <li><a href="#reference" id="toc-reference" class="nav-link" data-scroll-target="#reference">Reference</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Challenge Project: Fairness Data</h1>
+<p class="subtitle lead">your questions, your figures, your story</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>In the Guided Projects you learned one part of the grammar of graphics at a time, on both of your datasets. In this Challenge Project you choose and combine those tools to answer <strong>two or three questions of your own</strong> about <strong>one dataset</strong>, your Fairness Data, and you publish a <strong>report</strong> and <strong>slides</strong> that tell what you found. You’ll present one of your two Challenge Projects on Friday, December 4.</p>
+<p><strong>AI use: Level 2 (AI Collaboration).</strong> See “AI use” in <strong>Reference</strong>. <strong>Due:</strong> see Blackboard for the due date and time.</p>
+<section id="learning-outcomes" class="level2">
+<h2 class="anchored" data-anchor-id="learning-outcomes">Learning outcomes</h2>
+<p>This project assesses the course learning outcomes (syllabus). You will:</p>
+<ul>
+<li>Assess the accuracy and honesty of data visualizations by applying principles of graphical integrity.</li>
+<li>Design original data graphics that maximize data density and minimize chartjunk, using principles such as data-ink maximization and multifunctional graphical elements.</li>
+<li>Analyze how visual design choices (e.g., scale, proportion, labeling, and layout) influence the interpretation of quantitative information.</li>
+<li>Identify and define the core components of the grammar of graphics, including data, aesthetics, geoms, stats, scales, coordinates, and facets.</li>
+<li>Construct visualizations using layered grammar and describe the role of each component while building a plot.</li>
+<li>Apply appropriate geoms and aesthetics from the grammar of graphics to explore relationships in a dataset.</li>
+<li>Compare and contrast different visualizations (obtained with the grammar of graphics) to evaluate how changes in aesthetics, geoms, or scales affect the interpretation of data.</li>
+<li>Design and implement custom visualizations using the grammar of graphics, incorporating advanced features such as faceting, themes, and coordinate transformations to effectively communicate insights from data.</li>
+</ul>
+</section>
+<section id="what-youll-hand-in" class="level2">
+<h2 class="anchored" data-anchor-id="what-youll-hand-in">What you’ll hand in</h2>
+<ol type="1">
+<li>A <strong>report page</strong> and a <strong>slides page</strong> for <strong>this project only</strong>, both published on your site. They are separate from your Guided Project pages and from your other Challenge Project.</li>
+<li>Their <strong>two links</strong>, in the Blackboard assignment “Challenge Project: Fairness Data”.</li>
+<li>Both pages are built from <strong>one script</strong>, as in GP13: you edit the code once, and both pages show it.</li>
+</ol>
+<section id="two-milestones" class="level3">
+<h3 class="anchored" data-anchor-id="two-milestones">Two milestones</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Milestone</th>
+<th>When</th>
+<th>What</th>
+<th>Graded?</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Proposal</td>
+<td>See Blackboard</td>
+<td>One post in the discussion “Challenge Project proposals”, covering <strong>both</strong> Challenge Projects, with the proposal template attached; then one reply with feedback on an assigned classmate’s proposal</td>
+<td>Yes, as a Guided Project item; your instructor approves your plan or asks for one change</td>
+</tr>
+<tr class="even">
+<td>Final version</td>
+<td>See Blackboard</td>
+<td>Report and slides published; links, AI log and attestation in the Blackboard assignment</td>
+<td>Yes: the rubric in <strong>Reference</strong></td>
+</tr>
+</tbody>
+</table>
+<p>On Friday, December 4, you present <strong>one</strong> of your two Challenge Projects (you choose which one in your proposal). The oral presentation is its own grade item; its rubric is in <strong>Reference</strong>.</p>
+</section>
+</section>
+<section id="get-ready-once-about-10-minutes" class="level2">
+<h2 class="anchored" data-anchor-id="get-ready-once-about-10-minutes">Get ready (once, about 10 minutes)</h2>
+<p>All of this happens in your <strong><code>cis-3901-projects</code></strong> project in Posit Cloud.</p>
+<p><strong>1. Your data file.</strong> This project reads <strong><code>data/fairness.csv</code></strong>, the same file as GP13. Don’t change or overwrite it: your script builds everything it needs from it.</p>
+<p><strong>2. Add the starter files.</strong> Download <strong><code>cp_fairness_starter.zip</code></strong> from the Blackboard assignment. In <code>cis-3901-projects</code>, go to the <strong>top folder</strong> (<code>project</code>) → <strong>Upload</strong> → the zip. It adds three files:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>scripts/cp_fairness.R                   the code: data moves and every figure</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>reports/cp_fairness_report.qmd          your report: questions, findings, audit</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>presentations/cp_fairness_slides.qmd    your slides: your talk</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>These are the <strong>only</strong> files of this project. Your site also has <code>fairness_report.qmd</code> and <code>fairness_slides.qmd</code> from October: they aren’t used here, so leave them alone.</p>
+<p><strong>3. Run Section 0</strong> of <code>scripts/cp_fairness.R</code>. It checks your data file and prints a summary of your columns (never rows), as in GP13.</p>
+<p><strong>4. Render both files, commit and push.</strong> Both render from day one (“Not done yet.” where a figure isn’t made yet). Open both links:</p>
+<ul>
+<li><code>https://YOUR-USERNAME.github.io/cis-3901-projects/reports/cp_fairness_report.html</code></li>
+<li><code>https://YOUR-USERNAME.github.io/cis-3901-projects/presentations/cp_fairness_slides.html</code></li>
+</ul>
+<p><strong>Your Guided Project work is your starting point, not your project.</strong> You may copy and revise figure code from <code>scripts/gp13_scales_facets.R</code> (or GP11–GP12). A project made only of Guided Project plots isn’t complete: your figures must answer <strong>your</strong> questions.</p>
+<p><strong>Tidy as needed.</strong> ggplot2 needs tidy data, so tidy anything your questions need (the Module 10 operations apply). Tidying itself isn’t graded in this project.</p>
+</section>
+<section id="do-the-project-in-six-tasks" class="level2">
+<h2 class="anchored" data-anchor-id="do-the-project-in-six-tasks">Do the project in six tasks</h2>
+<p>Each task: the code goes in the <strong>script</strong>, your words go in the <strong>report</strong> (and the slides). Render and push whenever you stop. Unlike the Guided Projects, the script has no PASS / TO DO checks for each task: the checklist in <strong>Finish and submit</strong> is your check.</p>
+<section id="task-1" class="level3">
+<h3 class="anchored" data-anchor-id="task-1">Task 1 · Your questions</h3>
+<p><strong>Goal:</strong> Two or three questions of your own that tell one story.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Step</th>
+<th>What you do</th>
+<th>How it’s checked</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Questions</td>
+<td>Write two or three questions, one sentence each, naming the <strong>outcome</strong> and the <strong>groups compared</strong>. They connect: for example, an overall pattern, then who it differs for, then whether it holds over time or within subgroups</td>
+<td>Your instructor approves them in the proposal; the final must match or explain changes</td>
+</tr>
+<tr class="even">
+<td>Report</td>
+<td>Put your questions at the top of the report and on your <strong>Question</strong> slide</td>
+<td>Your instructor reads them (counts under Questions and data)</td>
+</tr>
+</tbody>
+</table>
+<p>Two questions make a complete, full-credit project. More questions or more slides don’t earn more credit.</p>
+<p><strong>Example (penguins, not your data):</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>#</th>
+<th>Question</th>
+<th>Outcome</th>
+<th>Groups compared</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>Do the three penguin species differ in body mass?</td>
+<td>body mass (g)</td>
+<td>species</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>Does the species difference hold for both sexes?</td>
+<td>body mass (g)</td>
+<td>species × sex</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Question patterns that work:</strong> a rate within groups defined by a sensitive attribute (who has the outcome more often?); an overall pattern, then a subgroup; before and after an event, a season or a year (“compared to what?”, I6); the same comparison in panels.</p>
+<section id="your-project-is-yours" class="level4">
+<h4 class="anchored" data-anchor-id="your-project-is-yours">Your project is yours</h4>
+<p>Several of you work with the same dataset. That’s fine, but your Challenge Project must be <strong>your own and substantially different</strong> from every other student’s, including classmates who use the same data.</p>
+<ul>
+<li><strong>Your questions are independent.</strong> No question may match another student’s: the same outcome compared across the same groups counts as a match, even if it’s worded differently.</li>
+<li><strong>Your figures and writing are your own.</strong> You may talk about ideas with classmates. Write your own code, make your own figures, and write your own findings, limits and “why it matters.”</li>
+<li><strong>Say where help came from.</strong> If a classmate, a tutor or an AI tool shaped your work, say so: in your AI log for AI tools, and in a one-line acknowledgment in your report for people.</li>
+<li><strong>Be ready to explain it.</strong> You should be able to explain any figure or line of code in your project, on December 4 or if I ask before then.</li>
+</ul>
+<p>Projects that are copies of each other (same questions, same figures) don’t meet this requirement, and copying falls under the Catawba College Honor Code.</p>
+</section>
+</section>
+<section id="task-2" class="level3">
+<h3 class="anchored" data-anchor-id="task-2">Task 2 · Prepare your data for your questions</h3>
+<p><strong>Goal:</strong> Make the groups, years or subsets your questions need, and show what each step did.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Step</th>
+<th>What you do</th>
+<th>How it’s checked</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Script</td>
+<td>One section per data move: <code>mutate()</code> a year or a group, <code>filter()</code>, or lumping groups with care. Print the rows and the groups (with n) <strong>before and after</strong> each move</td>
+<td>Your instructor reads the code and output (counts under Questions and data)</td>
+</tr>
+<tr class="even">
+<td>Report</td>
+<td>For each move, one line: what it does and why your question needs it. In your <strong>Data</strong> paragraph and slide: where the data come from, what one row is, how many rows, and what you made or filtered</td>
+<td>Your instructor reads it</td>
+</tr>
+</tbody>
+</table>
+<p>Never drop or combine a group silently: say what you removed or lumped, and how many rows that was.</p>
+<p><strong>Example:</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Move</th>
+<th>Code</th>
+<th>Why my question needs it</th>
+<th>Before → after</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Drop penguins with no sex recorded</td>
+<td><code>filter(!is.na(sex))</code></td>
+<td>Question 2 compares sexes</td>
+<td>344 → 333 rows (11 removed; said in the report)</td>
+</tr>
+<tr class="even">
+<td>Make a period (gapminder)</td>
+<td><code>mutate(period = if_else(year &lt; 1980, "before 1980", "1980 on"))</code></td>
+<td>A before-and-after comparison</td>
+<td>1,704 rows; 12 years → 2 periods, 852 rows each</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="task-3" class="level3">
+<h3 class="anchored" data-anchor-id="task-3">Task 3 · Figures that answer your questions</h3>
+<p><strong>Goal:</strong> At least one figure for each question, each one making its finding easy to see.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Step</th>
+<th>What you do</th>
+<th>How it’s checked</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Script</td>
+<td>Make each figure in its own chunk (<code>## ---- fig1 ----</code>, <code>fig2</code>, …). Across the project: <strong>at least one figure with facets</strong>, and <strong>at least one with a deliberate scale or coordinate choice</strong> (log or percent scale, zoom with <code>coord_cartesian()</code>, flipped axes)</td>
+<td>Your instructor reads the code and figures (counts under Figures and grammar of graphics choices)</td>
+</tr>
+<tr class="even">
+<td>Report</td>
+<td>Under each figure: a <strong>headline</strong> that states the finding; a <strong>grammar line</strong> (below); one or two sentences on what the figure shows</td>
+<td>Your instructor reads it</td>
+</tr>
+</tbody>
+</table>
+<p>For every figure:</p>
+<ul>
+<li><strong>Headline states the finding</strong> (P2): “Gentoo penguins are the heaviest species”, not “Body mass by species”.</li>
+<li><strong>Grammar line:</strong> name the figure’s components and their roles. Example: “data: one row per penguin; aesthetics: species → x, body mass → y, sex → panels; geom: points with a mean marker; scale: y in grams, fixed across panels; facet: sex.”</li>
+<li><strong>Alt text</strong> (<code>fig-alt</code>): one sentence that says what the reader should see.</li>
+<li><strong>n for every group</strong>, in labels, strips or the subtitle.</li>
+<li><strong>Colors:</strong> run <code>color_check()</code> (at least 20 in all three rows), and color is never the only cue (D4).</li>
+<li><strong>Comparing groups defined by a sensitive attribute</strong> (sex, race, age band): show each group’s n, and use <strong>rates within groups</strong> rather than counts (I4). If a group is small, keep it visible and say so; don’t drop or lump it without saying why.</li>
+<li><strong>No private person’s name</strong> in any figure, table or slide.</li>
+</ul>
+</section>
+<section id="task-4" class="level3">
+<h3 class="anchored" data-anchor-id="task-4">Task 4 · Integrity audit</h3>
+<p><strong>Goal:</strong> Check every final figure against the Module 14 codes, and show one improvement.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Step</th>
+<th>What you do</th>
+<th>How it’s checked</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Report</td>
+<td>A table, one row per final figure: the <strong>codes it meets</strong> (at least two), <strong>one fix you made</strong>, and <strong>why</strong></td>
+<td>Your instructor reads it (counts under Integrity and data-ink)</td>
+</tr>
+<tr class="even">
+<td>Before and after</td>
+<td>For <strong>at least one</strong> figure, show the earlier version beside the final one (your GP13 version counts), with one sentence on how the change alters what a reader sees</td>
+<td>Your instructor reads it</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example:</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Figure</th>
+<th>Codes it meets</th>
+<th>One fix I made</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Life expectancy by continent, 1952–2007 (gapminder)</td>
+<td>I2, D3</td>
+<td>Labeled the lines directly and removed the legend</td>
+<td>Readers had to match five colors to a legend, and color was the only cue (D4)</td>
+</tr>
+</tbody>
+</table>
+<p>The 14 codes are in <strong>Reference</strong>.</p>
+</section>
+<section id="task-5" class="level3">
+<h3 class="anchored" data-anchor-id="task-5">Task 5 · Choose your path</h3>
+<p><strong>Goal:</strong> Go further in one of two ways. Both earn the same credit: what counts is how well your figures answer your questions, not which path you take.</p>
+<p><strong>Path A · Go deeper with the tools you know.</strong> Combine what you learned in GP11–GP13 more ambitiously than any single Guided Project task did. For example:</p>
+<ul>
+<li><strong>layer</strong> stats, scales and facets in one figure (rates with error bars, in panels, on a percent axis);</li>
+<li><strong>show uncertainty</strong> for every group comparison (error bars or resampled clouds);</li>
+<li><strong>annotate</strong> important events or values on the figure (I2);</li>
+<li><strong>order</strong> groups so the finding reads first;</li>
+<li><strong>replace</strong> several separate plots with one set of small multiples that share an axis.</li>
+</ul>
+<p><strong>Path B · Bring in one new R tool.</strong> Learn one package on your own and use it for at least one figure. Your skills carry over: most tools still map data to aesthetics, draw geoms and use scales. Examples: <code>patchwork</code> (combine figures into one layout), <code>ggrepel</code> (direct labels that don’t overlap), <code>ggridges</code> (distributions for many groups), <code>plotly</code> or <code>ggiraph</code> (interactive figures on your report page).</p>
+<p>If you choose Path B:</p>
+<ul>
+<li><strong>Explain the mapping:</strong> add a short section to your report, “How my new tool fits the grammar of graphics”: which aesthetics, geoms, stats, scales or facets it uses or replaces.</li>
+<li><strong>Keep the course rules:</strong> <code>%&gt;%</code>, <code>color_check()</code> passes, color is never the only cue, alt text on every figure.</li>
+<li><strong>It must work where your project lives:</strong> it installs in Posit Cloud, and your report and slides still render and publish.</li>
+<li><strong>Cite it</strong> in your Sources, and log any AI help with it.</li>
+<li><strong>If it doesn’t work by the deadline,</strong> go back to Path A for that figure and say so in one line. That isn’t a penalty.</li>
+</ul>
+<p>Say in your proposal which path you’ll take (and for Path B, which tool and which figure).</p>
+</section>
+<section id="task-6" class="level3">
+<h3 class="anchored" data-anchor-id="task-6">Task 6 · Tell the story</h3>
+<p><strong>Goal:</strong> A report and slides that a reader can follow from question to “why it matters.”</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Step</th>
+<th>What you do</th>
+<th>How it’s checked</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Report</td>
+<td>The story arc (P1): <strong>question, data, finding, limits, why it matters</strong>. Differences, not causes. Small groups named, with their n</td>
+<td>Your instructor reads it (counts under Story and interpretation)</td>
+</tr>
+<tr class="even">
+<td>Changes</td>
+<td>One line for each change from your approved proposal, and why</td>
+<td>Your instructor compares it with your proposal</td>
+</tr>
+<tr class="odd">
+<td>Slides</td>
+<td>See <strong>Build your slides</strong> below</td>
+<td>Your instructor reads them</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example (penguins):</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Stage</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Question</td>
+<td>Do the three species differ in body mass, and does the difference hold for both sexes?</td>
+</tr>
+<tr class="even">
+<td>Data</td>
+<td>Palmer penguins: one row is one penguin; 344 rows, 333 with sex recorded</td>
+</tr>
+<tr class="odd">
+<td>Finding</td>
+<td>Gentoo penguins are the heaviest species, for females and for males</td>
+</tr>
+<tr class="even">
+<td>Limits</td>
+<td>Three islands and three seasons; differences, not causes</td>
+</tr>
+<tr class="odd">
+<td>Why it matters</td>
+<td>Comparing the species without splitting by sex could hide where the gap is largest</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="build-your-slides" class="level2">
+<h2 class="anchored" data-anchor-id="build-your-slides">Build your slides</h2>
+<p><strong>Goal:</strong> A short talk that a listener can follow, about 7 minutes long.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Step</th>
+<th>What you do</th>
+<th>How it’s checked</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Slides</td>
+<td>Open <code>presentations/cp_fairness_slides.qmd</code>. Replace each prompt with your own words. A figure appears by naming its chunk from the script. Render</td>
+<td>Your instructor reads them (counts under Story and interpretation); if you present this project, your talk uses this deck</td>
+</tr>
+</tbody>
+</table>
+<ul class="task-list">
+<li><label><input type="checkbox"><strong>Title</strong> (in the YAML): what is this about, and who made it?</label></li>
+<li><label><input type="checkbox"><strong>Question(s):</strong> your investigative questions.</label></li>
+<li><label><input type="checkbox"><strong>Data:</strong> where it’s from, what one row is, how many rows, what you made or filtered.</label></li>
+<li><label><input type="checkbox"><strong>One slide per finding:</strong> a headline that states the finding, then the figure.</label></li>
+<li><label><input type="checkbox"><strong>What it shows, and its limits:</strong> differences, not causes; small groups; what the data can’t tell us.</label></li>
+<li><label><input type="checkbox"><strong>Why it matters:</strong> one or two sentences on what your findings mean for the audience.</label></li>
+<li><label><input type="checkbox"><strong>Sources and AI use:</strong> the data citation, any new tool, one line on AI use.</label></li>
+</ul>
+<p>About <strong>5–7 slides that show a finding</strong> (about one minute each), plus the title, question, data and closing slides. No code on the slides. <strong>Speaker notes are public</strong> on the web: leave them out. Every figure has <code>fig-alt</code>.</p>
+</section>
+<section id="finish-and-submit" class="level2">
+<h2 class="anchored" data-anchor-id="finish-and-submit">Finish and submit</h2>
+<p><strong>Final checklist:</strong></p>
+<ul class="task-list">
+<li><label><input type="checkbox">Both pages render, and both links open in a private (incognito) window.</label></li>
+<li><label><input type="checkbox">Your questions match your approved proposal, or each change is explained.</label></li>
+<li><label><input type="checkbox">Each data move has its line and its before-and-after counts.</label></li>
+<li><label><input type="checkbox">Every question has at least one figure; at least one figure has facets and one has a scale or coordinate choice.</label></li>
+<li><label><input type="checkbox">Every figure has a headline that states the finding, a grammar line, a one-sentence <code>fig-alt</code>, and n for every group.</label></li>
+<li><label><input type="checkbox"><code>color_check()</code> passes, and color is never the only cue.</label></li>
+<li><label><input type="checkbox">The integrity audit table is filled in, with one before-and-after.</label></li>
+<li><label><input type="checkbox">Path B only: your “How my new tool fits the grammar of graphics” section.</label></li>
+<li><label><input type="checkbox">Your “why it matters” line is in your report and on your slides.</label></li>
+<li><label><input type="checkbox">No private person’s name; no <code>WRITE:</code> or template text left.</label></li>
+<li><label><input type="checkbox">One line on AI use in your report and on your last slide; acknowledgments for any people who helped.</label></li>
+</ul>
+<p><strong>Submitting.</strong> Submit in the Blackboard assignment <strong>“Challenge Project: Fairness Data”</strong>. You can submit as many times as you need; your last attempt before the deadline is the one graded. <strong>Late submissions aren’t accepted</strong> unless you arranged it with your instructor before the deadline (syllabus, Deadlines &amp; Extension Requests).</p>
+<ol type="1">
+<li><strong>Type in the text box</strong> your two links, your AI log and the attestation (copy the template in <strong>Reference</strong>).</li>
+<li><strong>Upload copies of all your AI conversations</strong> as .txt, PDF or Word, with personal information removed. Never put them in your Posit Cloud project: everything there is public.</li>
+<li><strong>If pushing failed:</strong> zip <code>docs/reports/cp_fairness_report.html</code> and <code>docs/presentations/cp_fairness_slides.html</code>, attach the zip, and say what went wrong. A technical problem won’t cost you the grade.</li>
+</ol>
+</section>
+<section id="reference" class="level2">
+<h2 class="anchored" data-anchor-id="reference">Reference</h2>
+<section id="project-map" class="level3">
+<h3 class="anchored" data-anchor-id="project-map">Project map</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>cis-3901-projects/</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>├── data/</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>│   └── fairness.csv                    this project reads it; never overwrite it</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>├── scripts/</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>│   └── cp_fairness.R                   you edit the code here</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>├── reports/</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>│   └── cp_fairness_report.qmd          reads the script's chunks</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>├── presentations/</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>│   └── cp_fairness_slides.qmd          reads the script's chunks</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>└── docs/                               the published site: don't edit</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The report and the slides read the script’s chunks by name (<code>knitr::read_chunk()</code>), as in GP13.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Edit the code in the script. The report and the slides only read it.
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Your words live in the report and the slides.</p>
+</div>
+</div>
+</section>
+<section id="the-14-codes-module-14" class="level3">
+<h3 class="anchored" data-anchor-id="the-14-codes-module-14">The 14 codes (Module 14)</h3>
+<p><strong>Integrity:</strong> I1 Size matches the numbers (Lie Factor) · I2 Label clearly; annotate important events · I3 Show data variation, not design variation · I4 Standardized units (rates, per capita) · I5 No more dimensions than the data · I6 Compared to what?</p>
+<p><strong>Data-ink:</strong> D1 Always plot the data · D2 Mute the grid; data ink first · D3 Label directly, not only through a legend · D4 Color is never the only cue</p>
+<p><strong>Presenting:</strong> P1 Story arc: question, data, finding, limits, why it matters · P2 The headline states the finding · P3 One message per slide · P4 Explain a figure aloud: axes, where to look, what it means</p>
+</section>
+<section id="privacy" class="level3">
+<h3 class="anchored" data-anchor-id="privacy">Privacy</h3>
+<p>Your data describe people by sensitive attributes (sex, race, age). Describe groups respectfully, show small groups with their n, and say “differences, not causes.”</p>
+</section>
+<section id="resources-for-path-b" class="level3">
+<h3 class="anchored" data-anchor-id="resources-for-path-b">Resources for Path B</h3>
+<ul>
+<li>ggplot2 book (3rd ed.): <a href="https://ggplot2-book.org/" class="uri">https://ggplot2-book.org/</a></li>
+<li><code>patchwork</code>: <a href="https://patchwork.data-imaginist.com/" class="uri">https://patchwork.data-imaginist.com/</a></li>
+<li><code>ggrepel</code>: <a href="https://ggrepel.slowkow.com/" class="uri">https://ggrepel.slowkow.com/</a></li>
+<li><code>ggridges</code>: <a href="https://wilkelab.org/ggridges/" class="uri">https://wilkelab.org/ggridges/</a></li>
+<li><code>plotly</code> for R: <a href="https://plotly.com/r/" class="uri">https://plotly.com/r/</a></li>
+<li><code>ggiraph</code>: <a href="https://davidgohel.github.io/ggiraph/" class="uri">https://davidgohel.github.io/ggiraph/</a></li>
+</ul>
+</section>
+<section id="grading-percentage-ranges-in-the-rubric" class="level3">
+<h3 class="anchored" data-anchor-id="grading-percentage-ranges-in-the-rubric">Grading (percentage ranges in the rubric)</h3>
+<p><strong>Levels (all criteria):</strong> Exemplary 90–100% · Proficient 80–89% · Developing 65–79% · Beginning 1–64% · No Response 0%.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Criterion</th>
+<th>Weight</th>
+<th>Looks at</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Questions and data</td>
+<td>15%</td>
+<td>Two or three independent questions naming outcome and groups; data moves with why and n before and after; matches your approved proposal, or changes explained</td>
+</tr>
+<tr class="even">
+<td>Figures and grammar of graphics choices</td>
+<td>25%</td>
+<td>Each question answered by a figure; components chosen for a reason; grammar lines; facets and a scale or coordinate choice; Path A depth or Path B mapping</td>
+</tr>
+<tr class="odd">
+<td>Integrity and data-ink</td>
+<td>20%</td>
+<td>Integrity audit with one before-and-after; group comparisons with n and rates; color check, never color alone; specific alt text; no private names</td>
+</tr>
+<tr class="even">
+<td>Story and interpretation</td>
+<td>20%</td>
+<td>Question, data, finding, limits, why it matters; headlines state findings; differences, not causes; small groups named; slides that show findings</td>
+</tr>
+<tr class="odd">
+<td>Code and publishing</td>
+<td>10%</td>
+<td>One script feeds the report and the slides; both render and are published; no template text left</td>
+</tr>
+<tr class="even">
+<td>AI disclosure</td>
+<td>10%</td>
+<td>AI use line in your report and slides, AI log typed in Blackboard (or the no-AI statement), attestation, and copies of all AI conversations uploaded</td>
+</tr>
+</tbody>
+</table>
+<p>An idea of your own that helps the reader see the finding (an angle, a comparison, an order, an annotation) is what separates Exemplary from Proficient. Decoration doesn’t count; an idea that distorts the data or breaks the color rules earns no credit.</p>
+</section>
+<section id="oral-presentation-friday-december-4" class="level3">
+<h3 class="anchored" data-anchor-id="oral-presentation-friday-december-4">Oral presentation (Friday, December 4)</h3>
+<p>You present <strong>one</strong> of your two Challenge Projects (chosen in your proposal) from the slides you submitted. About <strong>10 minutes each:</strong> 7 minutes to talk, 2 minutes for questions, 1 minute to change over. Rehearse with a timer; if you’re over, cut a slide rather than speak faster. In the last class you give a 1–2 minute preview: your question and one figure explained aloud.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Criterion</th>
+<th>Weight</th>
+<th>Looks at</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Investigative questions and data</td>
+<td>25%</td>
+<td>States the questions, naming outcome and groups; what the data are, what one row is, how many rows</td>
+</tr>
+<tr class="even">
+<td>Findings and figures</td>
+<td>25%</td>
+<td>Each headline states the finding; each figure explained aloud (axes, where to look, what it means); differences, not causes; small groups with n</td>
+</tr>
+<tr class="odd">
+<td>Limits and why it matters</td>
+<td>25%</td>
+<td>What the data can’t tell us; what the findings mean for the audience</td>
+</tr>
+<tr class="even">
+<td>Delivery, timing and questions</td>
+<td>25%</td>
+<td>Within 7 minutes; audible and paced; one message per slide; answers questions clearly and explains your own choices</td>
+</tr>
+</tbody>
+</table>
+<p>Same levels as above.</p>
+</section>
+<section id="ai-use-level-2-and-the-ai-log-template" class="level3">
+<h3 class="anchored" data-anchor-id="ai-use-level-2-and-the-ai-log-template">AI use (Level 2) and the AI log template</h3>
+<p>You may use AI for specific tasks: drafting, refining and evaluating your work. Critically evaluate and change any AI content so it reflects your own understanding. Your questions, findings, limits and “why it matters” are your own words.</p>
+<ul>
+<li><strong>Public:</strong> one line in your report’s AI use section and on your last slide, for example “AI use: I used [tool] to [what for].” or “AI use: none.”</li>
+<li><strong>In Blackboard (private):</strong> your AI log or the no-AI statement, the attestation, and copies of all your AI conversations.</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>Report: https://YOUR-USERNAME.github.io/cis-3901-projects/reports/cp_fairness_report.html</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>Slides: https://YOUR-USERNAME.github.io/cis-3901-projects/presentations/cp_fairness_slides.html</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>AI log</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>Use 1 – Tool: ___ | What I used it for: ___ | What I changed or checked, and why: ___</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>Use 2 – Tool: ___ | What I used it for: ___ | What I changed or checked, and why: ___</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>(add a line per use; upload a copy of every conversation)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>OR: I did not use AI for this project. How I worked through problems: ___</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>Attestation: This log lists every use of AI in this project.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/acintron-cc\.github\.io\/cis-3901-202710-guides\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>CIS-3901 Data Visualization and Presentation · Catawba College · Fall 2026</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

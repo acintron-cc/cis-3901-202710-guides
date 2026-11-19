@@ -1,0 +1,444 @@
+---
+title: "Challenge Project: Fairness Data"
+subtitle: "your questions, your figures, your story"
+format:
+  html:
+    link-external-newwindow: true
+---
+
+In the Guided Projects you learned one part of the grammar of graphics at a time, on
+both of your datasets. In this Challenge Project you choose and combine those tools to
+answer **two or three questions of your own** about **one dataset**, your Fairness
+Data, and you publish a **report** and **slides** that tell
+what you found. You'll present one of your two Challenge Projects on Friday, December 4.
+
+**AI use: Level 2 (AI Collaboration).** See "AI use" in **Reference**.
+**Due:** see Blackboard for the due date and time.
+
+## Learning outcomes
+
+This project assesses the course learning outcomes (syllabus). You will:
+
+- Assess the accuracy and honesty of data visualizations by applying principles of
+  graphical integrity.
+- Design original data graphics that maximize data density and minimize chartjunk,
+  using principles such as data-ink maximization and multifunctional graphical
+  elements.
+- Analyze how visual design choices (e.g., scale, proportion, labeling, and layout)
+  influence the interpretation of quantitative information.
+- Identify and define the core components of the grammar of graphics, including data,
+  aesthetics, geoms, stats, scales, coordinates, and facets.
+- Construct visualizations using layered grammar and describe the role of each
+  component while building a plot.
+- Apply appropriate geoms and aesthetics from the grammar of graphics to explore
+  relationships in a dataset.
+- Compare and contrast different visualizations (obtained with the grammar of
+  graphics) to evaluate how changes in aesthetics, geoms, or scales affect the
+  interpretation of data.
+- Design and implement custom visualizations using the grammar of graphics,
+  incorporating advanced features such as faceting, themes, and coordinate
+  transformations to effectively communicate insights from data.
+
+## What you'll hand in
+
+1. A **report page** and a **slides page** for **this project only**, both published
+   on your site. They are separate from your Guided Project pages and from your other
+   Challenge Project.
+2. Their **two links**, in the Blackboard assignment "Challenge Project: Fairness
+   Data".
+3. Both pages are built from **one script**, as in GP13: you edit the code once, and
+   both pages show it.
+
+### Two milestones
+
+| Milestone | When | What | Graded? |
+|---|---|---|---|
+| Proposal | See Blackboard | One post in the discussion "Challenge Project proposals", covering **both** Challenge Projects, with the proposal template attached; then one reply with feedback on an assigned classmate's proposal | Yes, as a Guided Project item; your instructor approves your plan or asks for one change |
+| Final version | See Blackboard | Report and slides published; links, AI log and attestation in the Blackboard assignment | Yes: the rubric in **Reference** |
+
+On Friday, December 4, you present **one** of your two Challenge Projects (you choose
+which one in your proposal). The oral presentation is its own grade item; its rubric is
+in **Reference**.
+
+## Get ready (once, about 10 minutes)
+
+All of this happens in your **`cis-3901-projects`** project in Posit Cloud.
+
+**1. Your data file.** This project reads **`data/fairness.csv`**, the same file as
+GP13. Don't change or overwrite it: your script builds everything it needs from it.
+
+**2. Add the starter files.** Download **`cp_fairness_starter.zip`** from the
+Blackboard assignment. In `cis-3901-projects`, go to the **top folder** (`project`) →
+**Upload** → the zip. It adds three files:
+
+```default
+scripts/cp_fairness.R                   the code: data moves and every figure
+reports/cp_fairness_report.qmd          your report: questions, findings, audit
+presentations/cp_fairness_slides.qmd    your slides: your talk
+```
+
+These are the **only** files of this project. Your site also has
+`fairness_report.qmd` and `fairness_slides.qmd` from October: they aren't used here,
+so leave them alone.
+
+**3. Run Section 0** of `scripts/cp_fairness.R`. It checks your data file and prints a
+summary of your columns (never rows), as in GP13.
+
+**4. Render both files, commit and push.** Both render from day one ("Not done
+yet." where a figure isn't made yet). Open both links:
+
+- `https://YOUR-USERNAME.github.io/cis-3901-projects/reports/cp_fairness_report.html`
+- `https://YOUR-USERNAME.github.io/cis-3901-projects/presentations/cp_fairness_slides.html`
+
+**Your Guided Project work is your starting point, not your project.** You may copy
+and revise figure code from `scripts/gp13_scales_facets.R` (or GP11–GP12). A project
+made only of Guided Project plots isn't complete: your figures must answer **your**
+questions.
+
+**Tidy as needed.** ggplot2 needs tidy data, so tidy anything your questions need (the
+Module 10 operations apply). Tidying itself isn't graded in this project.
+
+## Do the project in six tasks
+
+Each task: the code goes in the **script**, your words go in the **report** (and the
+slides). Render and push whenever you stop. Unlike the Guided Projects, the script has
+no PASS / TO DO checks for each task: the checklist in **Finish and submit** is your
+check.
+
+### Task 1 · Your questions {#task-1}
+
+**Goal:** Two or three questions of your own that tell one story.
+
+| Step | What you do | How it's checked |
+|---|---|---|
+| Questions | Write two or three questions, one sentence each, naming the **outcome** and the **groups compared**. They connect: for example, an overall pattern, then who it differs for, then whether it holds over time or within subgroups | Your instructor approves them in the proposal; the final must match or explain changes |
+| Report | Put your questions at the top of the report and on your **Question** slide | Your instructor reads them (counts under Questions and data) |
+
+Two questions make a complete, full-credit project. More questions or more slides
+don't earn more credit.
+
+**Example (penguins, not your data):**
+
+| # | Question | Outcome | Groups compared |
+|---|---|---|---|
+| 1 | Do the three penguin species differ in body mass? | body mass (g) | species |
+| 2 | Does the species difference hold for both sexes? | body mass (g) | species × sex |
+
+**Question patterns that work:** a rate within groups defined by a sensitive attribute
+(who has the outcome more often?); an overall pattern, then a subgroup; before and
+after an event, a season or a year ("compared to what?", I6); the same comparison in
+panels.
+
+#### Your project is yours
+
+Several of you work with the same dataset. That's fine, but your Challenge Project must
+be **your own and substantially different** from every other student's, including
+classmates who use the same data.
+
+- **Your questions are independent.** No question may match another student's: the
+  same outcome compared across the same groups counts as a match, even if it's worded
+  differently.
+- **Your figures and writing are your own.** You may talk about ideas with classmates.
+  Write your own code, make your own figures, and write your own findings, limits and
+  "why it matters."
+- **Say where help came from.** If a classmate, a tutor or an AI tool shaped your
+  work, say so: in your AI log for AI tools, and in a one-line acknowledgment in your
+  report for people.
+- **Be ready to explain it.** You should be able to explain any figure or line of code
+  in your project, on December 4 or if I ask before then.
+
+Projects that are copies of each other (same questions, same figures) don't meet this
+requirement, and copying falls under the Catawba College Honor Code.
+
+### Task 2 · Prepare your data for your questions {#task-2}
+
+**Goal:** Make the groups, years or subsets your questions need, and show what each
+step did.
+
+| Step | What you do | How it's checked |
+|---|---|---|
+| Script | One section per data move: `mutate()` a year or a group, `filter()`, or lumping groups with care. Print the rows and the groups (with n) **before and after** each move | Your instructor reads the code and output (counts under Questions and data) |
+| Report | For each move, one line: what it does and why your question needs it. In your **Data** paragraph and slide: where the data come from, what one row is, how many rows, and what you made or filtered | Your instructor reads it |
+
+Never drop or combine a group silently: say what you removed or lumped, and how many
+rows that was.
+
+**Example:**
+
+| Move | Code | Why my question needs it | Before → after |
+|---|---|---|---|
+| Drop penguins with no sex recorded | `filter(!is.na(sex))` | Question 2 compares sexes | 344 → 333 rows (11 removed; said in the report) |
+| Make a period (gapminder) | `mutate(period = if_else(year < 1980, "before 1980", "1980 on"))` | A before-and-after comparison | 1,704 rows; 12 years → 2 periods, 852 rows each |
+
+### Task 3 · Figures that answer your questions {#task-3}
+
+**Goal:** At least one figure for each question, each one making its finding easy to
+see.
+
+| Step | What you do | How it's checked |
+|---|---|---|
+| Script | Make each figure in its own chunk (`## ---- fig1 ----`, `fig2`, …). Across the project: **at least one figure with facets**, and **at least one with a deliberate scale or coordinate choice** (log or percent scale, zoom with `coord_cartesian()`, flipped axes) | Your instructor reads the code and figures (counts under Figures and grammar of graphics choices) |
+| Report | Under each figure: a **headline** that states the finding; a **grammar line** (below); one or two sentences on what the figure shows | Your instructor reads it |
+
+For every figure:
+
+- **Headline states the finding** (P2): "Gentoo penguins are the heaviest species",
+  not "Body mass by species".
+- **Grammar line:** name the figure's components and their roles. Example: "data: one
+  row per penguin; aesthetics: species → x, body mass → y, sex → panels; geom: points
+  with a mean marker; scale: y in grams, fixed across panels; facet: sex."
+- **Alt text** (`fig-alt`): one sentence that says what the reader should see.
+- **n for every group**, in labels, strips or the subtitle.
+- **Colors:** run `color_check()` (at least 20 in all three rows), and color is never
+  the only cue (D4).
+- **Comparing groups defined by a sensitive attribute** (sex, race, age band): show
+  each group's n, and use **rates within groups** rather than counts (I4). If a group
+  is small, keep it visible and say so; don't drop or lump it without saying why.
+- **No private person's name** in any figure, table or slide.
+
+### Task 4 · Integrity audit {#task-4}
+
+**Goal:** Check every final figure against the Module 14 codes, and show one
+improvement.
+
+| Step | What you do | How it's checked |
+|---|---|---|
+| Report | A table, one row per final figure: the **codes it meets** (at least two), **one fix you made**, and **why** | Your instructor reads it (counts under Integrity and data-ink) |
+| Before and after | For **at least one** figure, show the earlier version beside the final one (your GP13 version counts), with one sentence on how the change alters what a reader sees | Your instructor reads it |
+
+**Example:**
+
+| Figure | Codes it meets | One fix I made | Why |
+|---|---|---|---|
+| Life expectancy by continent, 1952–2007 (gapminder) | I2, D3 | Labeled the lines directly and removed the legend | Readers had to match five colors to a legend, and color was the only cue (D4) |
+
+The 14 codes are in **Reference**.
+
+### Task 5 · Choose your path {#task-5}
+
+**Goal:** Go further in one of two ways. Both earn the same credit: what counts is how
+well your figures answer your questions, not which path you take.
+
+**Path A · Go deeper with the tools you know.** Combine what you learned in GP11–GP13
+more ambitiously than any single Guided Project task did. For example:
+
+- **layer** stats, scales and facets in one figure (rates with error bars, in panels,
+  on a percent axis);
+- **show uncertainty** for every group comparison (error bars or resampled clouds);
+- **annotate** important events or values on the figure (I2);
+- **order** groups so the finding reads first;
+- **replace** several separate plots with one set of small multiples that share an
+  axis.
+
+**Path B · Bring in one new R tool.** Learn one package on your own and use it for at
+least one figure. Your skills carry over: most tools still map data to aesthetics,
+draw geoms and use scales. Examples: `patchwork` (combine figures into one layout),
+`ggrepel` (direct labels that don't overlap), `ggridges` (distributions for many
+groups), `plotly` or `ggiraph` (interactive figures on your report page).
+
+If you choose Path B:
+
+- **Explain the mapping:** add a short section to your report, "How my new tool fits
+  the grammar of graphics": which aesthetics, geoms, stats, scales or facets it uses or
+  replaces.
+- **Keep the course rules:** `%>%`, `color_check()` passes, color is never the only
+  cue, alt text on every figure.
+- **It must work where your project lives:** it installs in Posit Cloud, and your
+  report and slides still render and publish.
+- **Cite it** in your Sources, and log any AI help with it.
+- **If it doesn't work by the deadline,** go back to Path A for that figure and say so
+  in one line. That isn't a penalty.
+
+Say in your proposal which path you'll take (and for Path B, which tool and which
+figure).
+
+### Task 6 · Tell the story {#task-6}
+
+**Goal:** A report and slides that a reader can follow from question to "why it
+matters."
+
+| Step | What you do | How it's checked |
+|---|---|---|
+| Report | The story arc (P1): **question, data, finding, limits, why it matters**. Differences, not causes. Small groups named, with their n | Your instructor reads it (counts under Story and interpretation) |
+| Changes | One line for each change from your approved proposal, and why | Your instructor compares it with your proposal |
+| Slides | See **Build your slides** below | Your instructor reads them |
+
+**Example (penguins):**
+
+| Stage | Example |
+|---|---|
+| Question | Do the three species differ in body mass, and does the difference hold for both sexes? |
+| Data | Palmer penguins: one row is one penguin; 344 rows, 333 with sex recorded |
+| Finding | Gentoo penguins are the heaviest species, for females and for males |
+| Limits | Three islands and three seasons; differences, not causes |
+| Why it matters | Comparing the species without splitting by sex could hide where the gap is largest |
+
+## Build your slides
+
+**Goal:** A short talk that a listener can follow, about 7 minutes long.
+
+| Step | What you do | How it's checked |
+|---|---|---|
+| Slides | Open `presentations/cp_fairness_slides.qmd`. Replace each prompt with your own words. A figure appears by naming its chunk from the script. Render | Your instructor reads them (counts under Story and interpretation); if you present this project, your talk uses this deck |
+
+- [ ] **Title** (in the YAML): what is this about, and who made it?
+- [ ] **Question(s):** your investigative questions.
+- [ ] **Data:** where it's from, what one row is, how many rows, what you made or
+  filtered.
+- [ ] **One slide per finding:** a headline that states the finding, then the figure.
+- [ ] **What it shows, and its limits:** differences, not causes; small groups; what
+  the data can't tell us.
+- [ ] **Why it matters:** one or two sentences on what your findings mean for the
+  audience.
+- [ ] **Sources and AI use:** the data citation, any new tool, one line on AI use.
+
+About **5–7 slides that show a finding** (about one minute each), plus the title,
+question, data and closing slides. No code on the slides. **Speaker notes are public**
+on the web: leave them out. Every figure has `fig-alt`.
+
+## Finish and submit
+
+**Final checklist:**
+
+- [ ] Both pages render, and both links open in a private (incognito) window.
+- [ ] Your questions match your approved proposal, or each change is explained.
+- [ ] Each data move has its line and its before-and-after counts.
+- [ ] Every question has at least one figure; at least one figure has facets and one
+  has a scale or coordinate choice.
+- [ ] Every figure has a headline that states the finding, a grammar line, a
+  one-sentence `fig-alt`, and n for every group.
+- [ ] `color_check()` passes, and color is never the only cue.
+- [ ] The integrity audit table is filled in, with one before-and-after.
+- [ ] Path B only: your "How my new tool fits the grammar of graphics" section.
+- [ ] Your "why it matters" line is in your report and on your slides.
+- [ ] No private person's name; no `WRITE:` or template text left.
+- [ ] One line on AI use in your report and on your last slide; acknowledgments for
+  any people who helped.
+
+**Submitting.** Submit in the Blackboard assignment **"Challenge Project: Fairness
+Data"**. You can submit as many times as you need; your last attempt before the
+deadline is the one graded. **Late submissions aren't accepted** unless you arranged
+it with your instructor before the deadline (syllabus, Deadlines & Extension
+Requests).
+
+1. **Type in the text box** your two links, your AI log and the attestation (copy the
+   template in **Reference**).
+2. **Upload copies of all your AI conversations** as .txt, PDF or Word, with personal
+   information removed. Never put them in your Posit Cloud project: everything there
+   is public.
+3. **If pushing failed:** zip `docs/reports/cp_fairness_report.html` and
+   `docs/presentations/cp_fairness_slides.html`, attach the zip, and say what went
+   wrong. A technical problem won't cost you the grade.
+
+## Reference
+
+### Project map
+
+```default
+cis-3901-projects/
+├── data/
+│   └── fairness.csv                    this project reads it; never overwrite it
+├── scripts/
+│   └── cp_fairness.R                   you edit the code here
+├── reports/
+│   └── cp_fairness_report.qmd          reads the script's chunks
+├── presentations/
+│   └── cp_fairness_slides.qmd          reads the script's chunks
+└── docs/                               the published site: don't edit
+```
+
+The report and the slides read the script's chunks by name (`knitr::read_chunk()`),
+as in GP13.
+
+::: {.callout-important}
+## Edit the code in the script. The report and the slides only read it.
+
+Your words live in the report and the slides.
+:::
+
+### The 14 codes (Module 14)
+
+**Integrity:** I1 Size matches the numbers (Lie Factor) · I2 Label clearly; annotate
+important events · I3 Show data variation, not design variation · I4 Standardized units
+(rates, per capita) · I5 No more dimensions than the data · I6 Compared to what?
+
+**Data-ink:** D1 Always plot the data · D2 Mute the grid; data ink first · D3 Label
+directly, not only through a legend · D4 Color is never the only cue
+
+**Presenting:** P1 Story arc: question, data, finding, limits, why it matters · P2 The
+headline states the finding · P3 One message per slide · P4 Explain a figure aloud:
+axes, where to look, what it means
+
+### Privacy
+
+Your data describe people by sensitive attributes (sex, race, age). Describe groups
+respectfully, show small groups with their n, and say "differences, not causes."
+
+### Resources for Path B
+
+- ggplot2 book (3rd ed.): <https://ggplot2-book.org/>
+- `patchwork`: <https://patchwork.data-imaginist.com/>
+- `ggrepel`: <https://ggrepel.slowkow.com/>
+- `ggridges`: <https://wilkelab.org/ggridges/>
+- `plotly` for R: <https://plotly.com/r/>
+- `ggiraph`: <https://davidgohel.github.io/ggiraph/>
+
+### Grading (percentage ranges in the rubric)
+
+**Levels (all criteria):** Exemplary 90–100% · Proficient 80–89% · Developing 65–79% ·
+Beginning 1–64% · No Response 0%.
+
+| Criterion | Weight | Looks at |
+|---|---|---|
+| Questions and data | 15% | Two or three independent questions naming outcome and groups; data moves with why and n before and after; matches your approved proposal, or changes explained |
+| Figures and grammar of graphics choices | 25% | Each question answered by a figure; components chosen for a reason; grammar lines; facets and a scale or coordinate choice; Path A depth or Path B mapping |
+| Integrity and data-ink | 20% | Integrity audit with one before-and-after; group comparisons with n and rates; color check, never color alone; specific alt text; no private names |
+| Story and interpretation | 20% | Question, data, finding, limits, why it matters; headlines state findings; differences, not causes; small groups named; slides that show findings |
+| Code and publishing | 10% | One script feeds the report and the slides; both render and are published; no template text left |
+| AI disclosure | 10% | AI use line in your report and slides, AI log typed in Blackboard (or the no-AI statement), attestation, and copies of all AI conversations uploaded |
+
+An idea of your own that helps the reader see the finding (an angle, a comparison, an
+order, an annotation) is what separates Exemplary from Proficient. Decoration doesn't
+count; an idea that distorts the data or breaks the color rules earns no credit.
+
+### Oral presentation (Friday, December 4)
+
+You present **one** of your two Challenge Projects (chosen in your proposal) from the
+slides you submitted. About **10 minutes each:** 7 minutes to talk, 2 minutes for questions,
+1 minute to change over. Rehearse with a timer; if you're over, cut a slide rather than speak
+faster. In the last class you give a 1–2 minute preview: your question and one figure
+explained aloud.
+
+| Criterion | Weight | Looks at |
+|---|---|---|
+| Investigative questions and data | 25% | States the questions, naming outcome and groups; what the data are, what one row is, how many rows |
+| Findings and figures | 25% | Each headline states the finding; each figure explained aloud (axes, where to look, what it means); differences, not causes; small groups with n |
+| Limits and why it matters | 25% | What the data can't tell us; what the findings mean for the audience |
+| Delivery, timing and questions | 25% | Within 7 minutes; audible and paced; one message per slide; answers questions clearly and explains your own choices |
+
+Same levels as above.
+
+### AI use (Level 2) and the AI log template
+
+You may use AI for specific tasks: drafting, refining and evaluating your work.
+Critically evaluate and change any AI content so it reflects your own understanding.
+Your questions, findings, limits and "why it matters" are your own words.
+
+- **Public:** one line in your report's AI use section and on your last slide, for
+  example "AI use: I used [tool] to [what for]." or "AI use: none."
+- **In Blackboard (private):** your AI log or the no-AI statement, the attestation,
+  and copies of all your AI conversations.
+
+```default
+Report: https://YOUR-USERNAME.github.io/cis-3901-projects/reports/cp_fairness_report.html
+Slides: https://YOUR-USERNAME.github.io/cis-3901-projects/presentations/cp_fairness_slides.html
+
+AI log
+Use 1 – Tool: ___ | What I used it for: ___ | What I changed or checked, and why: ___
+Use 2 – Tool: ___ | What I used it for: ___ | What I changed or checked, and why: ___
+(add a line per use; upload a copy of every conversation)
+
+OR: I did not use AI for this project. How I worked through problems: ___
+
+Attestation: This log lists every use of AI in this project.
+```

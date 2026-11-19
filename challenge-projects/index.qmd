@@ -1,0 +1,13 @@
+---
+title: "Challenge Projects"
+subtitle: "your questions, your figures, your story"
+---
+
+In the two Challenge Projects you choose and combine the tools of the Guided
+Projects to answer two or three questions of your own, one project for each of
+your datasets, and publish a report and slides for each:
+[Challenge Project: Fairness Data](fairness-data.qmd) and
+[Challenge Project: Sports Data](sports-data.qmd).
+
+Proposal: the Blackboard discussion "Challenge Project proposals" (see
+Blackboard).
